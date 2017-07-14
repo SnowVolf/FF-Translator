@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:girl="http://schemas.android.com/apk/res-auto"
+    xmlns:agirl="http://schemas.android.com/apk/res/android">
+
+    <item agirl:title="@string/delete"
+        agirl:id="@+id/action_delete_history"
+        agirl:icon="@drawable/ic_action_delete"
+        girl:showAsAction="always"/>
+</menu>

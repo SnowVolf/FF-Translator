@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ru.SnowVolf.translate.ui.widget.InfoBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_gravity="bottom|center_horizontal"
+    android:clickable="true"
+    android:elevation="12dp">
+
+    <ImageButton
+        android:id="@+id/infobar_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/ic_action_cancel_task"
+        android:background="?attr/selectableItemBackground"
+        android:layout_gravity="end|top|right"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/item_icon"
+        android:layout_gravity="start|top|left"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/ic_action_clear"
+        android:cropToPadding="true"
+        android:padding="16dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom|right"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp">
+
+        <Button
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="create new file"
+            android:id="@+id/infobar_negative"
+            android:layout_marginBottom="8dp"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
+        <Button
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="replace file"
+            android:id="@+id/infobar_positive"
+            android:layout_marginBottom="8dp"
+            style="@style/Widget.AppCompat.Button.Colored" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="80dp"
+        tools:text="Do you want to replace the existing file poi.png?\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n"
+        android:id="@+id/infobar_text"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginEnd="56dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat" />
+
+</ru.SnowVolf.translate.ui.widget.InfoBarLayout>

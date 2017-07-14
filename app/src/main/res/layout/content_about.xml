@@ -1,0 +1,267 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:id="@+id/about_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/card_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <!--ABOUT APP REDESIGN-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/about_app_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:paddingBottom="@dimen/card_spacing"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            android:foreground="@drawable/ripple"
+            android:clickable="true"
+            style="?attr/cardStyle">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/icon_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop" />
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/ic_market"
+                        android:scaleType="fitXY"
+                        android:padding="@dimen/sub_medium_spacing"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/about_app_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/big_text"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/sub_small_spacing" />
+                <TextView
+                    android:id="@+id/about_app_light_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/short_descr_android"
+                    android:textSize="@dimen/medium_text"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/sub_small_spacing" />
+                <TextView
+                    android:id="@+id/about_version_item_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/medium_text"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/sub_small_spacing" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/about_artem_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_spacing"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            android:foreground="@drawable/ripple"
+            android:clickable="true"
+            style="?attr/cardStyle">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/artem_header_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerInside"
+                        android:clickable="true"
+                        android:src="@drawable/artem_about_background"/>
+                    <ru.SnowVolf.translate.ui.widget.CircleImageView
+                        android:src="@drawable/libzgirl"
+                        android:id="@+id/artem_profile_img"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="105dp"
+                        app:civ_border_color="@color/md_grey_300"
+                        app:civ_border_width="2dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toRightOf="@id/artem_profile_img"
+                        android:layout_marginTop="158dp">
+
+                        <TextView
+                            android:id="@+id/artem_zhiganov"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_author_name"
+                            android:textSize="@dimen/sub_big_text"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/atrem_zhiganov_role"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_author_role"
+                            android:textSize="@dimen/medium_text" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/artem_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/sub_big_spacing"
+                    android:layout_marginRight="@dimen/sub_big_spacing"
+                    android:layout_marginTop="@dimen/sub_big_spacing"
+                    android:text="@string/role_descr"
+                    android:textSize="@dimen/sub_medium_text" />
+                <!--DONALD LINKS  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/sub_medium_spacing">
+                    <TextView
+                        android:id="@+id/about_author_artem_mail_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EMAIL"
+                        android:textSize="@dimen/medium_text"
+                        android:textStyle="bold"
+                        android:padding="@dimen/sub_medium_spacing"
+                        android:background="@drawable/ripple"
+                        android:clickable="true" />
+                    <TextView
+                        android:id="@+id/about_author_artem_pda_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4PDA"
+                        android:textSize="@dimen/medium_text"
+                        android:padding="@dimen/sub_medium_spacing"
+                        android:background="@drawable/ripple"
+                        android:clickable="true" />
+                    <TextView
+                        android:id="@+id/about_author_artem_github_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GITHUB"
+                        android:textSize="@dimen/medium_text"
+                        android:padding="@dimen/sub_medium_spacing"
+                        android:background="@drawable/ripple"
+                        android:clickable="true" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+</LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:visibility="visible"
+            android:id="@+id/about_list_card"
+            android:layout_marginBottom="@dimen/card_spacing"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            android:foreground="@drawable/ripple"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_container"
+            style="?attr/cardStyle">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+                <TextView
+                    android:id="@+id/common_caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/about"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:visibility="visible"
+                    android:id="@+id/list_common"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/common_caption"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:visibility="visible"
+            android:id="@+id/profile_block_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/about_list_card"
+            android:layout_marginBottom="@dimen/card_spacing"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            android:foreground="@drawable/ripple"
+            android:clickable="true"
+            style="?attr/cardStyle">
+
+            <RelativeLayout
+                android:id="@+id/profile_list_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/license_caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/thirdpaty_libs"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/open_close"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_about_drop_down" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/list_libs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/license_caption"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

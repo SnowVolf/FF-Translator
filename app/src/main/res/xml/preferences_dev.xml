@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="DevGirl"/>
+    <EditTextPreference
+        android:key="dev.predictor"
+        android:title="Predictor API key"/>
+    <EditTextPreference
+        android:key="dev.metrika"
+        android:title="Metrika API key"/>
+    <PreferenceCategory android:title="JavaGirl"/>
+    <Preference
+        android:key="dev.exception"
+        android:title="Throw an exception"/>
+    <CheckBoxPreference
+        android:key="dev.logging"
+        android:title="Enable logging" />
+    <CheckBoxPreference
+        android:key="acra.enable"
+        android:title="Enable ACRA"
+        android:defaultValue="true"/>
+    <Preference
+        android:key="dev.dbg.info"
+        android:title="Debug Info"/>
+</PreferenceScreen>

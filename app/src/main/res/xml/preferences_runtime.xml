@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="perm.audio"
+        android:icon="@drawable/ic_action_mic"
+        android:title="@string/pref_sys_perm_mic"
+        android:summary="@string/pref_sys_perm_mic_sum"/>
+    <Preference
+        android:key="perm.storage"
+        android:icon="@drawable/ic_folder"
+        android:title="@string/pref_sys_perm_file"
+        android:summary="@string/pref_sys_perm_file_sum"/>
+    <Preference
+        android:key="perm.settings"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/pref_sys_perm_settings"
+        android:summary="@string/pref_sys_perm_settings_sum" />
+</PreferenceScreen>

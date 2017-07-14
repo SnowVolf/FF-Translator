@@ -1,0 +1,173 @@
+<resources>
+    <string name="app_name">FF-Переводчик</string>
+    <string name="current_lang">[ENTER_YOUR_LANG_NAME_HERE]</string>
+
+    <!-- Menu Items -->
+    <string name="action_settings">Настройки</string>
+    <string name="action_clear">Очистить всё</string>
+    <string name="action_translate">Перевести</string>
+    <string name="action_history_fav">История/Избранное</string>
+    <string name="action_history">История</string>
+    <string name="action_voice_input">Голосовой ввод</string>
+    <string name="action_favorite">Избранное</string>
+    <string name="action_refresh">Обновить</string>
+    <string name="delete">Удалить</string>
+
+    <!-- Response Errors -->
+    <string name="err_resp_402">API ключ заблокирован</string>
+    <string name="err_resp_401">Неправильный API ключ</string>
+    <string name="err_resp_404">Превышено суточное ограничение на объём переводимого текста</string>
+    <string name="err_resp_413">Превышен масимально допустимый размер текста</string>
+    <string name="err_resp_422">Текст не может быть переведён</string>
+    <string name="err_resp_501">Выбранное направление перевода не поддерживается</string>
+    <string name="err_resp_unknown">Неизвестный ответ от сервера. Попробуйте ещё раз.\nЕсли вы используете устаревшую версию приложения, рекомендуем вам обновить её до более поздней версии.</string>
+
+    <!-- Common -->
+    <string name="date">dd.MM.yy, HH:mm</string>
+    <string name="edittext_input">Введите текст</string>
+    <string name="edittext_output">Перевод</string>
+    <string name="history_delete_title">Удаление</string>
+    <string name="history_deleting_message">Удаление записей…</string>
+    <string name="dlg_delete_history">Удалить историю?</string>
+    <string name="dlg_delete_history_msg">История будет удалена навсегда!</string>
+    <string name="ok">OK</string>
+    <string name="dlg_favorite_edit">Редактировать</string>
+    <string name="history_empty">История пуста</string>
+    <string name="favorite_empty">В избранном ничего нет</string>
+    <string name="enter_title">Введите заголовок</string>
+    <string name="enter_translation">Введите перевод</string>
+    <string name="pref_new_value">Новое значение</string>
+    <string name="settings_help">Справка</string>
+    <string name="settings_policy">Политика конфиденциальности</string>
+    <string name="dlg_delete_favorite">Удалить избранное?</string>
+    <string name="dlg_delete_favorite_msg">Избранное будет удалено навсегда!</string>
+    <string name="no_net_connection">Нет соединения</string>
+    <string name="try_again">Ещё раз</string>
+    <string name="press_once_more">Нажмите ещё раз, чтобы выйти</string>
+    <string name="acra_email_promt">Произошла непредвиденная ошибка, остановившая приложение. Помогите исправить её, отправив данные об ошибке.</string>
+    <string name="acra_app_crashed">Приложение остановлено</string>
+    <string name="dlg_font_size">Размер шрифта</string>
+    <string name="clear">Сброс</string>
+    <string name="not_supported_on_this_device">Не поддерживается на вашем устройстве</string>
+    <string name="add_to_favorites">Добавить в избранное</string>
+    <string name="added_to_favorites">Добавлено в избранное</string>
+    <string name="async_task_canceled">Асинхронная задача отменена</string>
+    <string name="dlg_return_notif_msg">Для того чтобы изменить поведение на значение по умолчанию, нужно снять галку и перезапустить приложение.</string>
+    <string name="notice">Подсказка</string>
+    <string name="speech_girl_is_not_supported">Голосовой ввод не поддерживается</string>
+    <string name="permissions">Разрешения</string>
+    <string name="speak_now">Говорите</string>
+    <string name="choose_lang">Языки</string>
+    <string name="copy">Копировать</string>
+    <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
+    <string name="title_activity_browser">Браузер</string>
+    <string name="enter_url">Введите адрес сайта</string>
+    <string name="entered_win">Введено верно</string>
+    <string name="paste">Вставить</string>
+    <string name="text_in_clip_detected">В буфере обмена есть текст</string>
+
+    <!-- About -->
+    <string name="about">О программе</string>
+    <string name="changelog">История изменений</string>
+    <string name="git">Изучить исходники</string>
+    <string name="thirdpaty_libs">Лицензии</string>
+    <string name="lib1">Android</string>
+    <string name="lib2">Android Robot</string>
+    <string name="lib3">Android Support Library</string>
+    <string name="lib4">AppCompat Library</string>
+    <string name="lib5">CardView Library</string>
+    <string name="lib6">Design Library</string>
+    <string name="lib7">FastHub</string>
+    <string name="lib8">ForPDA New</string>
+    <string name="ilb9">Gradle Retrolambda Plugin</string>
+    <string name="lib10">Palette Library</string>
+    <string name="lib11">RecyclerView Library</string>
+    <string name="owner_lib1">Android Open Source Project (APACHE 2.0)</string>
+    <string name="owner_lib2">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the CC 3.0 Attribution License</string>
+    <string name="owner_lib3">Support different versions of Android back to API 4. Presented by Google Inc. (APACHE 2.0)</string>
+    <string name="owner_lib4">Material Design support backwards to API 7. Presented by Google Inc. (APACHE 2.0)</string>
+    <string name="owner_lib5">Material CardView widget backwards to API 7. Presented by Google Inc. (APACHE 2.0)</string>
+    <string name="owner_lib6">Additional Material Design widgets and API\'s. Presented by Google Inc. (APACHE 2.0)</string>
+    <string name="owner_lib7">Fast and simple GitHub client. Presented by k0shk0sh.(APACHE 2.0)</string>
+    <string name="owner_lib8">Unofficial reactive client for 4PDA. Presented by Evgeny Nizamiev.(APACHE 2.0)</string>
+    <string name="owner_lib9">A gradle plugin for getting java 8 lambda support in java 6, 7 and android. Presented by Evan Tatarka (APACHE 2.0)</string>
+    <string name="owner_lib10">Additional Material Design color palettes and API\'s. Presented by Google Inc. (APACHE 2.0)</string>
+    <string name="owner_lib11">Fast and highly-customizable list widget for android. Presented by Google Inc. (APACHE 2.0)</string>
+
+    <!-- Prefs Categories -->
+    <string name="pref_ctg_api">API</string>
+    <string name="pref_ctg_sys">Системное</string>
+    <string name="pref_ctg_ui">Внешний вид</string>
+    <string name="pref_ctg_lists">Списки</string>
+    <string name="pref_ctg_performance">Взаимодествие</string>
+    <string name="pref_ctg_other">Прочее</string>
+
+    <!-- Prefs Captions/Summaries -->
+    <string name="pref_api_key">API ключ переводчика</string>
+    <string name="pref_api_key_sum">Введите API-ключ полученный в сервисе Yandex.Translate</string>
+    <string name="pref_api_detect">Определять язык</string>
+    <string name="pref_api_detect_sum">Может увеличить время перевода</string>
+    <string name="pref_sys_permissions">Разрешения</string>
+    <string name="pref_sys_permissions_sum">Android 6+. Выдайте все разрешения сразу, если они не были получены автоматически</string>
+    <string name="pref_sys_back">Нажмите еще раз, для выхода</string>
+    <string name="pref_sys_back_sum">Предотвращает случайные нажатия на кнопку \'Назад\'</string>
+    <string name="pref_sys_back_kill">Завершать процесс</string>
+    <string name="pref_sys_back_kill_sum">Завершать процесс полностью после закрытия приложения</string>
+    <string name="pref_ui_theme">Тема</string>
+    <string name="pref_ui_accent">Цвет акцента</string>
+    <string name="pref_ui_blackic">Темные иконки статус-бара</string>
+    <string name="pref_ui_font_size">Размер шрифта</string>
+    <string name="pref_ui_font_size_sum">Применяется ТОЛЬКО для полей ввода</string>
+    <string name="pref_lists_duplicates">Не добавлять дубликаты в историю</string>
+    <string name="pref_lists_duplicates_sum">Только первый перевод будет добавлен</string>
+    <string name="pref_performance_return">Return для перевода</string>
+    <string name="pref_performance_return_sum">Переводить по нажатию ENTER</string>
+    <string name="pref_performance_clip">Переводить из буфера обмена</string>
+    <string name="pref_performance_clip_sum">Предлагать вставить текст из буфера при запуске приложения</string>
+    <string name="pref_other_guide">Руководство</string>
+    <string name="pref_other_guide_sum">Справка и помощь</string>
+    <string name="pref_other_policy">Политика конфиденциальности</string>
+    <string name="pref_dev">Для разработчиков</string>
+    <string name="pref_dev_sum">Лучше не трогать =)</string>
+    <string name="webview_version_error">Ошибка версии WebView</string>
+    <string name="no_webview">Отсутствует WebView</string>
+    <string name="open_with">Открыть с помощью</string>
+    <string name="copy_url">Скопировать ссылку</string>
+    <string name="goto_settings_toast">Откройте раздел \'Разрешения\', и активируйте все пункты</string>
+    <string name="translate_site">Перевести сайт</string>
+    <string name="err_resp_code_explanation">Код ошибки:</string>
+    <string name="action_enter_url">Ввести URL</string>
+    <string name="action_find_on_page">Найти на странице</string>
+    <string name="action_share">Поделиться</string>
+    <string name="action_copy_link">Копировать ссылку</string>
+    <string name="action_open_in_browser">Открыть в браузере</string>
+    <string name="pref_performance_kbd">Показывать клавиатуру при запуске</string>
+    <string name="pref_api_sync_tr">Синхронный перевод</string>
+    <string name="pref_api_sync_tr_sum">Экспериментальная функция. Требуется перезапуск приложения.</string>
+    <string name="owner_lib12">Simple and easy to use circle image widget for android</string>
+    <string name="lib12">CircleImageView</string>
+    <string name="create_bug_report">Сообщить об ошибке</string>
+    <string name="pref_ui_lists_anim">Анимации списков</string>
+    <string name="pref_sys_lang">Язык (Language)</string>
+    <string name="def_value">По умолчанию</string>
+    <string name="app_theme_light">Светлая</string>
+    <string name="app_theme_dark">Тёмная</string>
+    <string name="app_theme_black">Чёрная</string>
+    <string name="pref_sys_perm_mic">Доступ к микрофону</string>
+    <string name="pref_sys_perm_mic_sum">Нужно для осуществления голосового ввода</string>
+    <string name="pref_sys_perm_file">Запись на внутр. накопитель</string>
+    <string name="pref_sys_perm_file_sum">Нужно для перевода текстовых файлов</string>
+    <string name="pref_sys_perm_settings">Открыть системные \'Настройки\'</string>
+    <string name="pref_sys_perm_settings_sum"><![CDATA[Настройки > Приложения > VolfTranslator > О приложении]]></string>
+    <string name="app_lang_changed">Язык приложения был изменён. Перезапустите его, во избежание неполадок</string>
+    <string name="pref_performance_scan_clip">Перехват буфера обмена</string>
+    <string name="short_descr_android">Быстый и лёгкий переводчик под Android</string>
+    <string name="about_author_role">Автор и разработчик</string>
+    <string name="role_descr">Мне 17, я люблю изучать внутренности Андроида, писать мелкие утилиты, и вообще всякий бред =)</string>
+    <string name="err_clipboard_translate">Ошибка перевода</string>
+    <string name="back">Назад</string>
+    <string name="send">Отправить</string>
+    <string name="error">Ошибка!</string>
+    <string name="acra_notif_text">Пожалуйста, отправьте отчёт об ошибке.</string>
+    <string name="snackbar_network_settings">Настройки сети</string>
+</resources>

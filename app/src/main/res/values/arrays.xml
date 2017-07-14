@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="theme_names">
+    <item>@string/app_theme_light</item>
+    <item>@string/app_theme_dark</item>
+    <item>@string/app_theme_black</item>
+    </string-array>
+
+    <string-array name="accent_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+    </string-array>
+    <string-array name="accent_names">
+        <item>Красный</item>
+        <item>Розовый</item>
+        <item>Фиолетовый</item>
+        <item>Индиго</item>
+        <item>Синий</item>
+        <item>Светло-синий</item>
+        <item>Циан</item>
+        <item>Изумрудный</item>
+        <item>Зелёный</item>
+        <item>Салатовый</item>
+        <item>Лайм</item>
+        <item>Желтый</item>
+        <item>Янтарный</item>
+        <item>Оранжевый</item>
+        <item>Тёмно-оранжевый</item>
+        <item>Коричневый</item>
+        <item>Серый</item>
+        <item>Серо-голубой</item>
+    </string-array>
+    <string-array name="supported_lang">
+        <item>Африкаанс</item>
+        <item>Албанский</item>
+        <item>Арабский</item>
+        <item>Армянский</item>
+        <item>Азербайджанский</item>
+        <item>Белорусский</item>
+        <item>Болгарский</item>
+        <item>Каталонский</item>
+        <item>Хорватский</item>
+        <item>Чешский</item>
+        <item>Датский</item>
+        <item>Голландский</item>
+        <item>Английский</item>
+        <item>Эстонский</item>
+        <item>Финский</item>
+        <item>Французский</item>
+        <item>Германский</item>
+        <item>Грузинский</item>
+        <item>Греческий</item>
+        <item>Венгерский</item>
+        <item>Итальянский</item>
+        <item>Латвийский</item>
+        <item>Литовский</item>
+        <item>Македонский</item>
+        <item>Норвежский</item>
+        <item>Польский</item>
+        <item>Португальский</item>
+        <item>Румынский</item>
+        <item>Русский</item>
+        <item>Сербский</item>
+        <item>Словацкий</item>
+        <item>Словенский</item>
+        <item>Испанский</item>
+        <item>Шведский</item>
+        <item>Турецкий</item>
+        <item>Украинский</item>
+    </string-array>
+
+    <string-array name="entries_lang">
+        <item>@string/def_value</item>
+        <item>@string/lang_en</item>
+        <item>@string/lang_ru</item>
+    </string-array>
+    <string-array name="values_lang" translatable="false">
+        <item>default</item>
+        <item>en</item>
+        <item>ru</item>
+    </string-array>
+
+</resources>

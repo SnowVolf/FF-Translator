@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/app_bar"
+        android:id="@+id/include"/>
+<FrameLayout
+    android:id="@+id/settings_frame_container"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_below="@+id/include">
+
+</FrameLayout>
+</RelativeLayout>

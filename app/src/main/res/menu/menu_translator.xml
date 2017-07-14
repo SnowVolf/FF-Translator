@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ru.SnowVolf.translate.ui.activity.TranslatorActivity">
+    <item
+        android:id="@+id/action_history_fav"
+        android:orderInCategory="5"
+        android:title="@string/action_history_fav"
+        android:icon="@drawable/ic_action_history_fav"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="6"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_action_settings"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_mic"
+        android:orderInCategory="1"
+        android:title="@string/action_voice_input"
+        android:icon="@drawable/ic_action_mic"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_translate"
+        android:orderInCategory="0"
+        android:title="@string/action_translate"
+        android:icon="@drawable/ic_action_translate"
+        app:showAsAction="always"/>
+</menu>

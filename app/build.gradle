@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+static def getDate() {
+    def date = new Date()
+    def date1 = date.format("dd.MM.yyyy")
+    return date1;
+}
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "ru.SnowVolf.translate"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 11
+        versionName "1.1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BUILD_TIME", "\"" + getDate().toString() + "\""
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            buildConfigField "String", "BUILD_TIME", "\"" + getDate().toString() + "\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+
+    }
+    lintOptions {
+        disable 'RestrictedApi'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile files('libs/json_simple-1.1.jar')
+    //compile 'com.android.support:multidex:1.0.1'
+    //compile 'org.adw.library:discrete-seekbar:1.0.1'
+    //compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.faendir:acra:4.10.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:palette-v7:25.3.1'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    compile 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.jakewharton:butterknife-annotations:8.6.0'
+    compile 'com.android.support:support-v4:25.3.1'
+    testCompile 'junit:junit:4.12'
+}
