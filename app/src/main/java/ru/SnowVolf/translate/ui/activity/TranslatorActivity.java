@@ -143,7 +143,7 @@ public class TranslatorActivity extends BaseActivity {
         mFromLanguage.setText(mTempData2);
         if (Preferences.isClipboardTranslatable() && Utils.hasClipData()) {
             final Handler copyHandler = new Handler();
-            copyHandler.postDelayed(() -> Snackbar.make(mFromLanguage, R.string.text_in_clip_detected, Snackbar.LENGTH_LONG).setDuration(3000).setAction(R.string.action_translate, view -> mFromLanguage.setText(Utils.getTextFromClipboard())), 700);
+            copyHandler.postDelayed(() -> Snackbar.make(mFromLanguage, R.string.text_in_clip_detected, Snackbar.LENGTH_LONG).setDuration(3000).setAction(R.string.action_translate, view -> mFromLanguage.setText(Utils.getTextFromClipboard())).show(), 700);
         }
         if (Preferences.isShowKeyboardAllowed()){
             mFromLanguage.requestFocus();
@@ -279,9 +279,13 @@ public class TranslatorActivity extends BaseActivity {
                 getString(R.string.send)
         )));
         mBtnFullscreen.setOnClickListener(v -> {
-            Intent fullScreen = new Intent(this, FullscreenActivity.class);
-            fullScreen.putExtra(Constants.Intents.INTENT_TRANSLATED, mToLanguage.getText().toString());
-            startActivity(fullScreen);
+            if (!mToLanguage.getText().toString().isEmpty()) {
+                final Intent fullScreen = new Intent(this, FullscreenActivity.class);
+                fullScreen.putExtra(Constants.Intents.INTENT_TRANSLATED, mToLanguage.getText().toString());
+                startActivity(fullScreen);
+            } else {
+                Snackbar.make(mFromLanguage, R.string.err_fullscreen, Snackbar.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -353,6 +357,8 @@ public class TranslatorActivity extends BaseActivity {
             v.setAnimation(revertAnim);
             mSpinnerTo.setSelection(pos2);
             mSpinnerFrom.setSelection(pos1);
+        } else {
+            Snackbar.make(mFromLanguage, R.string.err_lang_identical, Snackbar.LENGTH_SHORT).show();
         }
     }
 

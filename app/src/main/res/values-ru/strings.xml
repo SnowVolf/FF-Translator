@@ -170,4 +170,6 @@
     <string name="error">Ошибка!</string>
     <string name="acra_notif_text">Пожалуйста, отправьте отчёт об ошибке.</string>
     <string name="snackbar_network_settings">Настройки сети</string>
+    <string name="err_lang_identical">Языки одинаковы</string>
+    <string name="err_fullscreen">Нечего отображать</string>
 </resources>

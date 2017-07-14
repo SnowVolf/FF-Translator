@@ -105,4 +105,12 @@ public class Preferences {
     public static String getFromLang(){
         return App.ctx().getPreferences().getString("last.from.lang", Language.AFRICANS.toString());
     }
+
+    public static boolean isDevModeDisabled(){
+        return App.ctx().getPreferences().getBoolean("dev.mode.enabled", false);
+    }
+
+    public static void enableDevMode(){
+        App.ctx().getPreferences().edit().putBoolean("dev.mode.enabled", true).apply();
+    }
 }

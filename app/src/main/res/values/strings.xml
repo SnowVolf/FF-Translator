@@ -177,5 +177,7 @@
     <string name="error">Error!</string>
     <string name="acra_notif_text">Please send the error information</string>
     <string name="snackbar_network_settings">Net settings</string>
+    <string name="err_lang_identical">Languages are identical</string>
+    <string name="err_fullscreen">Nothing to display</string>
 
 </resources>
