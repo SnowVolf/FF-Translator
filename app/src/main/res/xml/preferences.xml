@@ -20,7 +20,8 @@
         android:key="sys.lang"
         android:title="@string/pref_sys_lang"
         android:entries="@array/entries_lang"
-        android:entryValues="@array/values_lang"/>
+        android:entryValues="@array/values_lang"
+        android:defaultValue="0"/>
     <Preference
         android:key="sys.permissions"
         android:title="@string/pref_sys_permissions"
@@ -44,7 +45,7 @@
         android:key="ui.theme"
         android:title="@string/pref_ui_theme" />
     <ListPreference
-        android:defaultValue="0"
+        android:defaultValue="4"
         android:entries="@array/accent_names"
         android:entryValues="@array/accent_values"
         android:key="ui.accent"

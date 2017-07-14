@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
@@ -35,6 +36,7 @@ import ru.SnowVolf.translate.util.Preferences;
  * Created by Snow Volf on 10.06.2017, 10:45
  */
 public class FavoriteFragment extends NativeContainerFragment {
+    private static SwipeRefreshLayout mRefresh;
     private static RecyclerView mList;
     private static View mEmptyView;
 
@@ -61,6 +63,7 @@ public class FavoriteFragment extends NativeContainerFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
         mList = (RecyclerView) rootView.findViewById(R.id.favorite_list);
         mEmptyView = rootView.findViewById(R.id.favorite_empty_layout);
     }
@@ -75,7 +78,7 @@ public class FavoriteFragment extends NativeContainerFragment {
         mList.setLayoutManager(new RecyclerViewLinearManager(getActivity()));
         mList.setItemAnimator(new DefaultItemAnimator());
         mList.setAdapter(mAdapter);
-
+        mRefresh.setOnRefreshListener(FavoriteFragment::refresh);
     }
 
     @Override
@@ -118,6 +121,7 @@ public class FavoriteFragment extends NativeContainerFragment {
         List<FavoriteItem> items = mDbHandler.getAllItems();
         mAdapter.updateList(items);
         updateFavView(items.isEmpty());
+        mRefresh.setRefreshing(false);
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -183,12 +187,7 @@ public class FavoriteFragment extends NativeContainerFragment {
     }
 
     private void deleteAll() {
-        ProgressDialog dialog = new ProgressDialog(getActivity());
-        dialog.setTitle(getString(R.string.history_delete_title));
-        dialog.setMessage(getString(R.string.history_deleting_message));
-        dialog.setCancelable(false);
-        dialog.setIndeterminate(true);
-        dialog.show();
+        mRefresh.setRefreshing(true);
 
         new AsyncTask<Void, Void, Boolean>() {
             @Override
@@ -199,10 +198,7 @@ public class FavoriteFragment extends NativeContainerFragment {
 
             @Override
             protected void onPostExecute(Boolean param) {
-                new Handler().postDelayed(() -> {
-                    dialog.dismiss();
-                    refresh();
-                }, 1000);
+                new Handler().postDelayed(FavoriteFragment::refresh, 1000);
             }
         }.execute();
     }

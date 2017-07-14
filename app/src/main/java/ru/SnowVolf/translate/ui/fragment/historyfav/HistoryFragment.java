@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,7 @@ import ru.SnowVolf.translate.ui.widget.recyclerview.RecyclerViewLinearManager;
  */
 
 public class HistoryFragment extends NativeContainerFragment {
-
+    @BindView(R.id.swipe_refresh) SwipeRefreshLayout mRefresh;
     @BindView(R.id.history_empty_layout) View mEmptyView;
     @BindView(R.id.history_list) RecyclerView list;
 
@@ -86,6 +87,7 @@ public class HistoryFragment extends NativeContainerFragment {
         list.addItemDecoration(new HistoryAnimationDecorator(getActivity()));
         list.setItemAnimator(new DefaultItemAnimator());
         list.setAdapter(mAdapter);
+        mRefresh.setOnRefreshListener(this::refresh);
     }
 
     @Override
@@ -126,15 +128,11 @@ public class HistoryFragment extends NativeContainerFragment {
         mAdapter.updateList(items);
         // History view
         updateHistoryView(items.isEmpty());
+        mRefresh.setRefreshing(false);
     }
 
     private void deleteAll() {
-        ProgressDialog dialog = new ProgressDialog(getActivity());
-        dialog.setTitle(getString(R.string.history_delete_title));
-        dialog.setMessage(getString(R.string.history_deleting_message));
-        dialog.setCancelable(false);
-        dialog.setIndeterminate(true);
-        dialog.show();
+        mRefresh.setRefreshing(true);
 
         new AsyncTask<Void, Void, Boolean>() {
             @Override
@@ -146,7 +144,6 @@ public class HistoryFragment extends NativeContainerFragment {
             @Override
             protected void onPostExecute(Boolean param) {
                 new Handler().postDelayed(() -> {
-                    dialog.dismiss();
                     refresh();
                 }, 1000);
             }

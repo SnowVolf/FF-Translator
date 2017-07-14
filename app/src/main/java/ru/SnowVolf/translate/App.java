@@ -1,6 +1,7 @@
 package ru.SnowVolf.translate;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -29,37 +30,40 @@ import static org.acra.ReportField.USER_COMMENT;
  */
 @ReportsCrashes(
         mailTo = "svolf15@yandex.ru",
-        customReportContent = {APP_VERSION_CODE, APP_VERSION_NAME, ANDROID_VERSION, PHONE_MODEL, USER_COMMENT, STACK_TRACE, LOGCAT},
+        customReportContent = {APP_VERSION_CODE, APP_VERSION_NAME, ANDROID_VERSION, PHONE_MODEL, STACK_TRACE, LOGCAT},
         mode = ReportingInteractionMode.NOTIFICATION,
         resNotifTickerText = R.string.error,
         resNotifTitle = R.string.acra_app_crashed,
         resNotifText = R.string.acra_notif_text,
         resNotifIcon = android.R.drawable.stat_notify_error,
         resDialogText = R.string.acra_email_promt,
-        resDialogTheme = R.style.AppTheme
+        resDialogTheme = R.style.CrashDialog,
+        resDialogIcon = R.mipmap.ic_launcher,
+        resDialogTitle = R.string.acra_app_crashed
 )
 
 public class App extends Application {
-    private static App INSTANCE = null;
+    private static App INSTANCE = new App();
     private SharedPreferences preferences;
     Locale locale;
     String lang;
 
     public App() {
+        INSTANCE = this;
     }
 
     public static App ctx() {
-        if (INSTANCE == null) {
-            new App();
-        }
         return INSTANCE;
+    }
+
+    public static Context getContext() {
+        return ctx();
     }
 
     public void onCreate(){
         super.onCreate();
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         PreferenceManager.setDefaultValues(this, R.xml.preferences_dev, false);
-        INSTANCE = this;
         ACRA.init(this);
 
         //Lang
@@ -90,7 +94,7 @@ public class App extends Application {
 
     public SharedPreferences getPreferences() {
         if (preferences == null) {
-            preferences = PreferenceManager.getDefaultSharedPreferences(INSTANCE.getApplicationContext());
+            preferences = PreferenceManager.getDefaultSharedPreferences(this);
         }
         return preferences;
     }

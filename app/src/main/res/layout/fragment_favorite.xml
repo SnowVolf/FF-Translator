@@ -1,10 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipe_refresh">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contlayout">
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/favorite_list"
         android:layout_width="match_parent"
@@ -32,5 +35,6 @@
             android:text="@string/favorite_empty"/>
     </RelativeLayout>
 </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
 
 
