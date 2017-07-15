@@ -46,13 +46,13 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
         addPreferencesFromResource(R.xml.preferences);
         //регистрируем слушателя
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        init();
         if (Build.VERSION.SDK_INT < 23){
             getPreferenceScreen().removePreference(mStatusDark);
             getPreferenceScreen().removePreference(findPreference(Constants.Prefs.SYS_PERMISSIONS));
         }
         //иначе будет падать на kit-kat
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        init();
         setCurrentValue((ListPreference) findPreference(Constants.Prefs.UI_ACCENT));
         setCurrentValue((ListPreference) findPreference(Constants.Prefs.UI_THEME));
         setCurrentValue((ListPreference) findPreference(Constants.Prefs.SYS_LANG));
@@ -98,11 +98,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
     @Override
     public void onResume(){
         super.onResume();
-        try {
-            getActivity().setTitle(R.string.action_settings);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        getActivity().setTitle(R.string.action_settings);
     }
 
     private void init() {

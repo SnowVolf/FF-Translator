@@ -14,6 +14,7 @@ import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.api.yandex.translate.Translate;
 import ru.SnowVolf.translate.util.Constants;
 import ru.SnowVolf.translate.util.Preferences;
+import ru.SnowVolf.translate.util.Utils;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
 /**
@@ -34,6 +35,9 @@ class ClipboardTask extends AsyncTask<String, Integer, String>{
         String exec = strings[0];
         try {
             if (!isCancelled()){//Пока не отменено
+                if (exec == null){
+                    exec = Utils.getTextFromClipboard().toString();
+                }
                 Translate.setKey(App.ctx().getPreferences().getString(Constants.Prefs.API_KEY, ""));
                 Logger.i(aClass, "!isCancelled()");
                 if (!Preferences.isDetectAllowed()) {
