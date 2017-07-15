@@ -26,8 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
  * Created by Snow Volf on 15.07.2017, 14:48
  */
 
-public class KeystoreUtil
-{
+public class KeystoreUtil {
     private static final int MAGIC = -1395514454;
     private static final String FILE_NAME = "FileName";
     private static final String KEYSTORE_PASSWORD = "KeystorePassword";
@@ -41,29 +40,29 @@ public class KeystoreUtil
             final File ini = new File(dir, "key.ini");
             final HashMap<String, String> map = new HashMap<>();
             readIni(map, ini);
-            if (!map.containsKey("FileName")) {
+            if (!map.containsKey(FILE_NAME)) {
                 throw new NullPointerException("FileName not found");
             }
-            if (!map.containsKey("KeystorePassword")) {
+            if (!map.containsKey(KEYSTORE_PASSWORD)) {
                 throw new NullPointerException("KeystorePassword not found");
             }
-            if (!map.containsKey("AliasName")) {
+            if (!map.containsKey(ALIAS_NAME)) {
                 throw new NullPointerException("AliasName not found");
             }
-            if (!map.containsKey("AliasPassword")) {
+            if (!map.containsKey(ALIAS_PASSWORD)) {
                 throw new NullPointerException("AliasPassword not found");
             }
-            final String name = map.get("FileName");
-            final String password = map.get("KeystorePassword");
-            final String alias = map.get("AliasName");
-            final String aliasPass = map.get("AliasPassword");
+            final String name = map.get(FILE_NAME);
+            final String password = map.get(KEYSTORE_PASSWORD);
+            final String alias = map.get(ALIAS_NAME);
+            final String aliasPass = map.get(ALIAS_PASSWORD);
             final File file = new File(dir, name);
             final File outDir = new File(dir, "keys");
             outDir.mkdirs();
             final KeyStore keyStore = loadKeyStore(file, password);
             System.err.println("Output:");
-            if (map.containsKey("KeyPassword") && map.get("KeyPassword").length() > 0) {
-                final String keyPass = map.get("KeyPassword");
+            if (map.containsKey(KEY_PASSWORD) && map.get(KEY_PASSWORD).length() > 0) {
+                final String keyPass = map.get(KEY_PASSWORD);
                 final File out = new File(outDir, getName(file.getName()) + ".aes");
                 encryptSplit(keyStore, out, keyPass, alias, aliasPass);
             }
