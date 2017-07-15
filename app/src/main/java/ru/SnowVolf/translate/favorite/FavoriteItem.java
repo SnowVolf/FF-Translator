@@ -9,11 +9,6 @@ public class FavoriteItem {
     private String title;
     private String source;
 
-    public FavoriteItem(String title, String source) {
-        this.title = title;
-        this.source = source;
-    }
-
     public FavoriteItem(long id, String title, String source) {
         this.id = id;
         this.title = title;

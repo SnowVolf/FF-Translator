@@ -19,11 +19,9 @@ import ru.SnowVolf.translate.util.Preferences;
 import static org.acra.ReportField.ANDROID_VERSION;
 import static org.acra.ReportField.APP_VERSION_CODE;
 import static org.acra.ReportField.APP_VERSION_NAME;
-import static org.acra.ReportField.CUSTOM_DATA;
 import static org.acra.ReportField.LOGCAT;
 import static org.acra.ReportField.PHONE_MODEL;
 import static org.acra.ReportField.STACK_TRACE;
-import static org.acra.ReportField.USER_COMMENT;
 
 /**
  * Created by Snow Volf on 28.05.2017, 6:31
@@ -84,11 +82,11 @@ public class App extends Application {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Configuration config = getResources().getConfiguration();
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        getResources().updateConfiguration(config, null);
+            Configuration config = getResources().getConfiguration();
+            locale = new Locale(lang);
+            Locale.setDefault(locale);
+            config.locale = locale;
+            getResources().updateConfiguration(config, null);
     }
 
 

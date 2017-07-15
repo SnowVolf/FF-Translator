@@ -20,7 +20,7 @@ import ru.SnowVolf.translate.R;
 public class InfoBar {
 
 
-        static final Interpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new FastOutSlowInInterpolator();
+        private static final Interpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new FastOutSlowInInterpolator();
 
         private static final int ANIMATION_DURATION = 250;
 
@@ -28,7 +28,6 @@ public class InfoBar {
         private Context mContext;
         private InfoBarLayout mView;
 
-        private ImageButton mCloseButton;
         private Button mPositiveButton;
         private Button mNegativeButton;
         private TextView mTextView;
@@ -41,7 +40,7 @@ public class InfoBar {
             mView = (InfoBarLayout) inflater.inflate(R.layout.infobar, mTargetParent, false);
             mView.setVisibility(View.GONE);
 
-            mCloseButton = (ImageButton) mView.findViewById(R.id.infobar_close);
+            ImageButton mCloseButton = (ImageButton) mView.findViewById(R.id.infobar_close);
             mCloseButton.setOnClickListener(v -> hide());
 
             mTextView = (TextView) mView.findViewById(R.id.infobar_text);

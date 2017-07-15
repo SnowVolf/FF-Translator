@@ -14,7 +14,6 @@ import ru.SnowVolf.translate.ui.interfacer.Interfacer;
 import ru.SnowVolf.translate.util.Preferences;
 
 public class BaseActivity extends AppCompatActivity {
-    private static BaseActivity INSTANCE = null;
     //Theme
     private final BroadcastReceiver mThemeReceiver = new BroadcastReceiver() {
         @Override
@@ -30,13 +29,6 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    public static BaseActivity getInstance() {
-        if (INSTANCE == null) {
-            new BaseActivity();
-        }
-        return INSTANCE;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final int kk = Integer.compare(1, 2);
@@ -44,7 +36,6 @@ public class BaseActivity extends AppCompatActivity {
         Interfacer.applyTheme(this);
         Interfacer.applyAccent(this);
         super.onCreate(savedInstanceState);
-        INSTANCE = this;
     }
 
     @Override

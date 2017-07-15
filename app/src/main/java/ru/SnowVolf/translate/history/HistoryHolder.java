@@ -17,8 +17,8 @@ import java.util.Locale;
 
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.favorite.FavoriteItem;
-import ru.SnowVolf.translate.model.FavoriteDatabaseHandler;
-import ru.SnowVolf.translate.model.HistoryDatabaseHandler;
+import ru.SnowVolf.translate.model.FavoriteDbModel;
+import ru.SnowVolf.translate.model.HistoryDbModel;
 import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
 import ru.SnowVolf.translate.ui.adapter.HistoryAdapter;
 import ru.SnowVolf.translate.util.Constants;
@@ -72,12 +72,12 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()){
                 case R.id.action_history_add_favorite: {
-                    new FavoriteDatabaseHandler(ctx).addItem(new FavoriteItem(historyItem.getId(), historyItem.getTitle(), historyItem.getSource()));
+                    new FavoriteDbModel(ctx).addItem(new FavoriteItem(historyItem.getId(), historyItem.getTitle(), historyItem.getSource()));
                     Snackbar.make(mContainerLayout, R.string.added_to_favorites, Snackbar.LENGTH_SHORT).show();
                     return true;
                 }
                 case R.id.action_history_delete:{
-                    new HistoryDatabaseHandler(ctx).delete(historyItem.getId());
+                    new HistoryDbModel(ctx).delete(historyItem.getId());
                     HistoryAdapter adapter = new HistoryAdapter(ctx, new ArrayList<>());
                     adapter.removeItem(historyItem.getId());
                     adapter.notifyDataSetChanged();

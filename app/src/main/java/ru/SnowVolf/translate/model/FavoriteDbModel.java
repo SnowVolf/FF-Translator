@@ -16,9 +16,9 @@ import ru.SnowVolf.translate.util.Constants;
  * Created by Snow Volf on 04.06.2017, 22:52
  */
 
-public class FavoriteDatabaseHandler extends SQLiteOpenHelper {
+public class FavoriteDbModel extends SQLiteOpenHelper {
 
-    public FavoriteDatabaseHandler(Context context) {
+    public FavoriteDbModel(Context context) {
         super(context, Constants.DatabaseFavorites.DB_NAME, null, Constants.DatabaseFavorites.DB_VERSION);
     }
 

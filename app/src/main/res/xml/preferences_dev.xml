@@ -21,4 +21,11 @@
     <Preference
         android:key="dev.dbg.info"
         android:title="Debug Info"/>
+    <PreferenceCategory android:title="SqlGirl"/>
+    <Preference
+        android:key="dev.sql.history"
+        android:title="Add 50 items to the history"/>
+    <Preference
+        android:key="dev.sql.favorite"
+        android:title="Add 50 items to the favorites"/>
 </PreferenceScreen>

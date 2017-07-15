@@ -1,18 +1,23 @@
 package ru.SnowVolf.translate.ui.fragment.settings;
 
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import ru.SnowVolf.translate.App;
 import ru.SnowVolf.translate.BuildConfig;
 import ru.SnowVolf.translate.R;
+import ru.SnowVolf.translate.favorite.FavoriteItem;
+import ru.SnowVolf.translate.history.HistoryItem;
+import ru.SnowVolf.translate.model.FavoriteDbModel;
+import ru.SnowVolf.translate.model.HistoryDbModel;
 import ru.SnowVolf.translate.net.NetworkStateHelper;
 import ru.SnowVolf.translate.util.Constants;
-import ru.SnowVolf.translate.util.Preferences;
 import ru.SnowVolf.translate.util.Utils;
 
 /**
@@ -37,9 +42,7 @@ public class DevSettingsFragment extends PreferenceFragment {
     }
 
     public void init(){
-        Preference mDbg = findPreference("dev.dbg.info");
-        if (!Preferences.isDevModeDisabled()) {
-            mDbg.setOnPreferenceClickListener(__ -> {
+        findPreference("dev.dbg.info").setOnPreferenceClickListener(__ -> {
                 String JackInfo =
                         "=== BEGIN GIRL LOG ===\n"
                                 + "GIRL_VERSION = " + Constants.Common.GIRL_ALIAS + "\n"
@@ -64,16 +67,81 @@ public class DevSettingsFragment extends PreferenceFragment {
                         }).show();
                 return true;
             });
-        }
 
-        Preference mLog = findPreference("dev.logging");
-        mLog.setDefaultValue(BuildConfig.DEBUG);
+        findPreference("dev.logging").setDefaultValue(BuildConfig.DEBUG);
 
-        Preference mEx = findPreference("dev.exception");
-        if (!Preferences.isDevModeDisabled()) {
-            mEx.setOnPreferenceClickListener(__ -> {
+        findPreference("dev.exception").setOnPreferenceClickListener(__ -> {
                 throw new RuntimeException("Dev Exception");
             });
+        findPreference("dev.sql.favorite").setOnPreferenceClickListener(__ -> {
+            new AsyncFavorite().execute();
+            return true;
+        });
+        findPreference("dev.sql.history").setOnPreferenceClickListener(__ -> {
+            new AsyncHistory().execute();
+            return true;
+        });
+    }
+
+    private class AsyncFavorite extends AsyncTask<Void, Void, Void> {
+        private FavoriteDbModel mDataHandler;
+        private ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDataHandler = new FavoriteDbModel(App.ctx());
+            dialog = new ProgressDialog(getActivity());
+            dialog.setIndeterminate(true);
+            dialog.setMessage("Please wait...");
+            dialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            for (int i = 0; i < 51; i++) {
+                mDataHandler.addItem(new FavoriteItem(System.currentTimeMillis(), "DevTest :: " + i, "DevTest :: " + i));
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            dialog.dismiss();
+            Toast.makeText(getActivity(), "Completed", Toast.LENGTH_LONG).show();
         }
     }
+
+    private class AsyncHistory extends AsyncTask<Void, Void, Void> {
+        private HistoryDbModel mDataHandler;
+        private ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDataHandler = new HistoryDbModel(App.ctx());
+            dialog = new ProgressDialog(getActivity());
+            dialog.setIndeterminate(true);
+            dialog.setMessage("Please wait...");
+            dialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            for (int i = 0; i < 51; i++) {
+                mDataHandler.add(new HistoryItem(System.currentTimeMillis(), "DevTest :: " + i, "DevTest :: " + i, "DevTest :: " + i));
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            dialog.dismiss();
+            Toast.makeText(getActivity(), "Completed", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 }

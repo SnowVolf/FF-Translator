@@ -1,8 +1,6 @@
 package ru.SnowVolf.translate.ui.widget;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.util.AttributeSet;
@@ -16,9 +14,6 @@ import ru.SnowVolf.translate.util.TypefaceHelper;
  */
 
 public class ExtendedEditText extends TextInputEditText {
-    Bitmap drawableRight, button2, button3;
-    Paint paint;
-
     public ExtendedEditText(@NonNull Context context) {
         super(context);
         init();

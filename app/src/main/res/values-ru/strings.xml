@@ -1,16 +1,17 @@
 <resources>
     <string name="app_name">FF-Переводчик</string>
-    <string name="current_lang">[ENTER_YOUR_LANG_NAME_HERE]</string>
+    <string name="lang_en">English</string>
+    <string name="lang_ru">Русский</string>
 
     <!-- Menu Items -->
     <string name="action_settings">Настройки</string>
-    <string name="action_clear">Очистить всё</string>
     <string name="action_translate">Перевести</string>
     <string name="action_history_fav">История/Избранное</string>
     <string name="action_history">История</string>
     <string name="action_voice_input">Голосовой ввод</string>
     <string name="action_favorite">Избранное</string>
     <string name="action_refresh">Обновить</string>
+    <string name="action_source">Изучить исходники</string>
     <string name="delete">Удалить</string>
 
     <!-- Response Errors -->
@@ -26,8 +27,6 @@
     <string name="date">dd.MM.yy, HH:mm</string>
     <string name="edittext_input">Введите текст</string>
     <string name="edittext_output">Перевод</string>
-    <string name="history_delete_title">Удаление</string>
-    <string name="history_deleting_message">Удаление записей…</string>
     <string name="dlg_delete_history">Удалить историю?</string>
     <string name="dlg_delete_history_msg">История будет удалена навсегда!</string>
     <string name="ok">OK</string>
@@ -36,7 +35,6 @@
     <string name="favorite_empty">В избранном ничего нет</string>
     <string name="enter_title">Введите заголовок</string>
     <string name="enter_translation">Введите перевод</string>
-    <string name="pref_new_value">Новое значение</string>
     <string name="settings_help">Справка</string>
     <string name="settings_policy">Политика конфиденциальности</string>
     <string name="dlg_delete_favorite">Удалить избранное?</string>
@@ -45,10 +43,9 @@
     <string name="try_again">Ещё раз</string>
     <string name="press_once_more">Нажмите ещё раз, чтобы выйти</string>
     <string name="acra_email_promt">Произошла непредвиденная ошибка, остановившая приложение. Помогите исправить её, отправив данные об ошибке.</string>
-    <string name="acra_app_crashed">Приложение остановлено</string>
+    <string name="acra_app_crashed">Ошибка в работе программы</string>
     <string name="dlg_font_size">Размер шрифта</string>
     <string name="clear">Сброс</string>
-    <string name="not_supported_on_this_device">Не поддерживается на вашем устройстве</string>
     <string name="add_to_favorites">Добавить в избранное</string>
     <string name="added_to_favorites">Добавлено в избранное</string>
     <string name="async_task_canceled">Асинхронная задача отменена</string>
@@ -69,7 +66,6 @@
     <!-- About -->
     <string name="about">О программе</string>
     <string name="changelog">История изменений</string>
-    <string name="git">Изучить исходники</string>
     <string name="thirdpaty_libs">Лицензии</string>
     <string name="lib1">Android</string>
     <string name="lib2">Android Robot</string>
@@ -135,6 +131,8 @@
     <string name="copy_url">Скопировать ссылку</string>
     <string name="goto_settings_toast">Откройте раздел \'Разрешения\', и активируйте все пункты</string>
     <string name="translate_site">Перевести сайт</string>
+    <string name="share_url">Поделиться ссылкой</string>
+    <string name="save_image">Сохранить изображение</string>
     <string name="err_resp_code_explanation">Код ошибки:</string>
     <string name="action_enter_url">Ввести URL</string>
     <string name="action_find_on_page">Найти на странице</string>
@@ -142,8 +140,6 @@
     <string name="action_copy_link">Копировать ссылку</string>
     <string name="action_open_in_browser">Открыть в браузере</string>
     <string name="pref_performance_kbd">Показывать клавиатуру при запуске</string>
-    <string name="pref_api_sync_tr">Синхронный перевод</string>
-    <string name="pref_api_sync_tr_sum">Экспериментальная функция. Требуется перезапуск приложения.</string>
     <string name="owner_lib12">Simple and easy to use circle image widget for android</string>
     <string name="lib12">CircleImageView</string>
     <string name="create_bug_report">Сообщить об ошибке</string>
@@ -158,10 +154,11 @@
     <string name="pref_sys_perm_file">Запись на внутр. накопитель</string>
     <string name="pref_sys_perm_file_sum">Нужно для перевода текстовых файлов</string>
     <string name="pref_sys_perm_settings">Открыть системные \'Настройки\'</string>
-    <string name="pref_sys_perm_settings_sum"><![CDATA[Настройки > Приложения > VolfTranslator > О приложении]]></string>
+    <string name="pref_sys_perm_settings_sum"><![CDATA[Настройки > Приложения > FF-Переводчик > О приложении]]></string>
     <string name="app_lang_changed">Язык приложения был изменён. Перезапустите его, во избежание неполадок</string>
     <string name="pref_performance_scan_clip">Перехват буфера обмена</string>
     <string name="short_descr_android">Быстый и лёгкий переводчик под Android</string>
+    <string name="about_author_name">Артём Жиганов</string>
     <string name="about_author_role">Автор и разработчик</string>
     <string name="role_descr">Мне 17, я люблю изучать внутренности Андроида, писать мелкие утилиты, и вообще всякий бред =)</string>
     <string name="err_clipboard_translate">Ошибка перевода</string>
@@ -170,6 +167,14 @@
     <string name="error">Ошибка!</string>
     <string name="acra_notif_text">Пожалуйста, отправьте отчёт об ошибке.</string>
     <string name="snackbar_network_settings">Настройки сети</string>
-    <string name="err_lang_identical">Языки одинаковы</string>
+    <string name="err_lang_identical">Языки совпадают</string>
     <string name="err_fullscreen">Нечего отображать</string>
+    <string name="err_nothing_copy">Нечего копировать!</string>
+    <string name="translate_success">Перевод выполнен</string>
+    <string name="donate">Помочь проекту</string>
+    <string name="thanks">Спасибо! :-)</string>
+    <string name="donate_copied">Номер кошелька скопирован в буфер обмена</string>
+    <string name="dlg_donate_explanation">Это приложение абсолютно бесплатно, и всегда будет таким. Его исходный код открыт, вы можете сами добавлять новые функции, либо помогать с переводом на другие языки. Если оно вам понравилось, вы можете пожертвовать любую сумму[1] для поддержки разработчика.   [1] Google берёт 30% от каждого пожертвования.</string>
+    <string name="pref_ui_blackic_sum">Только для Android 6+</string>
+    <string name="title_activity_fullscreen">Fullscreen</string>
 </resources>

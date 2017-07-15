@@ -5,7 +5,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string-array name="theme_names">
+    <string-array name="theme_names" translatable="false">
     <item>@string/app_theme_light</item>
     <item>@string/app_theme_dark</item>
     <item>@string/app_theme_black</item>
@@ -31,7 +31,7 @@
         <item>16</item>
         <item>17</item>
     </string-array>
-    <string-array name="accent_names">
+    <string-array name="accent_names" translatable="false">
         <item>Красный</item>
         <item>Розовый</item>
         <item>Фиолетовый</item>
@@ -51,7 +51,7 @@
         <item>Серый</item>
         <item>Серо-голубой</item>
     </string-array>
-    <string-array name="supported_lang">
+    <string-array name="supported_lang" translatable="false">
         <item>Африкаанс</item>
         <item>Албанский</item>
         <item>Арабский</item>
@@ -90,7 +90,7 @@
         <item>Украинский</item>
     </string-array>
 
-    <string-array name="entries_lang">
+    <string-array name="entries_lang" translatable="false">
         <item>@string/def_value</item>
         <item>@string/lang_en</item>
         <item>@string/lang_ru</item>

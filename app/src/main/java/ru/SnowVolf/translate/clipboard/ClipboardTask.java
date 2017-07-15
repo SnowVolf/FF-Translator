@@ -5,12 +5,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
+
+import org.acra.ACRA;
 
 import ru.SnowVolf.translate.App;
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.api.yandex.translate.Translate;
+import ru.SnowVolf.translate.util.Constants;
 import ru.SnowVolf.translate.util.Preferences;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
@@ -21,19 +23,19 @@ import ru.SnowVolf.translate.util.runtime.Logger;
 class ClipboardTask extends AsyncTask<String, Integer, String>{
     private Class aClass = this.getClass();
     private String translated;
-    private String smallText;
     @Override
     protected void onPreExecute(){
-        Logger.logi(aClass, "onPreExecute()");
+        Logger.i(aClass, "onPreExecute()");
     }
 
     @Override
     protected String doInBackground(String... strings) {
-        Logger.logi(aClass, "doInBackground(String... strings)");
+        Logger.i(aClass, "doInBackground(String... strings)");
         String exec = strings[0];
         try {
             if (!isCancelled()){//Пока не отменено
-                Logger.logi(aClass, "!isCancelled()");
+                Translate.setKey(App.ctx().getPreferences().getString(Constants.Prefs.API_KEY, ""));
+                Logger.i(aClass, "!isCancelled()");
                 if (!Preferences.isDetectAllowed()) {
                     translated = Translate.execute(exec, Language.fromString(Preferences.getFromLang()), Language.fromString(Preferences.getToLang()));
                 } else {
@@ -41,7 +43,7 @@ class ClipboardTask extends AsyncTask<String, Integer, String>{
                 }
             } else return "VolfGirl";//Конец пока
         } catch (Exception e) {
-            e.printStackTrace();
+            ACRA.getErrorReporter().handleException(e);
         }
         Log.i("VfTr", "Translated in background :\n" + exec);
         return translated;
@@ -49,22 +51,13 @@ class ClipboardTask extends AsyncTask<String, Integer, String>{
 
     @Override
     protected void onPostExecute(String result){
-        Logger.logi(aClass, "onPostExecute(String result)");
+        Logger.i(aClass, "onPostExecute(String result)");
         super.onPostExecute(result);
-        try {
-            if (result.length() > 30) {
-                smallText = result.substring(30).concat("...");
-            } else {
-                smallText = result;
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(App.ctx(), R.string.err_clipboard_translate, Toast.LENGTH_SHORT).show();
-        }
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(App.ctx())
                 .setSmallIcon(R.drawable.ic_notification_translate)
-                .setContentTitle("Перевод выполнен")
-                .setContentText(smallText);
+                .setContentTitle(App.ctx().getString(R.string.translate_success))
+                .setContentText(result);
         NotificationManager manager = (NotificationManager) App.ctx().getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(996, mBuilder.build());
     }
@@ -72,6 +65,6 @@ class ClipboardTask extends AsyncTask<String, Integer, String>{
     //Если пользователь отменил задачу
     @Override
     protected void onCancelled(){
-        Logger.logi(aClass, "onCancelled()");
+        Logger.i(aClass, "onCancelled()");
     }
 }

@@ -20,8 +20,7 @@
         android:key="sys.lang"
         android:title="@string/pref_sys_lang"
         android:entries="@array/entries_lang"
-        android:entryValues="@array/values_lang"
-        android:defaultValue="0"/>
+        android:entryValues="@array/values_lang"/>
     <Preference
         android:key="sys.permissions"
         android:title="@string/pref_sys_permissions"
@@ -53,7 +52,7 @@
     <CheckBoxPreference
         android:key="ui.blackicons"
         android:title="@string/pref_ui_blackic"
-        android:summary="Только для Android 6+"
+        android:summary="@string/pref_ui_blackic_sum"
         android:defaultValue="true"/>
     <Preference
         android:key="ui.font.size"

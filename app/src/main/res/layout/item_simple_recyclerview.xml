@@ -7,19 +7,19 @@
     android:foreground="?selectableItemBackground"
     android:gravity="center_vertical"
     android:minHeight="?attr/actionBarSize"
-    android:paddingStart="4dp"
-    android:paddingEnd="4dp">
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp">
 
     <ImageView
         android:visibility="visible"
         android:id="@+id/row_simple_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_action_clear"
+        app:srcCompat="@drawable/ic_github"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"/>
+        android:paddingStart="0dp"
+        android:layout_marginRight="6dp"/>
     <RelativeLayout
         android:id="@+id/row_simple_container"
         android:layout_width="match_parent"

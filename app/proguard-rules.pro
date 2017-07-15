@@ -9,26 +9,19 @@
 
 # Add any project specific keep options here:
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-#common
 -keepattributes SourceFile,LineNumberTable
 -dontwarn java.util.**
 -dontwarn java.time.**
 -dontwarn javax.**
+-dontwarn com.sun.tools.**
+-dontwarn com.sun.misc.**
+-dontwarn com.sun.misc.Unsafe
+-dontwarn com.sun.source.**
 -dontwarn com.squareup.**
+-dontwarn com.google.auto.**
+-dontwarn com.google.common.primitives.**
+-dontwarn com.google.common.cache.**
+-dontwarn butterknife.**
 -dontskipnonpubliclibraryclasses
 #retrolambda
 -dontwarn java.lang.invoke.*
@@ -40,4 +33,6 @@
 -keepclasseswithmembernames class * { @butterknife.* <fields>; }
 
 -keep class org.adw.library.widgets.discreteseekbar.* { *; }
+-keep class com.google.common.* { *; }
+-keep class com.google.common.collect.Count { int value; }
 

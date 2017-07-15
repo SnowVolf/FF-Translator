@@ -1,6 +1,7 @@
 package ru.SnowVolf.translate.ui.activity;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -32,6 +33,7 @@ public class SettingsActivity extends BaseActivity {
         }
         getFragmentManager().beginTransaction()
                 .replace(R.id.settings_frame_container, fragment, MainSettingsFragment.FRAGMENT_TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
 

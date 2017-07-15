@@ -1,7 +1,6 @@
 package ru.SnowVolf.translate.ui.fragment.historyfav;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,9 +23,10 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.SnowVolf.translate.App;
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.favorite.FavoriteItem;
-import ru.SnowVolf.translate.model.FavoriteDatabaseHandler;
+import ru.SnowVolf.translate.model.FavoriteDbModel;
 import ru.SnowVolf.translate.ui.adapter.FavoriteAdapter;
 import ru.SnowVolf.translate.ui.fragment.NativeContainerFragment;
 import ru.SnowVolf.translate.ui.widget.recyclerview.RecyclerViewLinearManager;
@@ -40,7 +40,7 @@ public class FavoriteFragment extends NativeContainerFragment {
     private static RecyclerView mList;
     private static View mEmptyView;
 
-    private static FavoriteDatabaseHandler mDbHandler;
+    private static FavoriteDbModel mDbHandler;
     private static FavoriteAdapter mAdapter;
 
     private final RecyclerView.AdapterDataObserver mAdapterDataObserver = new RecyclerView.AdapterDataObserver() {
@@ -72,7 +72,7 @@ public class FavoriteFragment extends NativeContainerFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         TITLE = R.string.action_history_fav;
-        mDbHandler = new FavoriteDatabaseHandler(getActivity());
+        mDbHandler = new FavoriteDbModel(getActivity());
         mAdapter = new FavoriteAdapter(getActivity(), new ArrayList<>());
         mAdapter.registerAdapterDataObserver(mAdapterDataObserver);
         mList.setLayoutManager(new RecyclerViewLinearManager(getActivity()));
@@ -89,9 +89,6 @@ public class FavoriteFragment extends NativeContainerFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_refresh:
-                refresh();
-                return true;
             case R.id.action_delete_favorite:
                 new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.dlg_delete_favorite)
@@ -121,7 +118,7 @@ public class FavoriteFragment extends NativeContainerFragment {
         List<FavoriteItem> items = mDbHandler.getAllItems();
         mAdapter.updateList(items);
         updateFavView(items.isEmpty());
-        mRefresh.setRefreshing(false);
+        new Handler().postDelayed(() ->  mRefresh.setRefreshing(false), 2500);
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -136,7 +133,7 @@ public class FavoriteFragment extends NativeContainerFragment {
         titleEdit.setTextSize(Preferences.getFontSize());
         urlEdit.setTextSize(Preferences.getFontSize());
 
-        String error = "Ошибка!";
+        String error = App.ctx().getString(R.string.error);
         urlEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -174,12 +171,6 @@ public class FavoriteFragment extends NativeContainerFragment {
                             refresh();
                             dialog.dismiss();
                         }))
-                .setNeutralButton(R.string.delete,
-                        (dialog, w) -> {
-                            mDbHandler.deleteItem(item.getId());
-                            mAdapter.removeItem(item.getId());
-                            dialog.dismiss();
-                        })
                 .setNegativeButton(android.R.string.cancel,
                         (dialog, w) -> dialog.dismiss())
                 .show();
@@ -198,7 +189,7 @@ public class FavoriteFragment extends NativeContainerFragment {
 
             @Override
             protected void onPostExecute(Boolean param) {
-                new Handler().postDelayed(FavoriteFragment::refresh, 1000);
+                new Handler().postDelayed(FavoriteFragment::refresh, 500);
             }
         }.execute();
     }

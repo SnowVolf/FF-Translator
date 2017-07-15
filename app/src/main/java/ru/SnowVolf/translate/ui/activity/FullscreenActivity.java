@@ -1,12 +1,13 @@
 package ru.SnowVolf.translate.ui.activity;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import ru.SnowVolf.translate.R;
@@ -92,6 +93,8 @@ public class FullscreenActivity extends BaseActivity {
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = (TextView) findViewById(R.id.fullscreen_content);
+        Button back = (Button) findViewById(R.id.button_back);
+        back.setOnClickListener(v -> finish());
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -103,7 +106,7 @@ public class FullscreenActivity extends BaseActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.button_back).setOnTouchListener(mDelayHideTouchListener);
 
     }
 

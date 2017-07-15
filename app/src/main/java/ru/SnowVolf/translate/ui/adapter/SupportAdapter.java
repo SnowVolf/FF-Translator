@@ -1,12 +1,12 @@
 package ru.SnowVolf.translate.ui.adapter;
 
 
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
  * and {@link #getCount()} to have a working adapter.
  *
  */
-public abstract class SupportAdapter extends PagerAdapter {
+abstract class SupportAdapter extends PagerAdapter {
     private static final String TAG = "SupportAdapter";
     private static final boolean DEBUG = false;
 

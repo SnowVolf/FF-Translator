@@ -2,7 +2,9 @@ package ru.SnowVolf.translate.ui.fragment.settings;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -119,6 +121,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
             getFragmentManager().beginTransaction()
                     .replace(R.id.settings_frame_container, fragment, PermissionSettingsFragment.FRAGMENT_TAG)
                     .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
             return true;
         });
@@ -143,13 +146,13 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
         mAbout.setTitle(R.string.app_name);
         mAbout.setSummary("v. " + BuildConfig.VERSION_NAME + " r" + BuildConfig.VERSION_CODE + ", " + BuildConfig.BUILD_TIME);
         mAbout.setOnPreferenceClickListener(__ -> {
-            getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new AboutFragment()).addToBackStack(null).commit();
+            getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new AboutFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
             return true;
         });
 
         Preference mPolicy = findPreference(Constants.Prefs.OTHER_POLICY);
         mPolicy.setOnPreferenceClickListener(__ -> {
-            getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new PrivacyPolicyFragment()).addToBackStack(null).commit();
+            getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new PrivacyPolicyFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
             return true;
         });
 
@@ -162,6 +165,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
             getFragmentManager().beginTransaction()
                     .replace(R.id.settings_frame_container, fragment, DevSettingsFragment.FRAGMENT_TAG)
                     .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
             return true;
         });
@@ -189,14 +193,14 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
         final EditText editText = (EditText) v.findViewById(R.id.value_text);
         final TextView sampleText = (TextView) v.findViewById(R.id.font_size_sample);
         sampleText.setTextSize(seekBar.getProgress() + 1);
-        editText.setText((seekBar.getProgress() + 1) + "");
+        editText.setText(Integer.toString(seekBar.getProgress() + 1));
 
         v.findViewById(R.id.button_minus).setOnClickListener(v1 -> {
             if (seekBar.getProgress() > 0) {
                 int i = seekBar.getProgress() - 1;
                 seekBar.setProgress(i);
                 sampleText.setTextSize(i + 1);
-                editText.setText((i + 1) + "");
+                editText.setText(Integer.toString(i + 1));
             }
         });
         v.findViewById(R.id.button_plus).setOnClickListener(v12 -> {
@@ -204,7 +208,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
                 int i = seekBar.getProgress() + 1;
                 seekBar.setProgress(i);
                 sampleText.setTextSize(i + 1);
-                editText.setText((i + 1) + "");
+                editText.setText(Integer.toString(i + 1));
             }
         });
         editText.addTextChangedListener(new TextWatcher() {
@@ -229,7 +233,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 sampleText.setTextSize(i + 1);
-                editText.setText((i + 1) + "");
+                editText.setText(Integer.toString(i + 1));
             }
 
             @Override
@@ -242,16 +246,17 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
 
             }
         });
-        new AlertDialog.Builder(getActivity())
+        AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.dlg_font_size)
                 .setView(v)
                 .setPositiveButton(R.string.ok, (dialogInterface, i) -> Preferences.setFontSize(seekBar.getProgress()))
                 .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> Preferences.getFontSize())
-                .setNeutralButton(R.string.clear, (dialogInterface, i) -> {
+                .setNeutralButton(R.string.clear, null)
+                .show();
+                dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setOnClickListener(view -> {
                     seekBar.setProgress(15);
                     Preferences.setFontSize(15);
                     sampleText.setTextSize(Preferences.getFontSize());
-                })
-                .show();
+                });
     }
 }

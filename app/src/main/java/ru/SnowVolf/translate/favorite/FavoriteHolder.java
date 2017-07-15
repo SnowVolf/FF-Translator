@@ -2,13 +2,19 @@ package ru.SnowVolf.translate.favorite;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import ru.SnowVolf.translate.R;
+import ru.SnowVolf.translate.model.FavoriteDbModel;
 import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
+import ru.SnowVolf.translate.ui.adapter.FavoriteAdapter;
 import ru.SnowVolf.translate.ui.fragment.historyfav.FavoriteFragment;
 import ru.SnowVolf.translate.util.Constants;
 
@@ -21,12 +27,14 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
     private final RelativeLayout mCard;
     private final TextView mTitle;
     private final TextView mSubTitle;
+    private final ImageView mMenu;
 
     public FavoriteHolder(View view) {
         super(view);
         mCard = (RelativeLayout) view.findViewById(R.id.row_favorite_card);
         mTitle = (TextView) view.findViewById(R.id.row_favorite_title);
         mSubTitle = (TextView) view.findViewById(R.id.row_favorite_subtitle);
+        mMenu = (ImageView) view.findViewById(R.id.row_favorite_menu);
     }
 
     public void setData(Context context, FavoriteItem item) {
@@ -46,7 +54,29 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
             mIntent.putExtra(Constants.Intents.INTENT_TRANSLATED, item.getTitle());
             context.startActivity(mIntent);
         });
-
-        mCard.setOnLongClickListener(v -> FavoriteFragment.editItem(context, item));}
+        mMenu.setOnClickListener(v -> showCxtMenu(context, item));
     }
+
+    private void showCxtMenu(Context ctx, FavoriteItem favoriteItem){
+        PopupMenu menu = new PopupMenu(ctx, mMenu);
+        menu.inflate(R.menu.menu_popup_favorite);
+        menu.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()){
+                case R.id.action_fav_edit: {
+                    FavoriteFragment.editItem(ctx, favoriteItem);
+                    return true;
+                }
+                case R.id.action_fav_delete:{
+                    new FavoriteDbModel(ctx).deleteItem(favoriteItem.getId());
+                    FavoriteAdapter adapter = new FavoriteAdapter(ctx, new ArrayList<>());
+                    adapter.removeItem(favoriteItem.getId());
+                    FavoriteFragment.refresh();
+                    return true;
+                }
+            }
+            return true;
+        });
+        menu.show();
+    }
+}
 

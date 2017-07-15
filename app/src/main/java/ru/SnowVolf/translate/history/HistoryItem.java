@@ -11,12 +11,6 @@ public class HistoryItem {
     private String translation;
     private long id = -1;
 
-    public HistoryItem(String title, String source, String translation){
-        this.title = title;
-        this.source = source;
-        this.translation = translation;
-    }
-
     public HistoryItem(long id, String title, String source, String translation){
         this.id = id;
         this.title = title;

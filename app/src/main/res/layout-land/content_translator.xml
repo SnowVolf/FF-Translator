@@ -44,7 +44,9 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="6dp"
                 android:paddingLeft="6dp"
-                android:paddingRight="6dp" />
+                android:paddingRight="6dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"/>
 
             <ImageButton
                 android:id="@+id/bar_clear"
@@ -56,7 +58,9 @@
                 android:paddingRight="6dp"
                 android:paddingTop="8dp"
                 app:srcCompat="@drawable/ic_bar_clear"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"/>
             </RelativeLayout>
         </LinearLayout>
         <View
@@ -117,7 +121,9 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="6dp"
                     android:paddingLeft="6dp"
-                    android:paddingRight="6dp" />
+                    android:paddingRight="6dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"/>
 
                 <ImageButton
                     android:id="@+id/bar_share"
@@ -130,7 +136,9 @@
                     android:paddingTop="8dp"
                     app:srcCompat="@drawable/ic_bar_share"
                     android:layout_below="@+id/bar_copy"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"/>
                 <ImageButton
                     android:id="@+id/bar_fullscreen"
                     android:layout_width="wrap_content"
@@ -141,7 +149,9 @@
                     android:paddingRight="6dp"
                     android:paddingTop="8dp"
                     app:srcCompat="@drawable/ic_bar_fullscreen"
-                    android:layout_alignParentBottom="true"/>
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

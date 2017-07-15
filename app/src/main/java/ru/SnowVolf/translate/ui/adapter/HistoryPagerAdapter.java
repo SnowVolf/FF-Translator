@@ -2,7 +2,6 @@ package ru.SnowVolf.translate.ui.adapter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 

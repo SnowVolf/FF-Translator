@@ -15,7 +15,6 @@ import android.os.Process;
 import android.provider.Settings;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -49,7 +48,7 @@ import ru.SnowVolf.translate.api.yandex.YandexAPI;
 import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.api.yandex.translate.Translate;
 import ru.SnowVolf.translate.history.HistoryItem;
-import ru.SnowVolf.translate.model.HistoryDatabaseHandler;
+import ru.SnowVolf.translate.model.HistoryDbModel;
 import ru.SnowVolf.translate.net.NetworkStateHelper;
 import ru.SnowVolf.translate.ui.widget.ExtendedEditText;
 import ru.SnowVolf.translate.util.Constants;
@@ -61,7 +60,6 @@ import ru.SnowVolf.translate.util.runtime.Logger;
 import ru.SnowVolf.translate.util.runtime.RuntimeUtil;
 import ru.SnowVolf.translate.util.speech.SpeechGirl;
 
-@SuppressWarnings("StatementWithEmptyBody")
 public class TranslatorActivity extends BaseActivity {
     @BindView(R.id.circular_layout) RelativeLayout mAsyncProgress;
     @BindView(R.id.spinner_from) Spinner mSpinnerFrom;
@@ -73,9 +71,9 @@ public class TranslatorActivity extends BaseActivity {
     @BindView(R.id.button_container) RelativeLayout mButtonCnt;
     @BindView(R.id.button_tr_site) Button mButtonGoToSite;
 
-    Class aClass = TranslatorActivity.class;
-    private String mOriginal, translated, mTempData, mTempData2;
-    HistoryDatabaseHandler mDataHandler;
+    Class aClass = this.getClass();
+    private String mOriginal, mTranslated, mTempData, mTempData2;
+    HistoryDbModel mDataHandler;
     public Language valFrom = null;
     public Language valTo = null;
     private int spinnerPosition1, spinnerPosition2;
@@ -83,7 +81,7 @@ public class TranslatorActivity extends BaseActivity {
     //Активити создана
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Logger.logi(aClass, "onCreate()");
+        Logger.i(aClass, "onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translator);
         ButterKnife.bind(this);
@@ -112,7 +110,7 @@ public class TranslatorActivity extends BaseActivity {
 
         mBottomPanel.inflateMenu(R.menu.menu_translator);
         mFromLanguage.setImeActionLabel(getString(R.string.action_translate), KeyEvent.KEYCODE_ENTER);
-        mDataHandler = new HistoryDatabaseHandler(this);
+        mDataHandler = new HistoryDbModel(this);
         mButtonGoToSite.setOnClickListener(v -> {
             Intent mIntent = new Intent(TranslatorActivity.this, BrowserActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -141,9 +139,9 @@ public class TranslatorActivity extends BaseActivity {
         }
         if (Utils.isNotNull(mTempData2))
         mFromLanguage.setText(mTempData2);
-        if (Preferences.isClipboardTranslatable() && Utils.hasClipData()) {
+        if (Preferences.isClipboardTranslatable() && Utils.hasClipData() && mTempData == null) {
             final Handler copyHandler = new Handler();
-            copyHandler.postDelayed(() -> Snackbar.make(mFromLanguage, R.string.text_in_clip_detected, Snackbar.LENGTH_LONG).setDuration(3000).setAction(R.string.action_translate, view -> mFromLanguage.setText(Utils.getTextFromClipboard())).show(), 700);
+            copyHandler.postDelayed(() -> Snackbar.make(findViewById(R.id.switch_container), R.string.text_in_clip_detected, Snackbar.LENGTH_LONG).setDuration(3000).setAction(R.string.action_translate, view -> mFromLanguage.setText(Utils.getTextFromClipboard())).show(), 700);
         }
         if (Preferences.isShowKeyboardAllowed()){
             mFromLanguage.requestFocus();
@@ -171,10 +169,10 @@ public class TranslatorActivity extends BaseActivity {
                 });
             }
         }
-        else Logger.logi(aClass, "mFromLanguage field NULL");
+        else Logger.i(aClass, "mFromLanguage field NULL");
         if (mToLanguage != null)
             mToLanguage.setTextSize(App.ctx().getPreferences().getInt(Constants.Prefs.UI_FONTSIZE, 16));
-        else  Logger.logi(aClass, "mToLanguage field NULL");
+        else  Logger.i(aClass, "mToLanguage field NULL");
         if (mSpinnerFrom != null) {
             if (Preferences.isDetectAllowed()) {
                 mSpinnerFrom.setEnabled(false);
@@ -207,7 +205,7 @@ public class TranslatorActivity extends BaseActivity {
     //Нажатие кнопки назад
     @Override
     public void onBackPressed() {
-        Logger.logi(aClass, "onBackPressed()");
+        Logger.i(aClass, "onBackPressed()");
         if (Preferences.isBackNotif()) {
             if (press_time + 2000 > System.currentTimeMillis()) {
                 if (Preferences.isKillAllowed()) {
@@ -270,8 +268,12 @@ public class TranslatorActivity extends BaseActivity {
             nullable();
         });
         mBtnCopy.setOnClickListener(v -> {
-            Utils.copyToClipboard(mToLanguage.getText().toString());
-            Snackbar.make(mFromLanguage, R.string.copied_to_clipboard, Snackbar.LENGTH_SHORT).show();
+            if (!mToLanguage.getText().toString().isEmpty()) {
+                Utils.copyToClipboard(mToLanguage.getText().toString());
+                Snackbar.make(findViewById(R.id.switch_container), R.string.copied_to_clipboard, Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(findViewById(R.id.switch_container), R.string.err_nothing_copy, Snackbar.LENGTH_SHORT).show();
+            }
         });
         mBtnShare.setOnClickListener(v -> startActivity(Intent.createChooser(
                 new Intent(Intent.ACTION_SEND).setType("text/plain")
@@ -284,7 +286,7 @@ public class TranslatorActivity extends BaseActivity {
                 fullScreen.putExtra(Constants.Intents.INTENT_TRANSLATED, mToLanguage.getText().toString());
                 startActivity(fullScreen);
             } else {
-                Snackbar.make(mFromLanguage, R.string.err_fullscreen, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.switch_container), R.string.err_fullscreen, Snackbar.LENGTH_SHORT).show();
             }
         });
     }
@@ -295,7 +297,7 @@ public class TranslatorActivity extends BaseActivity {
                 Language.CROATIAN, Language.CZECH, Language.DANISH, Language.DUTCH, Language.ENGLISH, Language.ESTONIAN, Language.FINNISH, Language.FRENCH, Language.GERMAN, Language.GEORGIAN,
                 Language.GREEK, Language.HUNGARIAN, Language.ITALIAN, Language.LATVIAN, Language.LITHUANIAN, Language.MACEDONIAN, Language.NORWEGIAN, Language.POLISH, Language.PORTUGUESE,
                 Language.ROMANIAN, Language.RUSSIAN, Language.SERBIAN, Language.SLOVAK, Language.SLOVENIAN, Language.SPANISH, Language.SWEDISH, Language.TURKISH, Language.UKRAINIAN };
-        Logger.logi(aClass, "spinnerHelper()");
+        Logger.i(aClass, "spinnerHelper()");
         mSpinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View is, int pos, long id) {
                 spinnerPosition1 = mSpinnerFrom.getSelectedItemPosition();
@@ -330,7 +332,7 @@ public class TranslatorActivity extends BaseActivity {
 
     //Перевод текста (Нажатие кнопки Меню > Перевести)
     private void translateText() {
-        Logger.logi(aClass, "translateText()");
+        Logger.i(aClass, "translateText()");
         mOriginal = mFromLanguage.getText().toString();
         if (!mOriginal.isEmpty()) {
             if (NetworkStateHelper.isAnyNetworkAvailable()) {
@@ -349,7 +351,7 @@ public class TranslatorActivity extends BaseActivity {
 
     //Смена языков местами
     public void switchLanguage(View v){
-        Logger.logi(aClass, "switchLanguage(View v)");
+        Logger.i(aClass, "switchLanguage(View v)");
         int pos1 = mSpinnerTo.getSelectedItemPosition();
         int pos2 = mSpinnerFrom.getSelectedItemPosition();
         if (pos1 != pos2){
@@ -358,7 +360,7 @@ public class TranslatorActivity extends BaseActivity {
             mSpinnerTo.setSelection(pos2);
             mSpinnerFrom.setSelection(pos1);
         } else {
-            Snackbar.make(mFromLanguage, R.string.err_lang_identical, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.switch_container), R.string.err_lang_identical, Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -406,9 +408,9 @@ public class TranslatorActivity extends BaseActivity {
 
     //Зануляем переменные
     private void nullable(){
-        Logger.logi(aClass, "nullable()");
+        Logger.i(aClass, "nullable()");
         mOriginal = null;
-        translated = null;
+        mTranslated = null;
         mTempData = null;
         mTempData2 = null;
     }
@@ -417,7 +419,7 @@ public class TranslatorActivity extends BaseActivity {
     public void cancelAsyncTask(View v){
         if (!translation.isCancelled()){
             translation.cancel(false);
-            Logger.logi(aClass, "cancelAsyncTask(View v) != true");
+            Logger.i(aClass, "cancelAsyncTask(View v) != true");
         }
     }
 
@@ -428,43 +430,43 @@ public class TranslatorActivity extends BaseActivity {
     private class AsyncTranslation extends AsyncTask<String, Integer, String>{
         @Override
         protected void onPreExecute(){
-            Logger.logi(aClass, "onPreExecute()");
+            Logger.i(aClass, "onPreExecute()");
             mAsyncProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected String doInBackground(String... strings) {
-            Logger.logi(aClass, "doInBackground(String... strings)");
+            Logger.i(aClass, "doInBackground(String... strings)");
             String exec = strings[0];
             try {
                 if (!isCancelled()){//Пока не отменено
-                    Logger.logi(aClass, "!isCancelled()");
+                    Logger.i(aClass, "!isCancelled()");
                     if (!Preferences.isDetectAllowed()) {
-                        translated = Translate.execute(exec, valFrom, valTo);
+                        mTranslated = Translate.execute(exec, valFrom, valTo);
                     } else {
-                        translated = Translate.executeAuto(exec, valTo);
+                        mTranslated = Translate.executeAuto(exec, valTo);
                     }
                 try {
                     //if (!Preferences.isSyncTranslateAllowed())
-                    mDataHandler.add(new HistoryItem(System.currentTimeMillis(), exec, translated, exec));
+                    mDataHandler.add(new HistoryItem(System.currentTimeMillis(), exec, mTranslated, exec));
                 } catch (Exception ignored) {}
             } else return "VolfGirl";//Конец пока
             } catch (Exception e) {
                 e.printStackTrace();
             }
             Log.i("VfTr", "Translated in background :\n" + exec);
-            return translated;
+            return mTranslated;
         }
 
         @Override
         protected void onPostExecute(String result){
-            Logger.logi(aClass, "onPostExecute(String result)");
+            Logger.i(aClass, "onPostExecute(String result)");
             super.onPostExecute(result);
             switch (YandexAPI.getResponseCode()) {
-                case 200: mToLanguage.setText(translated); break;
+                case 200: mToLanguage.setText(mTranslated); break;
                 case 0:
                     Snackbar.make(mToLanguage, R.string.no_net_connection, Snackbar.LENGTH_INDEFINITE).setAction(R.string.try_again, view -> translateText()).show();
-                    Logger.loge(aClass, "No network connection");
+                    Logger.e(aClass, "No network connection");
                     break;
             }
             if (YandexAPI.getResponseCode() != 200) {
@@ -483,7 +485,7 @@ public class TranslatorActivity extends BaseActivity {
                     case 422: message.setText(R.string.err_resp_422); break;
                     case 501: message.setText(R.string.err_resp_501); break;
                     default:
-                            Logger.logi(aClass, "Unknown response from server :: " + YandexAPI.getResponseCode());
+                            Logger.i(aClass, "Unknown response from server :: " + YandexAPI.getResponseCode());
                             message.setText(getString(R.string.err_resp_unknown) + "\n" + getString(R.string.err_resp_code_explanation) + " " + YandexAPI.getResponseCode());
                         break;
                 }
@@ -494,8 +496,8 @@ public class TranslatorActivity extends BaseActivity {
         //Если пользователь отменил задачу
         @Override
         protected void onCancelled(){
-            Logger.logi(aClass, "onCancelled()");
-            Snackbar.make(mFromLanguage, R.string.async_task_canceled, Snackbar.LENGTH_LONG).show();
+            Logger.i(aClass, "onCancelled()");
+            Snackbar.make(findViewById(R.id.switch_container), R.string.async_task_canceled, Snackbar.LENGTH_LONG).show();
             mAsyncProgress.setVisibility(View.GONE);
         }
     }

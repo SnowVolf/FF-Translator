@@ -198,7 +198,7 @@ public class NativeContainerFragment extends Fragment implements IntretactionCoo
     @Override
     public void onDetach() {
         super.onDetach();
-        Logger.logi(vClass, "onDetach()");
+        Logger.i(vClass, "onDetach()");
         System.gc();
     }
 }

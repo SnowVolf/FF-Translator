@@ -17,9 +17,9 @@ import ru.SnowVolf.translate.util.Preferences;
  * Created by Snow Volf on 30.05.2017, 21:33
  */
 
-public class HistoryDatabaseHandler extends SQLiteOpenHelper {
+public class HistoryDbModel extends SQLiteOpenHelper {
 
-    public HistoryDatabaseHandler(Context context) {
+    public HistoryDbModel(Context context) {
         super(context, Constants.DatabaseHistory.DB_NAME, null, Constants.DatabaseHistory.DB_VERSION);
     }
 

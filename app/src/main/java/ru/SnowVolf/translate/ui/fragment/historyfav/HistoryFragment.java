@@ -1,6 +1,5 @@
 package ru.SnowVolf.translate.ui.fragment.historyfav;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,9 +20,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.SnowVolf.translate.R;
-import ru.SnowVolf.translate.history.HistoryAnimationDecorator;
 import ru.SnowVolf.translate.history.HistoryItem;
-import ru.SnowVolf.translate.model.HistoryDatabaseHandler;
+import ru.SnowVolf.translate.model.HistoryDbModel;
 import ru.SnowVolf.translate.ui.adapter.HistoryAdapter;
 import ru.SnowVolf.translate.ui.fragment.NativeContainerFragment;
 import ru.SnowVolf.translate.ui.widget.recyclerview.RecyclerViewLinearManager;
@@ -37,21 +35,13 @@ public class HistoryFragment extends NativeContainerFragment {
     @BindView(R.id.history_empty_layout) View mEmptyView;
     @BindView(R.id.history_list) RecyclerView list;
 
-    private HistoryDatabaseHandler mDbHandler;
+    private HistoryDbModel mDbHandler;
     public HistoryAdapter mAdapter;
-
-    private static HistoryFragment INSTANCE = null;
 
     public HistoryFragment(){
 
     }
 
-    public static HistoryFragment getInstance() {
-        if (INSTANCE == null) {
-            new HistoryFragment();
-        }
-        return INSTANCE;
-    }
 
     private final RecyclerView.AdapterDataObserver mAdapterDataObserver = new RecyclerView.AdapterDataObserver() {
         @Override
@@ -80,11 +70,10 @@ public class HistoryFragment extends NativeContainerFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         TITLE = R.string.action_history_fav;
-        mDbHandler = new HistoryDatabaseHandler(getActivity());
+        mDbHandler = new HistoryDbModel(getActivity());
         mAdapter = new HistoryAdapter(getActivity(), new ArrayList<>());
         mAdapter.registerAdapterDataObserver(mAdapterDataObserver);
         list.setLayoutManager(new RecyclerViewLinearManager(getActivity()));
-        list.addItemDecoration(new HistoryAnimationDecorator(getActivity()));
         list.setItemAnimator(new DefaultItemAnimator());
         list.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this::refresh);
@@ -128,7 +117,7 @@ public class HistoryFragment extends NativeContainerFragment {
         mAdapter.updateList(items);
         // History view
         updateHistoryView(items.isEmpty());
-        mRefresh.setRefreshing(false);
+        new Handler().postDelayed(() ->  mRefresh.setRefreshing(false), 2500);
     }
 
     private void deleteAll() {
@@ -140,12 +129,9 @@ public class HistoryFragment extends NativeContainerFragment {
                 mDbHandler.deleteAll();
                 return true;
             }
-
             @Override
             protected void onPostExecute(Boolean param) {
-                new Handler().postDelayed(() -> {
-                    refresh();
-                }, 1000);
+                new Handler().postDelayed(() -> refresh(), 500);
             }
         }.execute();
     }
