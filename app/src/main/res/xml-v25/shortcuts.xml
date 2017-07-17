@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
-        android:shortcutId="@string/action_history_fav"
+        android:shortcutId="action_history_fav"
         android:enabled="true"
         android:icon="@drawable/ic_shortcut_history"
         android:shortcutShortLabel="@string/action_history_fav">
@@ -16,7 +16,7 @@
     </shortcut>
 
     <shortcut
-        android:shortcutId="@string/title_activity_browser"
+        android:shortcutId="title_activity_browser"
         android:enabled="true"
         android:icon="@drawable/ic_shortcut_browser"
         android:shortcutShortLabel="@string/title_activity_browser">
@@ -24,14 +24,11 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="ru.SnowVolf.translate"
             android:targetClass="ru.SnowVolf.translate.ui.activity.BrowserActivity" />
-        <!-- If your shortcut is associated with multiple intents, include them
-             here. The last intent in the list determines what the user sees when
-             they launch this shortcut. -->
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
 
     <shortcut
-        android:shortcutId="@string/action_settings"
+        android:shortcutId="action_settings"
         android:enabled="true"
         android:icon="@drawable/ic_shortcut_settings"
         android:shortcutShortLabel="@string/action_settings">
@@ -39,9 +36,6 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="ru.SnowVolf.translate"
             android:targetClass="ru.SnowVolf.translate.ui.activity.SettingsActivity" />
-        <!-- If your shortcut is associated with multiple intents, include them
-             here. The last intent in the list determines what the user sees when
-             they launch this shortcut. -->
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
 </shortcuts>
