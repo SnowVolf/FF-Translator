@@ -62,6 +62,10 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
         menu.inflate(R.menu.menu_popup_favorite);
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()){
+                case R.id.action_share:{
+                    share(ctx, favoriteItem);
+                    return true;
+                }
                 case R.id.action_fav_edit: {
                     FavoriteFragment.editItem(ctx, favoriteItem);
                     return true;
@@ -77,6 +81,14 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
             return true;
         });
         menu.show();
+    }
+
+    private void share(Context ctx, FavoriteItem favoriteItem){
+        ctx.startActivity(Intent.createChooser(
+                new Intent(Intent.ACTION_SEND).setType("text/plain")
+                        .putExtra(Intent.EXTRA_TEXT, favoriteItem.getTitle()),
+                ctx.getString(R.string.send)
+        ));
     }
 }
 

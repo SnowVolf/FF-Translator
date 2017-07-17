@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/action_share"
+        android:id="@+id/action_share"/>
     <item
         android:id="@+id/action_history_add_favorite"
         android:title="@string/add_to_favorites"/>

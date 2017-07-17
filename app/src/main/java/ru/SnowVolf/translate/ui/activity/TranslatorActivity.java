@@ -73,7 +73,7 @@ public class TranslatorActivity extends BaseActivity {
 
     Class aClass = this.getClass();
     private String mOriginal, mTranslated, mTempData, mTempData2;
-    HistoryDbModel mDataHandler;
+    HistoryDbModel mDbModel;
     public Language valFrom = null;
     public Language valTo = null;
     private int spinnerPosition1, spinnerPosition2;
@@ -110,7 +110,7 @@ public class TranslatorActivity extends BaseActivity {
 
         mBottomPanel.inflateMenu(R.menu.menu_translator);
         mFromLanguage.setImeActionLabel(getString(R.string.action_translate), KeyEvent.KEYCODE_ENTER);
-        mDataHandler = new HistoryDbModel(this);
+        mDbModel = new HistoryDbModel(this);
         mButtonGoToSite.setOnClickListener(v -> {
             Intent mIntent = new Intent(TranslatorActivity.this, BrowserActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -448,7 +448,7 @@ public class TranslatorActivity extends BaseActivity {
                     }
                 try {
                     //if (!Preferences.isSyncTranslateAllowed())
-                    mDataHandler.add(new HistoryItem(System.currentTimeMillis(), exec, mTranslated, exec));
+                    mDbModel.add(new HistoryItem(System.currentTimeMillis(), exec, mTranslated, exec));
                 } catch (Exception ignored) {}
             } else return "VolfGirl";//Конец пока
             } catch (Exception e) {

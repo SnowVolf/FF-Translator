@@ -71,6 +71,10 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
         menu.inflate(R.menu.menu_popup_history);
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()){
+                case R.id.action_share:{
+                    share(ctx, historyItem);
+                    return true;
+                }
                 case R.id.action_history_add_favorite: {
                     new FavoriteDbModel(ctx).addItem(new FavoriteItem(historyItem.getId(), historyItem.getTitle(), historyItem.getSource()));
                     Snackbar.make(mContainerLayout, R.string.added_to_favorites, Snackbar.LENGTH_SHORT).show();
@@ -87,5 +91,13 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
             return true;
         });
         menu.show();
+    }
+
+    private void share(Context ctx, HistoryItem historyItem) {
+        ctx.startActivity(Intent.createChooser(
+                new Intent(Intent.ACTION_SEND).setType("text/plain")
+                        .putExtra(Intent.EXTRA_TEXT, historyItem.getTranslation()),
+                ctx.getString(R.string.send)
+        ));
     }
 }
