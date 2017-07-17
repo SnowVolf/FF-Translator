@@ -21,6 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
+        <!-- Для экранов Galaxy S8, LG G6, и т.д. -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
         <activity
             android:name=".ui.activity.TranslatorActivity"
             android:configChanges="locale"
@@ -31,21 +35,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <!-- Для экранов Galaxy S8, LG G6, и т.д. -->
-            <meta-data
-                android:name="android.max_aspect"
-                android:value="2.1" />
         </activity>
         <activity
             android:name=".ui.activity.SettingsActivity"
             android:configChanges="locale|orientation"
             android:label="@string/action_settings"
             android:parentActivityName=".ui.activity.TranslatorActivity">
-            <!-- Для экранов Galaxy S8, LG G6, и т.д. -->
-            <meta-data
-                android:name="android.max_aspect"
-                android:value="2.1" />
         </activity>
         <!-- Base App activity -->
         <activity android:name=".ui.activity.BaseActivity" />
@@ -53,10 +48,6 @@
             android:name=".ui.activity.HistoryFavActivity"
             android:label="@string/action_history_fav"
             android:parentActivityName=".ui.activity.TranslatorActivity">
-            <!-- Для экранов Galaxy S8, LG G6, и т.д. -->
-            <meta-data
-                android:name="android.max_aspect"
-                android:value="2.1" />
         </activity>
         <activity android:name=".ui.activity.LanguageListActivity" />
         <activity
@@ -68,10 +59,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.SnowVolf.translate.ui.activity.TranslatorActivity" />
-            <!-- Для экранов Galaxy S8, LG G6, и т.д. -->
-            <meta-data
-                android:name="android.max_aspect"
-                android:value="2.1" />
         </activity>
 
         <service
