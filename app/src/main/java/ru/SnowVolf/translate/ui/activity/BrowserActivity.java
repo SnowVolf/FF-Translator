@@ -4,6 +4,7 @@ import android.Manifest;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -509,16 +510,17 @@ public class BrowserActivity extends BaseActivity {
 
             }
         });
-        new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(v)
                 .setPositiveButton(R.string.ok, (d, i) -> mWebView.loadUrl(baseUrl + editText.getText().toString()))
                 .setNegativeButton(android.R.string.cancel, (d, i) -> d.dismiss())
-                .setNeutralButton(R.string.paste, (d, i) -> {
-                    editText.setText(Utils.getTextFromClipboard());
-                    mWebView.loadUrl(baseUrl + editText.getText().toString());
-                })
+                .setNeutralButton(R.string.paste, null)
                 .setOnDismissListener(dialogInterface -> KeyboardUtil.hideKeyboard(BrowserActivity.this))
                 .show();
+        dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setOnClickListener(view -> {
+            editText.setText(Utils.getTextFromClipboard());
+            mWebView.loadUrl(baseUrl + editText.getText().toString());
+        });
         //Принудительно показываем клавиатуру
         KeyboardUtil.showKeyboard();
     }
