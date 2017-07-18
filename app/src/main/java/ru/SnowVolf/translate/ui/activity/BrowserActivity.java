@@ -43,6 +43,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.api.yandex.YandexAPI;
@@ -248,11 +250,6 @@ public class BrowserActivity extends BaseActivity {
                 case 2: {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mImageUrl));
                     startActivity(Intent.createChooser(intent, ""));
-
-                    break;
-                }
-                case 3: {
-                    mWebView.loadUrl("https://www.google.com/searchbyimage?image_url=" + mImageUrl);
 
                     break;
                 }
@@ -512,7 +509,13 @@ public class BrowserActivity extends BaseActivity {
         });
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(v)
-                .setPositiveButton(R.string.ok, (d, i) -> mWebView.loadUrl(baseUrl + editText.getText().toString()))
+                .setPositiveButton(R.string.ok, (d, i) -> {
+                    try {
+                        mWebView.loadUrl(baseUrl + URLEncoder.encode(editText.getText().toString(), "UTF-8"));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                })
                 .setNegativeButton(android.R.string.cancel, (d, i) -> d.dismiss())
                 .setNeutralButton(R.string.paste, null)
                 .setOnDismissListener(dialogInterface -> KeyboardUtil.hideKeyboard(BrowserActivity.this))

@@ -22,6 +22,7 @@ import ru.SnowVolf.translate.model.HistoryDbModel;
 import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
 import ru.SnowVolf.translate.ui.adapter.HistoryAdapter;
 import ru.SnowVolf.translate.util.Constants;
+import ru.SnowVolf.translate.util.Utils;
 
 /**
  * Created by Snow Volf on 30.05.2017, 11:37
@@ -57,6 +58,8 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
         Intent mIntent = new Intent(context, TranslatorActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mIntent.putExtra(Constants.Intents.INTENT_FROM, item.getFromPosition());
+        mIntent.putExtra(Constants.Intents.INTENT_TO, item.getToPosition());
         mIntent.putExtra(Constants.Intents.INTENT_SOURCE, item.getSource());
         mIntent.putExtra(Constants.Intents.INTENT_TRANSLATED, item.getTranslation());
 
@@ -71,12 +74,17 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
         menu.inflate(R.menu.menu_popup_history);
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()){
+                case R.id.action_copy:{
+                    Utils.copyToClipboard(historyItem.getTranslation());
+                    Snackbar.make(mContainerLayout, R.string.translation_copied, Snackbar.LENGTH_SHORT).show();
+                    return true;
+                }
                 case R.id.action_share:{
                     share(ctx, historyItem);
                     return true;
                 }
-                case R.id.action_history_add_favorite: {
-                    new FavoriteDbModel(ctx).addItem(new FavoriteItem(historyItem.getId(), historyItem.getTitle(), historyItem.getSource()));
+                case R.id.action_history_add_favorite:{
+                    new FavoriteDbModel(ctx).addItem(new FavoriteItem(historyItem.getId(), historyItem.getFromPosition(), historyItem.getToPosition(),  historyItem.getTitle(), historyItem.getSource()));
                     Snackbar.make(mContainerLayout, R.string.added_to_favorites, Snackbar.LENGTH_SHORT).show();
                     return true;
                 }

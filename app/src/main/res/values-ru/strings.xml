@@ -56,6 +56,7 @@
     <string name="speak_now">Говорите</string>
     <string name="choose_lang">Языки</string>
     <string name="copy">Копировать</string>
+    <string name="copy2">Скопировать</string>
     <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
     <string name="title_activity_browser">Браузер</string>
     <string name="enter_url">Введите адрес сайта</string>
@@ -177,4 +178,5 @@
     <string name="dlg_donate_explanation">Это приложение абсолютно бесплатно, и всегда будет таким. Его исходный код открыт, вы можете сами добавлять новые функции, либо помогать с переводом на другие языки. Если оно вам понравилось, вы можете пожертвовать любую сумму[1] для поддержки разработчика.   [1] Google берёт 30% от каждого пожертвования.</string>
     <string name="pref_ui_blackic_sum">Только для Android 6+</string>
     <string name="title_activity_fullscreen">Fullscreen</string>
+    <string name="translation_copied">Перевод скопирован</string>
 </resources>

@@ -19,15 +19,17 @@ import ru.SnowVolf.translate.util.Constants;
 public class FavoriteDbModel extends SQLiteOpenHelper {
 
     public FavoriteDbModel(Context context) {
-        super(context, Constants.DatabaseFavorites.DB_NAME, null, Constants.DatabaseFavorites.DB_VERSION);
+        super(context, Constants.FavDb.DB_NAME, null, Constants.FavDb.DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + Constants.DatabaseFavorites.DB_TABLE_FAVORITES + " (" +
-                Constants.DatabaseFavorites.KEY_ID + " INTEGER PRIMARY KEY, " +
-                Constants.DatabaseFavorites.KEY_TITLE + " TEXT, " +
-                Constants.DatabaseFavorites.KEY_SOURCE + " TEXT)");
+        db.execSQL("CREATE TABLE " + Constants.FavDb.DB_TABLE_FAVORITES + " (" +
+                Constants.FavDb.KEY_ID + " INTEGER PRIMARY KEY, " +
+                Constants.FavDb.KEY_FROM_INT + " INTEGER, " +
+                Constants.FavDb.KEY_TO_INT + " INTEGER, " +
+                Constants.FavDb.KEY_TITLE + " TEXT, " +
+                Constants.FavDb.KEY_SOURCE + " TEXT)");
     }
 
     @Override
@@ -41,12 +43,13 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
         }
 
         ContentValues values = new ContentValues();
-        values.put(Constants.DatabaseFavorites.KEY_ID, item.getId());
-        values.put(Constants.DatabaseFavorites.KEY_TITLE, item.getTitle());
-        values.put(Constants.DatabaseFavorites.KEY_SOURCE, item.getSource());
-
+        values.put(Constants.FavDb.KEY_ID, item.getId());
+        values.put(Constants.FavDb.KEY_TITLE, item.getTitle());
+        values.put(Constants.FavDb.KEY_SOURCE, item.getSource());
+        values.put(Constants.FavDb.KEY_FROM_INT, item.getFromPosition());
+        values.put(Constants.FavDb.KEY_TO_INT, item.getToPosition());
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(Constants.DatabaseFavorites.DB_TABLE_FAVORITES, null, values);
+        db.insert(Constants.FavDb.DB_TABLE_FAVORITES, null, values);
         db.close();
     }
 
@@ -54,28 +57,29 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Constants.DatabaseFavorites.KEY_TITLE, item.getTitle());
-        values.put(Constants.DatabaseFavorites.KEY_SOURCE, item.getSource());
+        values.put(Constants.FavDb.KEY_TITLE, item.getTitle());
+        values.put(Constants.FavDb.KEY_SOURCE, item.getSource());
 
-        db.update(Constants.DatabaseFavorites.DB_TABLE_FAVORITES, values, Constants.DatabaseFavorites.KEY_ID + "=?",
+        db.update(Constants.FavDb.DB_TABLE_FAVORITES, values, Constants.FavDb.KEY_ID + "=?",
                 new String[]{String.valueOf(item.getId())});
     }
 
     public void deleteItem(long id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constants.DatabaseFavorites.DB_TABLE_FAVORITES, Constants.DatabaseFavorites.KEY_ID + "=?", new String[]{String.valueOf(id)});
+        db.delete(Constants.FavDb.DB_TABLE_FAVORITES, Constants.FavDb.KEY_ID + "=?", new String[]{String.valueOf(id)});
         db.close();
     }
 
     public List<FavoriteItem> getAllItems() {
         List<FavoriteItem> list = new ArrayList<>();
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.DatabaseFavorites.DB_TABLE_FAVORITES, null);
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.FavDb.DB_TABLE_FAVORITES, null);
 
         if (cursor.moveToFirst()) {
             do {
                 list.add(new FavoriteItem(Long.parseLong(cursor.getString(0)),
-                        cursor.getString(1), cursor.getString(2)));
+                        cursor.getInt(1), cursor.getInt(2),
+                        cursor.getString(3), cursor.getString(4)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -85,7 +89,7 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
 
     public void deleteAll() {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constants.DatabaseFavorites.DB_TABLE_FAVORITES, Constants.DatabaseFavorites.KEY_ID + ">=?", new String[]{"0"});
+        db.delete(Constants.FavDb.DB_TABLE_FAVORITES, Constants.FavDb.KEY_ID + ">=?", new String[]{"0"});
         db.close();
     }
 }

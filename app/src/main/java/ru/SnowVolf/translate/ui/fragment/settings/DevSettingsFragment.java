@@ -54,8 +54,8 @@ public class DevSettingsFragment extends PreferenceFragment {
                                 + "IS_BETA = " + BuildConfig.DEBUG + "\n"
                                 + "SDK = " + Build.VERSION.SDK_INT + "\n"
                                 + "PHONE_MODEL = " + Build.MANUFACTURER + ", " + Build.MODEL + "\n"
-                                + "HISTORY_DB_VER = " + Constants.DatabaseHistory.DB_VERSION + "\n"
-                                + "FAVORITE_DB_VER = " + Constants.DatabaseFavorites.DB_VERSION + "\n"
+                                + "HISTORY_DB_VER = " + Constants.HistoryDb.DB_VERSION + "\n"
+                                + "FAVORITE_DB_VER = " + Constants.FavDb.DB_VERSION + "\n"
                                 + "=== END GIRL LOG ===\n";
                 new AlertDialog.Builder(getActivity())
                         .setTitle("GIRL_LOG")
@@ -100,7 +100,7 @@ public class DevSettingsFragment extends PreferenceFragment {
         @Override
         protected Void doInBackground(Void... voids) {
             for (int i = 0; i < 51; i++) {
-                mDataHandler.addItem(new FavoriteItem(System.currentTimeMillis(), "DevTest :: " + i, "DevTest :: " + i));
+                mDataHandler.addItem(new FavoriteItem(System.currentTimeMillis(), 0, 0, "DevTest :: " + i, "DevTest :: " + i));
             }
             return null;
         }
@@ -130,7 +130,7 @@ public class DevSettingsFragment extends PreferenceFragment {
         @Override
         protected Void doInBackground(Void... voids) {
             for (int i = 0; i < 51; i++) {
-                mDataHandler.add(new HistoryItem(System.currentTimeMillis(), "DevTest :: " + i, "DevTest :: " + i, "DevTest :: " + i));
+                mDataHandler.add(new HistoryItem(System.currentTimeMillis(), 0, 0,  "DevTest :: " + i, "DevTest :: " + i, "DevTest :: " + i));
             }
             return null;
         }

@@ -9,10 +9,14 @@ public class HistoryItem {
     private String title;
     private String source;
     private String translation;
+    private int toPosition;
+    private int fromPosition;
     private long id = -1;
 
-    public HistoryItem(long id, String title, String source, String translation){
+    public HistoryItem(long id, int fromPosition, int toPosition, String title, String source, String translation){
         this.id = id;
+        this.fromPosition = fromPosition;
+        this.toPosition = toPosition;
         this.title = title;
         this.source = source;
         this.translation = translation;
@@ -45,7 +49,12 @@ public class HistoryItem {
     public String getTranslation(){
         return translation;
     }
-    public void setTranslation (String translation){
-        this.translation = translation;
+
+    public int getToPosition(){
+        return toPosition;
+    }
+
+    public int getFromPosition(){
+        return fromPosition;
     }
 }

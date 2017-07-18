@@ -6,11 +6,15 @@ package ru.SnowVolf.translate.favorite;
 
 public class FavoriteItem {
     private long id = -1;
+    private int toPosition;
+    private int fromPosition;
     private String title;
     private String source;
 
-    public FavoriteItem(long id, String title, String source) {
+    public FavoriteItem(long id, int fromPosition, int toPosition, String title, String source) {
         this.id = id;
+        this.fromPosition = fromPosition;
+        this.toPosition = toPosition;
         this.title = title;
         this.source = source;
     }
@@ -37,6 +41,14 @@ public class FavoriteItem {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public int getToPosition(){
+        return toPosition;
+    }
+
+    public int getFromPosition(){
+        return fromPosition;
     }
 }
 

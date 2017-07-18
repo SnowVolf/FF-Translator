@@ -7,7 +7,7 @@ package ru.SnowVolf.translate.util;
 public class Constants {
     public static final class Common{
         public static final String TAG = "ff-girl";
-        public static final String GIRL_ALIAS = "V_6 GOLD";
+        public static final String GIRL_ALIAS = "V_7 HELEN";
     }
 
     public static final class Prefs{
@@ -40,28 +40,40 @@ public class Constants {
     public static final class Intents{
         public static final String INTENT_TRANSLATED = "history.translated";
         public static final String INTENT_SOURCE = "history.source";
+        public static final String INTENT_FROM = "language.from";
+        public static final String INTENT_TO = "language.to";
     }
     
-    public static final class DatabaseHistory {
-        public static final int DB_VERSION = 3;
+    public static final class HistoryDb {
+        // ++ V_1
+        public static final int DB_VERSION = 5;
         public static final String DB_NAME = "GirlHistory";
         public static final String DB_TABLE_HISTORY = "history";
         public static final String KEY_ID = "id";
+        // ++ V_2
         public static final String KEY_TITLE = "title";
+        @Deprecated
         public static final String KEY_SOURCE = "source";
+        // ++ V_3
         public static final String KEY_TRANSLATE = "translate";
+        // ++ V_4
+        public static final String KEY_FROM_INT = "from_pos";
+        public static final String KEY_TO_INT = "to_pos";
+        // ++ V_5
+        public static final String KEY_FROM_LANG = "from_lang";
+        public static final String KEY_TO_LANG = "to_lang";
     }
     
-    public static final class DatabaseFavorites{
-        public static final int DB_VERSION = 3;
+    public static final class FavDb {
+        public static final int DB_VERSION = 5;
         public static final String DB_NAME = "GirlFavorite";
         public static final String DB_TABLE_FAVORITES = "favorites";
         public static final String KEY_ID = "id";
         public static final String KEY_TITLE = "title";
         public static final String KEY_SOURCE = "source";
-    }
-
-    public static final class Licenses{
-        public static final int LICENSE_APACHE = 0;
+        public static final String KEY_FROM_INT = "from_pos";
+        public static final String KEY_TO_INT = "to_pos";
+        public static final String KEY_FROM_LANG = "from_lang";
+        public static final String KEY_TO_LANG = "to_lang";
     }
 }

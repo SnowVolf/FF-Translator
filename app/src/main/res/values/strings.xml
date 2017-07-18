@@ -54,6 +54,7 @@
     <string name="speak_now">Speak now :)</string>
     <string name="choose_lang">Languages</string>
     <string name="copy">Copy</string>
+    <string name="copy2">Copy</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="title_activity_browser">Browser</string>
     <string name="enter_url">Enter URL here</string>
@@ -174,5 +175,6 @@
     <string name="donate_copied">Number copied to clipboard</string>
     <string name="dlg_donate_explanation">Это приложение абсолютно бесплатно, и всегда будет таким. Его исходный код открыт, вы можете сами добавлять новые функции, либо помогать с переводом на другие языки. Если оно вам понравилось, вы можете пожертвовать любую сумму[1] для поддержки разработчика.   [1] Google берёт 30% от каждого пожертвования.</string>
     <string name="pref_ui_blackic_sum">Android 6+</string>
+    <string name="translation_copied">Translation copied</string>
 
 </resources>

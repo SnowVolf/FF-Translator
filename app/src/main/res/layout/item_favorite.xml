@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="wrap_content"
     android:foreground="?selectableItemBackground"
     android:gravity="center_vertical"
+    android:minHeight="64dp"
     android:paddingEnd="16dp"
     android:paddingStart="16dp">
     <RelativeLayout
         android:id="@+id/row_favorite_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/row_favorite_menu"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true">
+        android:layout_toStartOf="@+id/row_favorite_menu">
     <TextView
         android:id="@+id/row_favorite_title"
         android:layout_width="wrap_content"
@@ -30,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="2"
-        android:text="source"
+        android:text="sourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesourcesource"
         android:layout_marginRight="8dp"
         android:layout_below="@+id/row_favorite_title"
         android:layout_alignParentStart="true"
@@ -40,7 +39,7 @@
         android:visibility="visible"
         android:id="@+id/row_favorite_menu"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="64dp"
         app:srcCompat="@drawable/ic_menu"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:layout_alignParentEnd="true"

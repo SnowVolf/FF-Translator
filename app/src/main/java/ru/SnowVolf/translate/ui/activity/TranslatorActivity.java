@@ -76,7 +76,8 @@ public class TranslatorActivity extends BaseActivity {
     HistoryDbModel mDbModel;
     public Language valFrom = null;
     public Language valTo = null;
-    private int spinnerPosition1, spinnerPosition2;
+    private int spinnerPosition1;
+    private int spinnerPosition2;
     AsyncTranslation translation;
     //Активити создана
     @Override
@@ -146,6 +147,13 @@ public class TranslatorActivity extends BaseActivity {
         if (Preferences.isShowKeyboardAllowed()){
             mFromLanguage.requestFocus();
             KeyboardUtil.showKeyboard();
+        }
+
+        int tempInt1 = getIntent().getIntExtra(Constants.Intents.INTENT_TO, Preferences.getSpinnerPosition("saved1"));
+        int tempInt2 = getIntent().getIntExtra(Constants.Intents.INTENT_FROM, Preferences.getSpinnerPosition("saved2"));
+        if (tempInt1 != -1 && tempInt2 != -1) {
+            mSpinnerFrom.setSelection(tempInt1);
+            mSpinnerTo.setSelection(tempInt2);
         }
         setupTextWatcher();
         setupControls();
@@ -448,7 +456,7 @@ public class TranslatorActivity extends BaseActivity {
                     }
                 try {
                     //if (!Preferences.isSyncTranslateAllowed())
-                    mDbModel.add(new HistoryItem(System.currentTimeMillis(), exec, mTranslated, exec));
+                    mDbModel.add(new HistoryItem(System.currentTimeMillis(), spinnerPosition1, spinnerPosition2, exec, mTranslated, exec));
                 } catch (Exception ignored) {}
             } else return "VolfGirl";//Конец пока
             } catch (Exception e) {

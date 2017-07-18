@@ -11,7 +11,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.util.TypedValue;
 
@@ -74,17 +73,6 @@ public final class UiUtils {
 
     public static float dpToPx(Resources res, float dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, res.getDisplayMetrics());
-    }
-
-    public static void createLicenseDialog(Context ctx, int license){
-        AlertDialog.Builder licenseBuilder = new AlertDialog.Builder(ctx);
-        if (license == Constants.Licenses.LICENSE_APACHE){
-            licenseBuilder.setMessage(StrF.parseHtml("about.html"));
-        }
-        licenseBuilder.setPositiveButton(R.string.ok, (d, w) -> d.dismiss());
-        if (license != -1){
-            licenseBuilder.show();
-        } else throw new RuntimeException("License == -1 !");
     }
 
 }

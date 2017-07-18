@@ -2,6 +2,7 @@ package ru.SnowVolf.translate.favorite;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,6 +18,7 @@ import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
 import ru.SnowVolf.translate.ui.adapter.FavoriteAdapter;
 import ru.SnowVolf.translate.ui.fragment.historyfav.FavoriteFragment;
 import ru.SnowVolf.translate.util.Constants;
+import ru.SnowVolf.translate.util.Utils;
 
 
 /**
@@ -50,6 +52,8 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
             Intent mIntent = new Intent(context, TranslatorActivity.class);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mIntent.putExtra(Constants.Intents.INTENT_FROM, item.getFromPosition());
+            mIntent.putExtra(Constants.Intents.INTENT_TO, item.getToPosition());
             mIntent.putExtra(Constants.Intents.INTENT_SOURCE, item.getSource());
             mIntent.putExtra(Constants.Intents.INTENT_TRANSLATED, item.getTitle());
             context.startActivity(mIntent);
@@ -62,11 +66,16 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
         menu.inflate(R.menu.menu_popup_favorite);
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()){
+                case R.id.action_copy:{
+                    Utils.copyToClipboard(favoriteItem.getTitle());
+                    Snackbar.make(mCard, R.string.translation_copied, Snackbar.LENGTH_SHORT).show();
+                    return true;
+                }
                 case R.id.action_share:{
                     share(ctx, favoriteItem);
                     return true;
                 }
-                case R.id.action_fav_edit: {
+                case R.id.action_fav_edit:{
                     FavoriteFragment.editItem(ctx, favoriteItem);
                     return true;
                 }
