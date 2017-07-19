@@ -13,8 +13,10 @@ import org.acra.annotation.ReportsCrashes;
 
 import java.util.Locale;
 
+import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.clipboard.ClipboardService;
 import ru.SnowVolf.translate.util.Preferences;
+import ru.SnowVolf.translate.util.runtime.Logger;
 
 import static org.acra.ReportField.ANDROID_VERSION;
 import static org.acra.ReportField.APP_VERSION_CODE;
@@ -77,6 +79,8 @@ public class App extends Application {
         if (Preferences.isClipboardServiceAllowed()){
             startService(new Intent(this, ClipboardService.class));
         }
+        final String SUKA = "Ты что тут забыл?! Пидор блядь!!! Пошёл нахуй!!! Добра тебе сука. :-D";
+        Logger.log(SUKA);
     }
 
     @Override
@@ -96,4 +100,28 @@ public class App extends Application {
         }
         return preferences;
     }
+
+    public static Language[] langs = {
+            // 3 columns
+            Language.AFRICANS, Language.ALBANIAN, Language.ARABIAN,
+            Language.ARMENIAN, Language.AZERBAIJANI, Language.BASQUE,
+            Language.BASHKIR, Language.BELARUSIAN, Language.BENGALI,
+            Language.BURMESE, Language.BULGARIAN, Language.BOSNIAN,
+            Language.WELSH, Language.VIETNAMESE, Language.CATALAN,
+            Language.CROATIAN, Language.CZECH, Language.DANISH,
+            Language.DUTCH, Language.ENGLISH, Language.ESTONIAN,
+            Language.FINNISH, Language.FRENCH, Language.KAZAKH,
+            Language.XHOSA, Language.JAVANESE, Language.JAPANESE,
+            Language.KANNADA, Language.KHMER, Language.KOREAN,
+            Language.KYRGYZ, Language.GALICIAN, Language.GERMAN,
+            Language.GEORGIAN, Language.GREEK, Language.GUJARATI,
+            Language.HAITIAN, Language.HEBREW, Language.HUNGARIAN,
+            Language.YIDDISH, Language.HILL_MARI, Language.ICELANDIC,
+            Language.IRISH, Language.ITALIAN, Language.LATVIAN,
+            Language.LITHUANIAN, Language.MACEDONIAN, Language.NORWEGIAN,
+            Language.PERSIAN, Language.POLISH, Language.PORTUGUESE,
+            Language.ROMANIAN, Language.RUSSIAN, Language.SERBIAN,
+            Language.SLOVAK, Language.SLOVENIAN, Language.SPANISH,
+            Language.SWEDISH, Language.TURKISH, Language.UKRAINIAN
+    };
 }

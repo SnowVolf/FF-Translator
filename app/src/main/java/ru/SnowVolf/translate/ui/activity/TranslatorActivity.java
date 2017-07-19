@@ -304,10 +304,7 @@ public class TranslatorActivity extends BaseActivity {
 
     //Управление и переключение языков во всплывающем списке
     private void spinnerHelper(){
-        final Language[] lng = {Language.AFRICANS, Language.ALBANIAN, Language.ARABIAN, Language.ARMENIAN, Language.AZERBAIJANI, Language.BELORUSSIAN, Language.BULGARIAN, Language.CATALAN,
-                Language.CROATIAN, Language.CZECH, Language.DANISH, Language.DUTCH, Language.ENGLISH, Language.ESTONIAN, Language.FINNISH, Language.FRENCH, Language.GERMAN, Language.GEORGIAN,
-                Language.GREEK, Language.HUNGARIAN, Language.ITALIAN, Language.LATVIAN, Language.LITHUANIAN, Language.MACEDONIAN, Language.NORWEGIAN, Language.POLISH, Language.PORTUGUESE,
-                Language.ROMANIAN, Language.RUSSIAN, Language.SERBIAN, Language.SLOVAK, Language.SLOVENIAN, Language.SPANISH, Language.SWEDISH, Language.TURKISH, Language.UKRAINIAN };
+
         Logger.i(aClass, "spinnerHelper()");
         mSpinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View is, int pos, long id) {
@@ -315,7 +312,7 @@ public class TranslatorActivity extends BaseActivity {
                 Preferences.setSpinnerPosition(Constants.prefs.SPINNER_1, spinnerPosition1);
                 for (int i = 0; i < mSpinnerFrom.getCount(); i++) {
                     if (pos == i){
-                        valFrom = lng[i];
+                        valFrom = App.langs[i];
                         Preferences.setFromLang(valFrom);
                     }
                 }
@@ -330,7 +327,7 @@ public class TranslatorActivity extends BaseActivity {
                 Preferences.setSpinnerPosition(Constants.prefs.SPINNER_2, spinnerPosition2);
                 for (int i = 0; i < mSpinnerTo.getCount(); i++) {
                     if (pos == i){
-                        valTo = lng[i];
+                        valTo = App.langs[i];
                         Preferences.setToLang(valTo);
                     }
                 }

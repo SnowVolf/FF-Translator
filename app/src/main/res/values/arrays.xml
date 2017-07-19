@@ -54,11 +54,19 @@
     <string-array name="supported_lang" translatable="false">
         <item>Африкаанс</item>
         <item>Албанский</item>
+        <item>Ахмарский</item>
         <item>Арабский</item>
         <item>Армянский</item>
         <item>Азербайджанский</item>
+        <item>Баскийский</item>
+        <item>Башкирский</item>
         <item>Белорусский</item>
+        <item>Бенгальский</item>
+        <item>Бирманский</item>
         <item>Болгарский</item>
+        <item>Боснийский</item>
+        <item>Валлийский</item>
+        <item>Вьетнамский</item>
         <item>Каталонский</item>
         <item>Хорватский</item>
         <item>Чешский</item>
@@ -68,15 +76,32 @@
         <item>Эстонский</item>
         <item>Финский</item>
         <item>Французский</item>
+        <item>Казахский</item>
+        <item>Коса</item>
+        <item>Яванский</item>
+        <item>Японский</item>
+        <item>Каннада</item>
+        <item>Кхмерский</item>
+        <item>Корейский</item>
+        <item>Киргизский</item>
+        <item>Галлиский</item>
         <item>Германский</item>
         <item>Грузинский</item>
         <item>Греческий</item>
+        <item>Гуджарати</item>
+        <item>Гаитянский</item>
+        <item>Иврит</item>
         <item>Венгерский</item>
+        <item>Идиш</item>
+        <item>Горномариский</item>
+        <item>Исландский</item>
+        <item>Ирландский</item>
         <item>Итальянский</item>
         <item>Латвийский</item>
         <item>Литовский</item>
         <item>Македонский</item>
         <item>Норвежский</item>
+        <item>Персидский</item>
         <item>Польский</item>
         <item>Португальский</item>
         <item>Румынский</item>
