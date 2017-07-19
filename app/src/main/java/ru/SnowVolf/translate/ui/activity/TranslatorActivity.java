@@ -123,17 +123,14 @@ public class TranslatorActivity extends BaseActivity {
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerTo.setAdapter(mAdapter);
         mSpinnerFrom.setAdapter(mAdapter);
-        tempInt1 = getIntent().getIntExtra(Constants.intents.INTENT_TO, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
-        tempInt2 = getIntent().getIntExtra(Constants.intents.INTENT_FROM, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_2));
+        tempInt1 = getIntent().getIntExtra(Constants.intents.INTENT_FROM, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
+        tempInt2 = getIntent().getIntExtra(Constants.intents.INTENT_TO, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_2));
         Logger.log("Get int extra :: " + tempInt1 + " : " + tempInt2);
-        if (tempInt2 == 0)
-        mSpinnerTo.setSelection(Preferences.getSpinnerPosition(Constants.prefs.SPINNER_2));
-        if (tempInt1 == 0)
-        mSpinnerFrom.setSelection(Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
-        if (tempInt1 != 0) {
+        if (tempInt2 == 0 && tempInt1 == 0) {
+            mSpinnerTo.setSelection(Preferences.getSpinnerPosition(Constants.prefs.SPINNER_2));
+            mSpinnerFrom.setSelection(Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
+        } else {
             mSpinnerFrom.setSelection(tempInt1);
-        }
-        if (tempInt2 != 0) {
             mSpinnerTo.setSelection(tempInt2);
         }
         spinnerHelper();

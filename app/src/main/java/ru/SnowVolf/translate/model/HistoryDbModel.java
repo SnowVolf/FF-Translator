@@ -60,6 +60,8 @@ public class HistoryDbModel extends SQLiteOpenHelper {
             } else {
                 ContentValues values = new ContentValues();
                 values.put(Constants.historyDb.KEY_ID, item.getId());
+                values.put(Constants.historyDb.KEY_FROM_INT, item.getFromPosition());
+                values.put(Constants.historyDb.KEY_TO_INT, item.getToPosition());
                 values.put(Constants.historyDb.KEY_TITLE, item.getTitle());
                 values.put(Constants.historyDb.KEY_SOURCE, item.getSource());
                 values.put(Constants.historyDb.KEY_TRANSLATE, item.getTranslation());
@@ -68,6 +70,8 @@ public class HistoryDbModel extends SQLiteOpenHelper {
         } else {
             ContentValues values = new ContentValues();
             values.put(Constants.historyDb.KEY_ID, item.getId());
+            values.put(Constants.historyDb.KEY_FROM_INT, item.getFromPosition());
+            values.put(Constants.historyDb.KEY_TO_INT, item.getToPosition());
             values.put(Constants.historyDb.KEY_TITLE, item.getTitle());
             values.put(Constants.historyDb.KEY_SOURCE, item.getSource());
             values.put(Constants.historyDb.KEY_TRANSLATE, item.getTranslation());

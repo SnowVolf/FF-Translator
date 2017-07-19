@@ -44,10 +44,10 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(Constants.favDb.KEY_ID, item.getId());
-        values.put(Constants.favDb.KEY_TITLE, item.getTitle());
-        values.put(Constants.favDb.KEY_SOURCE, item.getSource());
         values.put(Constants.favDb.KEY_FROM_INT, item.getFromPosition());
         values.put(Constants.favDb.KEY_TO_INT, item.getToPosition());
+        values.put(Constants.favDb.KEY_TITLE, item.getTitle());
+        values.put(Constants.favDb.KEY_SOURCE, item.getSource());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(Constants.favDb.DB_TABLE_FAVORITES, null, values);
         db.close();
