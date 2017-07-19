@@ -23,7 +23,7 @@
     <string name="err_resp_501">Выбранное направление перевода не поддерживается</string>
     <string name="err_resp_unknown">Неизвестный ответ от сервера. Попробуйте ещё раз.\nЕсли вы используете устаревшую версию приложения, рекомендуем вам обновить её до более поздней версии.</string>
 
-    <!-- Common -->
+    <!-- common -->
     <string name="date">dd.MM.yy, HH:mm</string>
     <string name="edittext_input">Введите текст</string>
     <string name="edittext_output">Перевод</string>
@@ -91,7 +91,7 @@
     <string name="owner_lib10">Additional Material Design color palettes and API\'s. Presented by Google Inc. (APACHE 2.0)</string>
     <string name="owner_lib11">Fast and highly-customizable list widget for android. Presented by Google Inc. (APACHE 2.0)</string>
 
-    <!-- Prefs Categories -->
+    <!-- prefs Categories -->
     <string name="pref_ctg_api">API</string>
     <string name="pref_ctg_sys">Системное</string>
     <string name="pref_ctg_ui">Внешний вид</string>
@@ -99,7 +99,7 @@
     <string name="pref_ctg_performance">Взаимодествие</string>
     <string name="pref_ctg_other">Прочее</string>
 
-    <!-- Prefs Captions/Summaries -->
+    <!-- prefs Captions/Summaries -->
     <string name="pref_api_key">API ключ переводчика</string>
     <string name="pref_api_key_sum">Введите API-ключ полученный в сервисе Yandex.Translate</string>
     <string name="pref_api_detect">Определять язык</string>
@@ -179,4 +179,6 @@
     <string name="pref_ui_blackic_sum">Только для Android 6+</string>
     <string name="title_activity_fullscreen">Fullscreen</string>
     <string name="translation_copied">Перевод скопирован</string>
+    <string name="copy_close">Скопировать и закрыть</string>
+    <string name="view">Просмотр</string>
 </resources>

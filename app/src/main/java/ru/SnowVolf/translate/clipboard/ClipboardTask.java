@@ -38,7 +38,7 @@ class ClipboardTask extends AsyncTask<String, Integer, String>{
                 if (exec == null){
                     exec = Utils.getTextFromClipboard().toString();
                 }
-                Translate.setKey(App.ctx().getPreferences().getString(Constants.Prefs.API_KEY, ""));
+                Translate.setKey(App.ctx().getPreferences().getString(Constants.prefs.API_KEY, ""));
                 Logger.i(aClass, "!isCancelled()");
                 if (!Preferences.isDetectAllowed()) {
                     translated = Translate.execute(exec, Language.fromString(Preferences.getFromLang()), Language.fromString(Preferences.getToLang()));

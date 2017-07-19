@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/copy2"
         android:id="@+id/action_copy"/>
+    <item android:title="@string/copy_close"
+        android:id="@+id/action_copy_close"/>
+    <item android:title="@string/view"
+        android:id="@+id/action_view_fullscreen"/>
     <item android:title="@string/dlg_favorite_edit"
         android:id="@+id/action_fav_edit"/>
     <item android:title="@string/delete"

@@ -99,7 +99,7 @@ public class FullscreenActivity extends BaseActivity {
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
-        String someString = getIntent().getStringExtra(Constants.Intents.INTENT_TRANSLATED);
+        String someString = getIntent().getStringExtra(Constants.intents.INTENT_TRANSLATED);
         if (someString != null)
             mContentView.setText(someString);
 

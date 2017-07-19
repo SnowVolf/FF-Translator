@@ -19,6 +19,8 @@ import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.favorite.FavoriteItem;
 import ru.SnowVolf.translate.model.FavoriteDbModel;
 import ru.SnowVolf.translate.model.HistoryDbModel;
+import ru.SnowVolf.translate.ui.activity.FullscreenActivity;
+import ru.SnowVolf.translate.ui.activity.HistoryFavActivity;
 import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
 import ru.SnowVolf.translate.ui.adapter.HistoryAdapter;
 import ru.SnowVolf.translate.util.Constants;
@@ -58,10 +60,10 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
         Intent mIntent = new Intent(context, TranslatorActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mIntent.putExtra(Constants.Intents.INTENT_FROM, item.getFromPosition());
-        mIntent.putExtra(Constants.Intents.INTENT_TO, item.getToPosition());
-        mIntent.putExtra(Constants.Intents.INTENT_SOURCE, item.getSource());
-        mIntent.putExtra(Constants.Intents.INTENT_TRANSLATED, item.getTranslation());
+        mIntent.putExtra(Constants.intents.INTENT_FROM, item.getFromPosition());
+        mIntent.putExtra(Constants.intents.INTENT_TO, item.getToPosition());
+        mIntent.putExtra(Constants.intents.INTENT_SOURCE, item.getSource());
+        mIntent.putExtra(Constants.intents.INTENT_TRANSLATED, item.getTranslation());
 
         mContainerLayout.setOnClickListener(v -> context.startActivity(mIntent));
 
@@ -77,6 +79,17 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
                 case R.id.action_copy:{
                     Utils.copyToClipboard(historyItem.getTranslation());
                     Snackbar.make(mContainerLayout, R.string.translation_copied, Snackbar.LENGTH_SHORT).show();
+                    return true;
+                }
+                case R.id.action_copy_close:{
+                    Utils.copyToClipboard(historyItem.getTranslation());
+                    ((HistoryFavActivity) ctx).finish();
+                    return true;
+                }
+                case R.id.action_view_fullscreen:{
+                    Intent fullIntent = new Intent(ctx, FullscreenActivity.class);
+                    fullIntent.putExtra(Constants.intents.INTENT_TRANSLATED, historyItem.getTranslation());
+                    ctx.startActivity(fullIntent);
                     return true;
                 }
                 case R.id.action_share:{

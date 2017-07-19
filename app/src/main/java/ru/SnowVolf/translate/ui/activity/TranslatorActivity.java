@@ -77,7 +77,7 @@ public class TranslatorActivity extends BaseActivity {
     public Language valFrom = null;
     public Language valTo = null;
     private int spinnerPosition1;
-    private int spinnerPosition2;
+    private int spinnerPosition2, tempInt1, tempInt2;
     AsyncTranslation translation;
     //Активити создана
     @Override
@@ -86,7 +86,7 @@ public class TranslatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translator);
         ButterKnife.bind(this);
-        Translate.setKey(App.ctx().getPreferences().getString(Constants.Prefs.API_KEY, ""));
+        Translate.setKey(App.ctx().getPreferences().getString(Constants.prefs.API_KEY, ""));
         mBottomPanel.setOnMenuItemClickListener(m -> {
             int id = m.getItemId();
             switch (id){
@@ -110,7 +110,6 @@ public class TranslatorActivity extends BaseActivity {
         });
 
         mBottomPanel.inflateMenu(R.menu.menu_translator);
-        mFromLanguage.setImeActionLabel(getString(R.string.action_translate), KeyEvent.KEYCODE_ENTER);
         mDbModel = new HistoryDbModel(this);
         mButtonGoToSite.setOnClickListener(v -> {
             Intent mIntent = new Intent(TranslatorActivity.this, BrowserActivity.class);
@@ -124,12 +123,23 @@ public class TranslatorActivity extends BaseActivity {
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerTo.setAdapter(mAdapter);
         mSpinnerFrom.setAdapter(mAdapter);
-        mSpinnerTo.setSelection(Preferences.getSpinnerPosition(Constants.Prefs.SPINNER_2));
-        mSpinnerFrom.setSelection(Preferences.getSpinnerPosition(Constants.Prefs.SPINNER_1));
+        tempInt1 = getIntent().getIntExtra(Constants.intents.INTENT_TO, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
+        tempInt2 = getIntent().getIntExtra(Constants.intents.INTENT_FROM, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_2));
+        Logger.log("Get int extra :: " + tempInt1 + " : " + tempInt2);
+        if (tempInt2 == 0)
+        mSpinnerTo.setSelection(Preferences.getSpinnerPosition(Constants.prefs.SPINNER_2));
+        if (tempInt1 == 0)
+        mSpinnerFrom.setSelection(Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
+        if (tempInt1 != 0) {
+            mSpinnerFrom.setSelection(tempInt1);
+        }
+        if (tempInt2 != 0) {
+            mSpinnerTo.setSelection(tempInt2);
+        }
         spinnerHelper();
         try {
-            mTempData = getIntent().getStringExtra(Constants.Intents.INTENT_SOURCE);
-            mTempData2 = getIntent().getStringExtra(Constants.Intents.INTENT_TRANSLATED);
+            mTempData = getIntent().getStringExtra(Constants.intents.INTENT_SOURCE);
+            mTempData2 = getIntent().getStringExtra(Constants.intents.INTENT_TRANSLATED);
         } catch (NullPointerException e){
             UiErrorHandler.get().handle(e, mToLanguage);
         }
@@ -149,12 +159,8 @@ public class TranslatorActivity extends BaseActivity {
             KeyboardUtil.showKeyboard();
         }
 
-        int tempInt1 = getIntent().getIntExtra(Constants.Intents.INTENT_TO, Preferences.getSpinnerPosition("saved1"));
-        int tempInt2 = getIntent().getIntExtra(Constants.Intents.INTENT_FROM, Preferences.getSpinnerPosition("saved2"));
-        if (tempInt1 != -1 && tempInt2 != -1) {
-            mSpinnerFrom.setSelection(tempInt1);
-            mSpinnerTo.setSelection(tempInt2);
-        }
+        Logger.log("tempInt1 :: " + tempInt1);
+        Logger.log("tempInt2 :: " + tempInt2);
         setupTextWatcher();
         setupControls();
     }
@@ -166,7 +172,7 @@ public class TranslatorActivity extends BaseActivity {
         super.onResume();
         Preferences.setKey();
         if (mFromLanguage != null) {
-            mFromLanguage.setTextSize(App.ctx().getPreferences().getInt(Constants.Prefs.UI_FONTSIZE, 16));
+            mFromLanguage.setTextSize(App.ctx().getPreferences().getInt(Constants.prefs.UI_FONTSIZE, 16));
             if (Preferences.isReturnAllowed()) {
                 mFromLanguage.setOnEditorActionListener((textView, i, keyEvent) -> {
                     if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
@@ -179,7 +185,7 @@ public class TranslatorActivity extends BaseActivity {
         }
         else Logger.i(aClass, "mFromLanguage field NULL");
         if (mToLanguage != null)
-            mToLanguage.setTextSize(App.ctx().getPreferences().getInt(Constants.Prefs.UI_FONTSIZE, 16));
+            mToLanguage.setTextSize(App.ctx().getPreferences().getInt(Constants.prefs.UI_FONTSIZE, 16));
         else  Logger.i(aClass, "mToLanguage field NULL");
         if (mSpinnerFrom != null) {
             if (Preferences.isDetectAllowed()) {
@@ -291,7 +297,7 @@ public class TranslatorActivity extends BaseActivity {
         mBtnFullscreen.setOnClickListener(v -> {
             if (!mToLanguage.getText().toString().isEmpty()) {
                 final Intent fullScreen = new Intent(this, FullscreenActivity.class);
-                fullScreen.putExtra(Constants.Intents.INTENT_TRANSLATED, mToLanguage.getText().toString());
+                fullScreen.putExtra(Constants.intents.INTENT_TRANSLATED, mToLanguage.getText().toString());
                 startActivity(fullScreen);
             } else {
                 Snackbar.make(findViewById(R.id.switch_container), R.string.err_fullscreen, Snackbar.LENGTH_SHORT).show();
@@ -309,7 +315,7 @@ public class TranslatorActivity extends BaseActivity {
         mSpinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View is, int pos, long id) {
                 spinnerPosition1 = mSpinnerFrom.getSelectedItemPosition();
-                Preferences.setSpinnerPosition(Constants.Prefs.SPINNER_1, spinnerPosition1);
+                Preferences.setSpinnerPosition(Constants.prefs.SPINNER_1, spinnerPosition1);
                 for (int i = 0; i < mSpinnerFrom.getCount(); i++) {
                     if (pos == i){
                         valFrom = lng[i];
@@ -324,7 +330,7 @@ public class TranslatorActivity extends BaseActivity {
         mSpinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View is, int pos, long id) {
                 spinnerPosition2 = mSpinnerTo.getSelectedItemPosition();
-                Preferences.setSpinnerPosition(Constants.Prefs.SPINNER_2, spinnerPosition2);
+                Preferences.setSpinnerPosition(Constants.prefs.SPINNER_2, spinnerPosition2);
                 for (int i = 0; i < mSpinnerTo.getCount(); i++) {
                     if (pos == i){
                         valTo = lng[i];
@@ -456,6 +462,8 @@ public class TranslatorActivity extends BaseActivity {
                     }
                 try {
                     //if (!Preferences.isSyncTranslateAllowed())
+                    Logger.log("Async, Spinner1 :: " + spinnerPosition1);
+                    Logger.log("Async, Spinner2 :: " + spinnerPosition2);
                     mDbModel.add(new HistoryItem(System.currentTimeMillis(), spinnerPosition1, spinnerPosition2, exec, mTranslated, exec));
                 } catch (Exception ignored) {}
             } else return "VolfGirl";//Конец пока

@@ -19,13 +19,13 @@ public class Logger {
 
     public static void i(Class c, Object o){
         if (Preferences.isLogAllowed()) {
-            Log.i(Constants.Common.TAG, "[" + c.getSimpleName() + "] -> " + o);
+            Log.i(Constants.common.TAG, "[" + c.getSimpleName() + "] -> " + o);
         }
     }
 
     public static void e(Class c, Object o){
         if (Preferences.isLogAllowed()) {
-            Log.e(Constants.Common.TAG, "[" + c.getSimpleName() + "] -> " + o);
+            Log.e(Constants.common.TAG, "[" + c.getSimpleName() + "] -> " + o);
         }
     }
 }

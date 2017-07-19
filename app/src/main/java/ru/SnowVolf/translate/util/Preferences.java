@@ -21,59 +21,59 @@ public class Preferences {
     }
 
     public static boolean isKillAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_KILL, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_KILL, true);
     }
 
     public static boolean isBackNotif(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_BACK, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_BACK, true);
     }
 
     public static void setKey(){
-        Translate.setKey(App.ctx().getPreferences().getString(Constants.Prefs.API_KEY, ""));
+        Translate.setKey(App.ctx().getPreferences().getString(Constants.prefs.API_KEY, ""));
     }
 
     public static int getFontSize() {
-        return App.ctx().getPreferences().getInt(Constants.Prefs.UI_FONTSIZE, 16);
+        return App.ctx().getPreferences().getInt(Constants.prefs.UI_FONTSIZE, 16);
     }
 
     public static void setFontSize(int value) {
-        App.ctx().getPreferences().edit().putInt(Constants.Prefs.UI_FONTSIZE, value).apply();
+        App.ctx().getPreferences().edit().putInt(Constants.prefs.UI_FONTSIZE, value).apply();
     }
 
     public static boolean isLightStatusBar() {
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.UI_LIGHT_STATUS_BAR, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.UI_LIGHT_STATUS_BAR, true);
     }
 
     public static boolean isReturnAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_RETURN, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_RETURN, true);
     }
 
     public static boolean isReturnNotif() {
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_RETURN_NOTIFY, false);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_RETURN_NOTIFY, false);
     }
 
     public static void returnNotifDone(){
-        App.ctx().getPreferences().edit().putBoolean(Constants.Prefs.PERFORMANCE_RETURN_NOTIFY, true).apply();
+        App.ctx().getPreferences().edit().putBoolean(Constants.prefs.PERFORMANCE_RETURN_NOTIFY, true).apply();
     }
 
     public static boolean isDetectAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.API_DETECT, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.API_DETECT, true);
     }
 
     public static boolean isDuplicatesNotAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_DUP, false);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_DUP, false);
     }
 
     public static boolean isClipboardTranslatable(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_TRANSLATE_FROM_CLIPBOARD, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_TRANSLATE_FROM_CLIPBOARD, true);
     }
 
     public static boolean isShowKeyboardAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_KBD, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_KBD, true);
     }
 
     public static boolean isSyncTranslateAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.API_SYNC, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.API_SYNC, true);
     }
 
     public static boolean isLogAllowed(){
@@ -81,15 +81,15 @@ public class Preferences {
     }
 
     public static boolean isListAnimAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.UI_LIST_ANIM, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.UI_LIST_ANIM, true);
     }
 
     public static String getDefaultLanguage(){
-        return App.ctx().getPreferences().getString(Constants.Prefs.SYS_LANG, "default");
+        return App.ctx().getPreferences().getString(Constants.prefs.SYS_LANG, "default");
     }
 
     public static boolean isClipboardServiceAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.Prefs.PERFORMANCE_SCAN_CLIP, true);
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_SCAN_CLIP, true);
     }
 
     public static void setToLang(Language language){
@@ -109,6 +109,6 @@ public class Preferences {
     }
 
     public static boolean isLightTheme(){
-        return  (Objects.equals(App.ctx().getPreferences().getString(Constants.Prefs.UI_THEME, "0"), "0"));
+        return  (Objects.equals(App.ctx().getPreferences().getString(Constants.prefs.UI_THEME, "0"), "0"));
     }
 }

@@ -45,7 +45,7 @@ public class DevSettingsFragment extends PreferenceFragment {
         findPreference("dev.dbg.info").setOnPreferenceClickListener(__ -> {
                 String JackInfo =
                         "=== BEGIN GIRL LOG ===\n"
-                                + "GIRL_VERSION = " + Constants.Common.GIRL_ALIAS + "\n"
+                                + "GIRL_VERSION = " + Constants.common.GIRL_ALIAS + "\n"
                                 + "CURRENT_TIME = " + Utils.getNormalDate(System.currentTimeMillis()) + "\n"
                                 + "APP_VERSION = " + BuildConfig.VERSION_NAME + "\n"
                                 + "VERSION_CODE = " + BuildConfig.VERSION_CODE + "\n"
@@ -54,8 +54,8 @@ public class DevSettingsFragment extends PreferenceFragment {
                                 + "IS_BETA = " + BuildConfig.DEBUG + "\n"
                                 + "SDK = " + Build.VERSION.SDK_INT + "\n"
                                 + "PHONE_MODEL = " + Build.MANUFACTURER + ", " + Build.MODEL + "\n"
-                                + "HISTORY_DB_VER = " + Constants.HistoryDb.DB_VERSION + "\n"
-                                + "FAVORITE_DB_VER = " + Constants.FavDb.DB_VERSION + "\n"
+                                + "HISTORY_DB_VER = " + Constants.historyDb.DB_VERSION + "\n"
+                                + "FAVORITE_DB_VER = " + Constants.favDb.DB_VERSION + "\n"
                                 + "=== END GIRL LOG ===\n";
                 new AlertDialog.Builder(getActivity())
                         .setTitle("GIRL_LOG")

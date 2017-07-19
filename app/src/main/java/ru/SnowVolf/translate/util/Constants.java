@@ -5,12 +5,12 @@ package ru.SnowVolf.translate.util;
  */
 
 public class Constants {
-    public static final class Common{
+    public static final class common {
         public static final String TAG = "ff-girl";
         public static final String GIRL_ALIAS = "V_7 HELEN";
     }
 
-    public static final class Prefs{
+    public static final class prefs {
         public static final String API_KEY = "api.key";
         public static final String API_SYNC = "api.sync.translate";
         public static final String API_DETECT = "api.detect";
@@ -30,21 +30,21 @@ public class Constants {
         public static final String PERFORMANCE_DUP = "performance.duplicates";
         public static final String PERFORMANCE_RETURN = "performance.return";
         public static final String PERFORMANCE_TRANSLATE_FROM_CLIPBOARD = "performance.translate.clipboard";
-        public static final String PERFORMANCE_RETURN_NOTIFY = "performance.return.notif";
+        public static final String PERFORMANCE_RETURN_NOTIFY = "performance.return.notify";
         public static final String PERFORMANCE_BACK = "performance.backpressed";
         public static final String PERFORMANCE_KILL = "performance.kill";
         public static final String PERFORMANCE_KBD = "performance.keyboard";
         public static final String PERFORMANCE_SCAN_CLIP = "performance.scan.clipboard";
     }
 
-    public static final class Intents{
+    public static final class intents {
         public static final String INTENT_TRANSLATED = "history.translated";
         public static final String INTENT_SOURCE = "history.source";
-        public static final String INTENT_FROM = "language.from";
-        public static final String INTENT_TO = "language.to";
+        public static final String INTENT_FROM = "language.from_pos";
+        public static final String INTENT_TO = "language.to_pos";
     }
     
-    public static final class HistoryDb {
+    public static final class historyDb {
         // ++ V_1
         public static final int DB_VERSION = 5;
         public static final String DB_NAME = "GirlHistory";
@@ -64,7 +64,7 @@ public class Constants {
         public static final String KEY_TO_LANG = "to_lang";
     }
     
-    public static final class FavDb {
+    public static final class favDb {
         public static final int DB_VERSION = 5;
         public static final String DB_NAME = "GirlFavorite";
         public static final String DB_TABLE_FAVORITES = "favorites";

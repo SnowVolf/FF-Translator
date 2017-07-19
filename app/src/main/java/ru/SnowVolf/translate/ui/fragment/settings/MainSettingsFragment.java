@@ -49,13 +49,13 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
         init();
         if (Build.VERSION.SDK_INT < 23){
             getPreferenceScreen().removePreference(mStatusDark);
-            getPreferenceScreen().removePreference(findPreference(Constants.Prefs.SYS_PERMISSIONS));
+            getPreferenceScreen().removePreference(findPreference(Constants.prefs.SYS_PERMISSIONS));
         }
         //иначе будет падать на kit-kat
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        setCurrentValue((ListPreference) findPreference(Constants.Prefs.UI_ACCENT));
-        setCurrentValue((ListPreference) findPreference(Constants.Prefs.UI_THEME));
-        setCurrentValue((ListPreference) findPreference(Constants.Prefs.SYS_LANG));
+        setCurrentValue((ListPreference) findPreference(Constants.prefs.UI_ACCENT));
+        setCurrentValue((ListPreference) findPreference(Constants.prefs.UI_THEME));
+        setCurrentValue((ListPreference) findPreference(Constants.prefs.SYS_LANG));
     }
 
     @Override
@@ -67,18 +67,18 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
-            case Constants.Prefs.UI_THEME:
+            case Constants.prefs.UI_THEME:
                 setCurrentValue((ListPreference) findPreference(key));
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("org.openintents.action.REFRESH_THEME"));
                 break;
-            case Constants.Prefs.API_KEY:
+            case Constants.prefs.API_KEY:
                 Translate.setKey(App.ctx().getPreferences().getString(key, ""));
                 break;
-            case Constants.Prefs.UI_ACCENT:
-                setCurrentValue((ListPreference) findPreference(Constants.Prefs.UI_ACCENT));
+            case Constants.prefs.UI_ACCENT:
+                setCurrentValue((ListPreference) findPreference(Constants.prefs.UI_ACCENT));
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("org.openintents.action.REFRESH_THEME"));
                 break;
-            case Constants.Prefs.UI_LIGHT_STATUS_BAR:
+            case Constants.prefs.UI_LIGHT_STATUS_BAR:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (mStatusDark.isEnabled()) {
                         getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -89,7 +89,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
                     Logger.log("Not supported");
                 }
                 break;
-            case Constants.Prefs.SYS_LANG:
+            case Constants.prefs.SYS_LANG:
                 setCurrentValue((ListPreference) findPreference(key));
                 break;
         }
@@ -102,13 +102,13 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
     }
 
     private void init() {
-        mStatusDark = findPreference(Constants.Prefs.UI_LIGHT_STATUS_BAR);
-        Preference mFont = findPreference(Constants.Prefs.UI_FONT_SIZE);
+        mStatusDark = findPreference(Constants.prefs.UI_LIGHT_STATUS_BAR);
+        Preference mFont = findPreference(Constants.prefs.UI_FONT_SIZE);
         mFont.setOnPreferenceClickListener(__ -> {
             showFontSizeDialog();
             return true;
         });
-        Preference mRuntime = findPreference(Constants.Prefs.SYS_PERMISSIONS);
+        Preference mRuntime = findPreference(Constants.prefs.SYS_PERMISSIONS);
         mRuntime.setOnPreferenceClickListener(__ -> {
             Fragment fragment = getFragmentManager().findFragmentByTag(PermissionSettingsFragment.FRAGMENT_TAG);
             if (fragment == null) {
@@ -121,7 +121,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
                     .commit();
             return true;
         });
-        Preference mReturnToTranslate = findPreference(Constants.Prefs.PERFORMANCE_RETURN);
+        Preference mReturnToTranslate = findPreference(Constants.prefs.PERFORMANCE_RETURN);
         mReturnToTranslate.setOnPreferenceClickListener(__ -> {
             if (!Preferences.isReturnNotif()) {
                 new AlertDialog.Builder(getActivity())
@@ -132,13 +132,13 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
             }
             return true;
         });
-        Preference mGuide = findPreference(Constants.Prefs.OTHER_GUIDE);
+        Preference mGuide = findPreference(Constants.prefs.OTHER_GUIDE);
         mGuide.setOnPreferenceClickListener(__ -> {
             getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new HelpFragment()).addToBackStack(null).commit();
             return true;
         });
 
-        Preference mAbout = findPreference(Constants.Prefs.OTHER_VERSION);
+        Preference mAbout = findPreference(Constants.prefs.OTHER_VERSION);
         mAbout.setTitle(R.string.app_name);
         mAbout.setSummary("v. " + BuildConfig.VERSION_NAME + " r" + BuildConfig.VERSION_CODE + ", " + BuildConfig.BUILD_TIME);
         mAbout.setOnPreferenceClickListener(__ -> {
@@ -146,7 +146,7 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
             return true;
         });
 
-        Preference mPolicy = findPreference(Constants.Prefs.OTHER_POLICY);
+        Preference mPolicy = findPreference(Constants.prefs.OTHER_POLICY);
         mPolicy.setOnPreferenceClickListener(__ -> {
             getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new PrivacyPolicyFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
             return true;
@@ -172,11 +172,11 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
     }
 
     public static int getThemeIndex(Context ctx) {
-        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx).getString(Constants.Prefs.UI_THEME, String.valueOf(Interfacer.Theme.LIGHT.ordinal())));
+        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx).getString(Constants.prefs.UI_THEME, String.valueOf(Interfacer.Theme.LIGHT.ordinal())));
     }
 
     public static int getAccentIndex(Context ctx) {
-        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx).getString(Constants.Prefs.UI_ACCENT, String.valueOf(Interfacer.Accent.BLUE.ordinal())));
+        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(ctx).getString(Constants.prefs.UI_ACCENT, String.valueOf(Interfacer.Accent.BLUE.ordinal())));
     }
 
     @SuppressLint("SetTextI18n")

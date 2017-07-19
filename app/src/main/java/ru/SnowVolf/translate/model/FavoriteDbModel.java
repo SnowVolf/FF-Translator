@@ -19,17 +19,17 @@ import ru.SnowVolf.translate.util.Constants;
 public class FavoriteDbModel extends SQLiteOpenHelper {
 
     public FavoriteDbModel(Context context) {
-        super(context, Constants.FavDb.DB_NAME, null, Constants.FavDb.DB_VERSION);
+        super(context, Constants.favDb.DB_NAME, null, Constants.favDb.DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + Constants.FavDb.DB_TABLE_FAVORITES + " (" +
-                Constants.FavDb.KEY_ID + " INTEGER PRIMARY KEY, " +
-                Constants.FavDb.KEY_FROM_INT + " INTEGER, " +
-                Constants.FavDb.KEY_TO_INT + " INTEGER, " +
-                Constants.FavDb.KEY_TITLE + " TEXT, " +
-                Constants.FavDb.KEY_SOURCE + " TEXT)");
+        db.execSQL("CREATE TABLE " + Constants.favDb.DB_TABLE_FAVORITES + " (" +
+                Constants.favDb.KEY_ID + " INTEGER PRIMARY KEY, " +
+                Constants.favDb.KEY_FROM_INT + " INTEGER, " +
+                Constants.favDb.KEY_TO_INT + " INTEGER, " +
+                Constants.favDb.KEY_TITLE + " TEXT, " +
+                Constants.favDb.KEY_SOURCE + " TEXT)");
     }
 
     @Override
@@ -43,13 +43,13 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
         }
 
         ContentValues values = new ContentValues();
-        values.put(Constants.FavDb.KEY_ID, item.getId());
-        values.put(Constants.FavDb.KEY_TITLE, item.getTitle());
-        values.put(Constants.FavDb.KEY_SOURCE, item.getSource());
-        values.put(Constants.FavDb.KEY_FROM_INT, item.getFromPosition());
-        values.put(Constants.FavDb.KEY_TO_INT, item.getToPosition());
+        values.put(Constants.favDb.KEY_ID, item.getId());
+        values.put(Constants.favDb.KEY_TITLE, item.getTitle());
+        values.put(Constants.favDb.KEY_SOURCE, item.getSource());
+        values.put(Constants.favDb.KEY_FROM_INT, item.getFromPosition());
+        values.put(Constants.favDb.KEY_TO_INT, item.getToPosition());
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(Constants.FavDb.DB_TABLE_FAVORITES, null, values);
+        db.insert(Constants.favDb.DB_TABLE_FAVORITES, null, values);
         db.close();
     }
 
@@ -57,23 +57,23 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Constants.FavDb.KEY_TITLE, item.getTitle());
-        values.put(Constants.FavDb.KEY_SOURCE, item.getSource());
+        values.put(Constants.favDb.KEY_TITLE, item.getTitle());
+        values.put(Constants.favDb.KEY_SOURCE, item.getSource());
 
-        db.update(Constants.FavDb.DB_TABLE_FAVORITES, values, Constants.FavDb.KEY_ID + "=?",
+        db.update(Constants.favDb.DB_TABLE_FAVORITES, values, Constants.favDb.KEY_ID + "=?",
                 new String[]{String.valueOf(item.getId())});
     }
 
     public void deleteItem(long id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constants.FavDb.DB_TABLE_FAVORITES, Constants.FavDb.KEY_ID + "=?", new String[]{String.valueOf(id)});
+        db.delete(Constants.favDb.DB_TABLE_FAVORITES, Constants.favDb.KEY_ID + "=?", new String[]{String.valueOf(id)});
         db.close();
     }
 
     public List<FavoriteItem> getAllItems() {
         List<FavoriteItem> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.FavDb.DB_TABLE_FAVORITES, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.favDb.DB_TABLE_FAVORITES, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -89,7 +89,7 @@ public class FavoriteDbModel extends SQLiteOpenHelper {
 
     public void deleteAll() {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constants.FavDb.DB_TABLE_FAVORITES, Constants.FavDb.KEY_ID + ">=?", new String[]{"0"});
+        db.delete(Constants.favDb.DB_TABLE_FAVORITES, Constants.favDb.KEY_ID + ">=?", new String[]{"0"});
         db.close();
     }
 }

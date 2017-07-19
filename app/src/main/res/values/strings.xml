@@ -13,7 +13,7 @@
     <string name="action_source">Source code</string>
     <string name="delete">Delete</string>
 
-    <!-- Common -->
+    <!-- common -->
     <string name="date">dd.MM.yyyy, HH:mm</string>
     <string name="err_resp_402">The API key is blocked</string>
     <string name="err_resp_401">Wrong API key</string>
@@ -88,7 +88,7 @@
     <string name="owner_lib10">Additional Material Design color palettes and API\'s. Presented by Google Inc. (APACHE 2.0)</string>
     <string name="owner_lib11">Fast and highly-customizable list widget for android. Presented by Google Inc. (APACHE 2.0)</string>
 
-    <!-- Prefs -->
+    <!-- prefs -->
     <string name="pref_api_key">Translator API-key</string>
     <string name="pref_api_key_sum">Enter the API-key obtained in the Yandex.Translate</string>
     <string name="pref_api_detect">Auto-detect language</string>
@@ -176,5 +176,7 @@
     <string name="dlg_donate_explanation">Это приложение абсолютно бесплатно, и всегда будет таким. Его исходный код открыт, вы можете сами добавлять новые функции, либо помогать с переводом на другие языки. Если оно вам понравилось, вы можете пожертвовать любую сумму[1] для поддержки разработчика.   [1] Google берёт 30% от каждого пожертвования.</string>
     <string name="pref_ui_blackic_sum">Android 6+</string>
     <string name="translation_copied">Translation copied</string>
+    <string name="copy_close">Copy &amp; close</string>
+    <string name="view">View</string>
 
 </resources>

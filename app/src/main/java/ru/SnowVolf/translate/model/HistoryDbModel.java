@@ -20,18 +20,18 @@ import ru.SnowVolf.translate.util.Preferences;
 public class HistoryDbModel extends SQLiteOpenHelper {
 
     public HistoryDbModel(Context context) {
-        super(context, Constants.HistoryDb.DB_NAME, null, Constants.HistoryDb.DB_VERSION);
+        super(context, Constants.historyDb.DB_NAME, null, Constants.historyDb.DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + Constants.HistoryDb.DB_TABLE_HISTORY + " (" +
-                Constants.HistoryDb.KEY_ID + " INTEGER PRIMARY KEY, " +
-                Constants.HistoryDb.KEY_FROM_INT + " INTEGER, " +
-                Constants.HistoryDb.KEY_TO_INT + " INTEGER, " +
-                Constants.HistoryDb.KEY_TITLE + " TEXT, " +
-                Constants.HistoryDb.KEY_SOURCE + " TEXT, " +
-                Constants.HistoryDb.KEY_TRANSLATE + " TEXT)");
+        db.execSQL("CREATE TABLE " + Constants.historyDb.DB_TABLE_HISTORY + " (" +
+                Constants.historyDb.KEY_ID + " INTEGER PRIMARY KEY, " +
+                Constants.historyDb.KEY_FROM_INT + " INTEGER, " +
+                Constants.historyDb.KEY_TO_INT + " INTEGER, " +
+                Constants.historyDb.KEY_TITLE + " TEXT, " +
+                Constants.historyDb.KEY_SOURCE + " TEXT, " +
+                Constants.historyDb.KEY_TRANSLATE + " TEXT)");
     }
 
     @Override
@@ -45,33 +45,33 @@ public class HistoryDbModel extends SQLiteOpenHelper {
         }
 
         SQLiteDatabase db = getWritableDatabase();
-        String[] projekt = {Constants.HistoryDb.KEY_ID};
-        String selection = Constants.HistoryDb.KEY_TRANSLATE + " = ?";
+        String[] projekt = {Constants.historyDb.KEY_ID};
+        String selection = Constants.historyDb.KEY_TRANSLATE + " = ?";
         String[] selectionArgs = {item.getTranslation()};
-        String sortOrder = Constants.HistoryDb.KEY_ID + " DESC";
-        Cursor cursor = db.query(Constants.HistoryDb.DB_TABLE_HISTORY, projekt, selection, selectionArgs, null, null, sortOrder);
+        String sortOrder = Constants.historyDb.KEY_ID + " DESC";
+        Cursor cursor = db.query(Constants.historyDb.DB_TABLE_HISTORY, projekt, selection, selectionArgs, null, null, sortOrder);
         if (Preferences.isDuplicatesNotAllowed()) {
             if (cursor.moveToFirst()) {
                 ContentValues values = new ContentValues();
-                values.put(Constants.HistoryDb.KEY_ID, item.getId());
-                String updateSelection = Constants.HistoryDb.KEY_ID + " = ?";
+                values.put(Constants.historyDb.KEY_ID, item.getId());
+                String updateSelection = Constants.historyDb.KEY_ID + " = ?";
                 String[] updateSelectionArgs = {cursor.getString(0)};
-                db.update(Constants.HistoryDb.DB_TABLE_HISTORY, values, updateSelection, updateSelectionArgs);
+                db.update(Constants.historyDb.DB_TABLE_HISTORY, values, updateSelection, updateSelectionArgs);
             } else {
                 ContentValues values = new ContentValues();
-                values.put(Constants.HistoryDb.KEY_ID, item.getId());
-                values.put(Constants.HistoryDb.KEY_TITLE, item.getTitle());
-                values.put(Constants.HistoryDb.KEY_SOURCE, item.getSource());
-                values.put(Constants.HistoryDb.KEY_TRANSLATE, item.getTranslation());
-                db.insert(Constants.HistoryDb.DB_TABLE_HISTORY, null, values);
+                values.put(Constants.historyDb.KEY_ID, item.getId());
+                values.put(Constants.historyDb.KEY_TITLE, item.getTitle());
+                values.put(Constants.historyDb.KEY_SOURCE, item.getSource());
+                values.put(Constants.historyDb.KEY_TRANSLATE, item.getTranslation());
+                db.insert(Constants.historyDb.DB_TABLE_HISTORY, null, values);
             }
         } else {
             ContentValues values = new ContentValues();
-            values.put(Constants.HistoryDb.KEY_ID, item.getId());
-            values.put(Constants.HistoryDb.KEY_TITLE, item.getTitle());
-            values.put(Constants.HistoryDb.KEY_SOURCE, item.getSource());
-            values.put(Constants.HistoryDb.KEY_TRANSLATE, item.getTranslation());
-            db.insert(Constants.HistoryDb.DB_TABLE_HISTORY, null, values);
+            values.put(Constants.historyDb.KEY_ID, item.getId());
+            values.put(Constants.historyDb.KEY_TITLE, item.getTitle());
+            values.put(Constants.historyDb.KEY_SOURCE, item.getSource());
+            values.put(Constants.historyDb.KEY_TRANSLATE, item.getTranslation());
+            db.insert(Constants.historyDb.DB_TABLE_HISTORY, null, values);
         }
         cursor.close();
         db.close();
@@ -79,16 +79,16 @@ public class HistoryDbModel extends SQLiteOpenHelper {
 
     public void delete(long id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constants.HistoryDb.DB_TABLE_HISTORY, Constants.HistoryDb.KEY_ID + "=?", new String[]{String.valueOf(id)});
+        db.delete(Constants.historyDb.DB_TABLE_HISTORY, Constants.historyDb.KEY_ID + "=?", new String[]{String.valueOf(id)});
         db.close();
     }
 
     public List<HistoryItem> getAllItems() {
         List<HistoryItem> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        String[] columns = {Constants.HistoryDb.KEY_ID, Constants.HistoryDb.KEY_FROM_INT, Constants.HistoryDb.KEY_TO_INT, Constants.HistoryDb.KEY_TITLE, Constants.HistoryDb.KEY_SOURCE, Constants.HistoryDb.KEY_TRANSLATE};
-        String sortOrder = Constants.HistoryDb.KEY_ID + " DESC";
-        Cursor cursor = db.query(Constants.HistoryDb.DB_TABLE_HISTORY, columns, null, null, null, null, sortOrder);
+        String[] columns = {Constants.historyDb.KEY_ID, Constants.historyDb.KEY_FROM_INT, Constants.historyDb.KEY_TO_INT, Constants.historyDb.KEY_TITLE, Constants.historyDb.KEY_SOURCE, Constants.historyDb.KEY_TRANSLATE};
+        String sortOrder = Constants.historyDb.KEY_ID + " DESC";
+        Cursor cursor = db.query(Constants.historyDb.DB_TABLE_HISTORY, columns, null, null, null, null, sortOrder);
         if (cursor.moveToFirst()) {
             do {
                 list.add(new HistoryItem(Long.parseLong(cursor.getString(0)),
@@ -103,7 +103,7 @@ public class HistoryDbModel extends SQLiteOpenHelper {
 
     public void deleteAll() {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constants.HistoryDb.DB_TABLE_HISTORY, Constants.HistoryDb.KEY_ID + ">=?", new String[]{"0"});
+        db.delete(Constants.historyDb.DB_TABLE_HISTORY, Constants.historyDb.KEY_ID + ">=?", new String[]{"0"});
         db.close();
     }
 }
