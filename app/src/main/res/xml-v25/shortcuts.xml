@@ -3,7 +3,7 @@
     <shortcut
         android:shortcutId="action_history_fav"
         android:enabled="true"
-        android:icon="@drawable/ic_shortcut_history"
+        android:icon="@mipmap/ic_shortcut_history"
         android:shortcutShortLabel="@string/action_history_fav">
         <intent
             android:action="android.intent.action.VIEW"
@@ -18,7 +18,7 @@
     <shortcut
         android:shortcutId="title_activity_browser"
         android:enabled="true"
-        android:icon="@drawable/ic_shortcut_browser"
+        android:icon="@mipmap/ic_shortcut_browser"
         android:shortcutShortLabel="@string/title_activity_browser">
         <intent
             android:action="android.intent.action.VIEW"
@@ -30,7 +30,7 @@
     <shortcut
         android:shortcutId="action_settings"
         android:enabled="true"
-        android:icon="@drawable/ic_shortcut_settings"
+        android:icon="@mipmap/ic_shortcut_settings"
         android:shortcutShortLabel="@string/action_settings">
         <intent
             android:action="android.intent.action.VIEW"
