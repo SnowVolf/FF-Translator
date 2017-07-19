@@ -103,7 +103,8 @@ public class App extends Application {
 
     public static Language[] langs = {
             // 3 columns
-            Language.AFRICANS, Language.ALBANIAN, Language.ARABIAN,
+            Language.AFRICANS, Language.ALBANIAN, Language.AMHARIC,
+            Language.ARABIAN,
             Language.ARMENIAN, Language.AZERBAIJANI, Language.BASQUE,
             Language.BASHKIR, Language.BELARUSIAN, Language.BENGALI,
             Language.BURMESE, Language.BULGARIAN, Language.BOSNIAN,
