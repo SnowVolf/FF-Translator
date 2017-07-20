@@ -72,10 +72,6 @@ public class Preferences {
         return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_KBD, true);
     }
 
-    public static boolean isSyncTranslateAllowed(){
-        return App.ctx().getPreferences().getBoolean(Constants.prefs.API_SYNC, true);
-    }
-
     public static boolean isLogAllowed(){
         return App.ctx().getPreferences().getBoolean("dev.opt", true);
     }
@@ -108,7 +104,7 @@ public class Preferences {
         return App.ctx().getPreferences().getString("last.from.lang", Language.AFRICANS.toString());
     }
 
-    public static boolean isLightTheme(){
-        return  (Objects.equals(App.ctx().getPreferences().getString(Constants.prefs.UI_THEME, "0"), "0"));
+    public static boolean isSuggestionsAllowed(){
+        return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_SUGGEST, true);
     }
 }

@@ -3,6 +3,8 @@ package ru.SnowVolf.translate.favorite;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.v7.view.menu.MenuBuilder;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -102,7 +104,9 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
             }
             return true;
         });
-        menu.show();
+        MenuPopupHelper menuHelper = new MenuPopupHelper(ctx, (MenuBuilder) menu.getMenu(), mMenu);
+        menuHelper.setForceShowIcon(true);
+        menuHelper.show();
     }
 
     private void share(Context ctx, FavoriteItem favoriteItem){

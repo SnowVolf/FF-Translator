@@ -52,12 +52,13 @@
         <item>Серо-голубой</item>
     </string-array>
     <string-array name="supported_lang" translatable="false">
-        <item>Африкаанс</item>
+        <item>Азербайджанский</item>
         <item>Албанский</item>
-        <item>Ахмарский</item>
+        <item>Английский</item>
         <item>Арабский</item>
         <item>Армянский</item>
-        <item>Азербайджанский</item>
+        <item>Африкаанс</item>
+        <item>Ахмарский</item>
         <item>Баскийский</item>
         <item>Башкирский</item>
         <item>Белорусский</item>
@@ -66,37 +67,30 @@
         <item>Болгарский</item>
         <item>Боснийский</item>
         <item>Валлийский</item>
+        <item>Венгерский</item>
         <item>Вьетнамский</item>
-        <item>Каталонский</item>
-        <item>Хорватский</item>
-        <item>Чешский</item>
-        <item>Датский</item>
-        <item>Голландский</item>
-        <item>Английский</item>
-        <item>Эстонский</item>
-        <item>Финский</item>
-        <item>Французский</item>
-        <item>Казахский</item>
-        <item>Коса</item>
-        <item>Яванский</item>
-        <item>Японский</item>
-        <item>Каннада</item>
-        <item>Кхмерский</item>
-        <item>Корейский</item>
-        <item>Киргизский</item>
+        <item>Гаитянский</item>
         <item>Галлиский</item>
         <item>Германский</item>
-        <item>Грузинский</item>
-        <item>Греческий</item>
-        <item>Гуджарати</item>
-        <item>Гаитянский</item>
-        <item>Иврит</item>
-        <item>Венгерский</item>
-        <item>Идиш</item>
+        <item>Голландский</item>
         <item>Горномариский</item>
-        <item>Исландский</item>
+        <item>Греческий</item>
+        <item>Грузинский</item>
+        <item>Гуджарати</item>
+        <item>Датский</item>
+        <item>Иврит</item>
+        <item>Идиш</item>
         <item>Ирландский</item>
+        <item>Исландский</item>
+        <item>Испанский</item>
         <item>Итальянский</item>
+        <item>Казахский</item>
+        <item>Каннада</item>
+        <item>Каталонский</item>
+        <item>Киргизский</item>
+        <item>Корейский</item>
+        <item>Коса</item>
+        <item>Кхмерский</item>
         <item>Латвийский</item>
         <item>Литовский</item>
         <item>Македонский</item>
@@ -109,10 +103,16 @@
         <item>Сербский</item>
         <item>Словацкий</item>
         <item>Словенский</item>
-        <item>Испанский</item>
-        <item>Шведский</item>
         <item>Турецкий</item>
         <item>Украинский</item>
+        <item>Финский</item>
+        <item>Французский</item>
+        <item>Хорватский</item>
+        <item>Чешский</item>
+        <item>Шведский</item>
+        <item>Эстонский</item>
+        <item>Яванский</item>
+        <item>Японский</item>
     </string-array>
 
     <string-array name="entries_lang" translatable="false">

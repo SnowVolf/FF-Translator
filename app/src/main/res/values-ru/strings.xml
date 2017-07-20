@@ -181,4 +181,6 @@
     <string name="translation_copied">Перевод скопирован</string>
     <string name="copy_close">Скопировать и закрыть</string>
     <string name="view">Просмотр</string>
+    <string name="pref_performance_suggest">Подсказки при наборе</string>
+    <string name="need_app_restart_sum">Требуется перезапуск приложения</string>
 </resources>

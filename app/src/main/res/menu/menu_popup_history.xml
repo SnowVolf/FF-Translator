@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/copy2"
-        android:id="@+id/action_copy"/>
+        android:id="@+id/action_copy"
+        android:icon="@drawable/ic_bar_copy"/>
     <item android:title="@string/copy_close"
-        android:id="@+id/action_copy_close"/>
+        android:id="@+id/action_copy_close"
+        android:icon="@drawable/ic_bar_copy"/>
     <item android:title="@string/view"
-        android:id="@+id/action_view_fullscreen"/>
+        android:id="@+id/action_view_fullscreen"
+        android:icon="@drawable/ic_action_view_in"/>
     <item
         android:id="@+id/action_history_add_favorite"
-        android:title="@string/add_to_favorites"/>
+        android:title="@string/add_to_favorites"
+        android:icon="@drawable/ic_action_star"/>
     <item
         android:id="@+id/action_history_delete"
-        android:title="@string/delete"/>
+        android:title="@string/delete"
+        android:icon="@drawable/ic_action_delete"/>
     <item android:title="@string/action_share"
-        android:id="@+id/action_share"/>
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_bar_share"/>
 </menu>

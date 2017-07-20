@@ -35,6 +35,7 @@ public class Constants {
         public static final String PERFORMANCE_KILL = "performance.kill";
         public static final String PERFORMANCE_KBD = "performance.keyboard";
         public static final String PERFORMANCE_SCAN_CLIP = "performance.scan.clipboard";
+        public static final String PERFORMANCE_SUGGEST = "performance.suggestions";
     }
 
     public static final class intents {

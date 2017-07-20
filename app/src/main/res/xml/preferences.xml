@@ -81,6 +81,11 @@
         android:summary="@string/pref_performance_return_sum"
         android:defaultValue="false"/>
     <CheckBoxPreference
+        android:key="performance.suggestions"
+        android:title="@string/pref_performance_suggest"
+        android:summary="@string/need_app_restart_sum"
+        android:defaultValue="true"/>
+    <CheckBoxPreference
         android:key="performance.translate.clipboard"
         android:title="@string/pref_performance_clip"
         android:summary="@string/pref_performance_clip_sum"

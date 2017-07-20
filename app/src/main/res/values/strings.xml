@@ -178,5 +178,7 @@
     <string name="translation_copied">Translation copied</string>
     <string name="copy_close">Copy &amp; close</string>
     <string name="view">View</string>
+    <string name="pref_performance_suggest">Keyboard suggestions</string>
+    <string name="need_app_restart_sum">You need to restart the application</string>
 
 </resources>
