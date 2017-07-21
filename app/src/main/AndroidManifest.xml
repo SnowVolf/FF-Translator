@@ -12,6 +12,9 @@
     <!-- Доступ к sd для перевода текстовых файлов -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Добавление / удаление ярлыков в лаунчере -->
+    <uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="android.permission.UNINSTALL_SHORTCUT"/>
 
     <application
         android:name=".App"
@@ -19,8 +22,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
-        android:supportsRtl="false"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_rules">
         <!-- Для экранов Galaxy S8, LG G6, и т.д. -->
         <meta-data
             android:name="android.max_aspect"

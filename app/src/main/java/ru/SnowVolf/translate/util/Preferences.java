@@ -1,7 +1,5 @@
 package ru.SnowVolf.translate.util;
 
-import java.util.Objects;
-
 import ru.SnowVolf.translate.App;
 import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.api.yandex.translate.Translate;
@@ -106,5 +104,9 @@ public class Preferences {
 
     public static boolean isSuggestionsAllowed(){
         return App.ctx().getPreferences().getBoolean(Constants.prefs.PERFORMANCE_SUGGEST, true);
+    }
+
+    public static boolean isListenerAllowed(){
+        return App.ctx().getPreferences().getBoolean("dev.listener", true);
     }
 }

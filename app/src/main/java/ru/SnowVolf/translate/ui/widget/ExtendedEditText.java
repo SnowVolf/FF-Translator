@@ -4,10 +4,15 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Scroller;
 
+import com.onurciner.oxswipe.OXSwipe;
+
+import ru.SnowVolf.translate.App;
+import ru.SnowVolf.translate.util.KeyboardUtil;
 import ru.SnowVolf.translate.util.Preferences;
 import ru.SnowVolf.translate.util.TypefaceHelper;
 
@@ -41,11 +46,31 @@ public class ExtendedEditText extends TextInputEditText {
         if (!Preferences.isSuggestionsAllowed())
         setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         TypefaceHelper.applyTypeface(this);
-    }
+        if (Preferences.isListenerAllowed()) {
+            setTextIsSelectable(true);
+            setScroller(new Scroller(App.getContext()));
+            setVerticalScrollBarEnabled(true);
+            setMovementMethod(new ScrollingMovementMethod());
+            setOnLongClickListener(v -> {
+                performLongClick();
+                return true;
+            });
+            setOnTouchListener(new OXSwipe() {
+                @Override
+                public void leftSwipe() {
+                    super.leftSwipe();
+                    setText("");
 
+                }
 
-    @Override
-    public boolean onKeyShortcut(int keyCode, KeyEvent event) {
-        return super.onKeyShortcut(keyCode, event);
+                @Override
+                public void oneTouch() {
+                    super.oneTouch();
+                    requestFocusFromTouch();
+                    KeyboardUtil.showKeyboard();
+                    moveCursorToVisibleOffset();
+                }
+            });
+        }
     }
 }

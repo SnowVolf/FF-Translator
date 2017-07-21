@@ -14,7 +14,7 @@
         android:icon="@drawable/ic_action_edit"/>
     <item android:title="@string/delete"
         android:id="@+id/action_fav_delete"
-        android:icon="@drawable/ic_action_delete"/>
+        android:icon="@drawable/ic_action_cancel_task"/>
     <item android:title="@string/action_share"
         android:id="@+id/action_share"
         android:icon="@drawable/ic_bar_share"/>

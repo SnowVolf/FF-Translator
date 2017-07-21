@@ -212,7 +212,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:entries="@array/supported_lang" />
+                    android:entries="@array/supported_lang"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
 
                 <ImageButton
                     android:id="@+id/switch_button"
@@ -230,7 +231,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:entries="@array/supported_lang" />
+                    android:entries="@array/supported_lang"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
             </LinearLayout>
 
         </RelativeLayout>

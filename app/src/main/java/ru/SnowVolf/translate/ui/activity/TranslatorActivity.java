@@ -119,8 +119,8 @@ public class TranslatorActivity extends BaseActivity {
             startActivity(mIntent);
         });
 
-        ArrayAdapter<?> mAdapter = ArrayAdapter.createFromResource(this, R.array.supported_lang, android.R.layout.simple_spinner_item);
-        mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<?> mAdapter = ArrayAdapter.createFromResource(this, R.array.supported_lang, R.layout.item_spinner);
+        mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinnerTo.setAdapter(mAdapter);
         mSpinnerFrom.setAdapter(mAdapter);
         tempInt1 = getIntent().getIntExtra(Constants.intents.INTENT_FROM, Preferences.getSpinnerPosition(Constants.prefs.SPINNER_1));
