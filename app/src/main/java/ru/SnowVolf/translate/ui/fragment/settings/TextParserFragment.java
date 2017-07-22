@@ -24,7 +24,7 @@ public class TextParserFragment extends NativeContainerFragment {
     @BindView(R.id.help_progress) ProgressBar progress;
     public TextParserFragment(){}
 
-    public String TEXT_URL = "help/help.txt";
+    public String TEXT_URL = "";
 
 
     @Nullable
@@ -38,8 +38,8 @@ public class TextParserFragment extends NativeContainerFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TEXT_URL = "help/help.txt";
-        TITLE = R.string.settings_help;
+        TEXT_URL = "";
+        TITLE = 0;
         progress.setVisibility(View.VISIBLE);
         Handler wait = new Handler();
         wait.postDelayed(() -> {
@@ -49,7 +49,7 @@ public class TextParserFragment extends NativeContainerFragment {
                 content.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
             }, 100);
-        }, 400);
+        }, 300);
 
     }
 }

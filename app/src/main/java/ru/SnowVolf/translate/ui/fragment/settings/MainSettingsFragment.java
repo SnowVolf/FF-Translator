@@ -132,23 +132,12 @@ public class MainSettingsFragment extends PreferenceFragment implements SharedPr
             }
             return true;
         });
-        Preference mGuide = findPreference(Constants.prefs.OTHER_GUIDE);
-        mGuide.setOnPreferenceClickListener(__ -> {
-            getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new HelpFragment()).addToBackStack(null).commit();
-            return true;
-        });
 
         Preference mAbout = findPreference(Constants.prefs.OTHER_VERSION);
         mAbout.setTitle(R.string.app_name);
         mAbout.setSummary("v. " + BuildConfig.VERSION_NAME + " r" + BuildConfig.VERSION_CODE + ", " + BuildConfig.BUILD_TIME);
         mAbout.setOnPreferenceClickListener(__ -> {
             getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new AboutFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-            return true;
-        });
-
-        Preference mPolicy = findPreference(Constants.prefs.OTHER_POLICY);
-        mPolicy.setOnPreferenceClickListener(__ -> {
-            getFragmentManager().beginTransaction().replace(R.id.settings_frame_container, new PrivacyPolicyFragment()).addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
             return true;
         });
 

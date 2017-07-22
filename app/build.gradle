@@ -67,5 +67,6 @@ dependencies {
     compile "com.jakewharton:butterknife-annotations:${butterKnife}"
     compile "com.android.support:support-v4:${supportLib}"
     compile 'com.github.10uroi:OXSwipe:1.0.1'
+    compile 'com.github.fccaikai:AppUpdate:2.1.3'
     testCompile 'junit:junit:4.12'
 }

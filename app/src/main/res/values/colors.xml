@@ -26,11 +26,8 @@
     <color name="black_cardView">#141414</color>
 
     <!-- SWIPE REFRESH -->
-    <color name="swipe_light">#ffffff</color>
-    <color name="swipe_dark">#212121</color>
 
     <!-- Shortcut icon color -->
-    <color name="color_shortcut">#757575</color>
 
     <!--Accent Color Collection-->
     <color name="accent_red">#e62117</color>

@@ -35,8 +35,6 @@
     <string name="favorite_empty">В избранном ничего нет</string>
     <string name="enter_title">Введите заголовок</string>
     <string name="enter_translation">Введите перевод</string>
-    <string name="settings_help">Справка</string>
-    <string name="settings_policy">Политика конфиденциальности</string>
     <string name="dlg_delete_favorite">Удалить избранное?</string>
     <string name="dlg_delete_favorite_msg">Избранное будет удалено навсегда!</string>
     <string name="no_net_connection">Нет соединения</string>
@@ -121,9 +119,6 @@
     <string name="pref_performance_return_sum">Переводить по нажатию ENTER</string>
     <string name="pref_performance_clip">Переводить из буфера обмена</string>
     <string name="pref_performance_clip_sum">Предлагать вставить текст из буфера при запуске приложения</string>
-    <string name="pref_other_guide">Руководство</string>
-    <string name="pref_other_guide_sum">Справка и помощь</string>
-    <string name="pref_other_policy">Политика конфиденциальности</string>
     <string name="pref_dev">Для разработчиков</string>
     <string name="pref_dev_sum">Лучше не трогать =)</string>
     <string name="webview_version_error">Ошибка версии WebView</string>
@@ -175,7 +170,6 @@
     <string name="donate">Помочь проекту</string>
     <string name="thanks">Спасибо! :-)</string>
     <string name="donate_copied">Номер кошелька скопирован в буфер обмена</string>
-    <string name="dlg_donate_explanation">Это приложение абсолютно бесплатно, и всегда будет таким. Его исходный код открыт, вы можете сами добавлять новые функции, либо помогать с переводом на другие языки. Если оно вам понравилось, вы можете пожертвовать любую сумму[1] для поддержки разработчика.   [1] Google берёт 30% от каждого пожертвования.</string>
     <string name="pref_ui_blackic_sum">Только для Android 6+</string>
     <string name="title_activity_fullscreen">Fullscreen</string>
     <string name="translation_copied">Перевод скопирован</string>
@@ -183,4 +177,22 @@
     <string name="view">Просмотр</string>
     <string name="pref_performance_suggest">Подсказки при наборе</string>
     <string name="need_app_restart_sum">Требуется перезапуск приложения</string>
+
+    <!-- APP UPDATER -->
+    <string name="update_lib_network_not_available">@string/no_net_connection</string>
+    <string name="update_lib_default_toast">Обновлений не найдено</string>
+
+    <!--DownLoadDialog-->
+    <string name="update_lib_download_cancel">Обновление отменено</string>
+    <string name="update_lib_download_in_background">Обновление в фоне запущено</string>
+    <string name="update_lib_download_finish">Загрузка обновления завершена</string>
+    <string name="update_lib_download_failed">Загрузка обновления прервана</string>
+    <string name="update_lib_file_download_format">Загрузка…（%1$s/%2$s）</string>
+
+    <!--UpdateDialog-->
+    <string name="update_lib_update_content">Новая версия FF-Translator уже доступна</string>
+    <string name="update_lib_version_code">Код версии: </string>
+    <string name="update_lib_update">Новая версия: </string>
+    <string name="update_lib_cancel">Отмена</string>
+    <string name="update_lib_dialog_title">Новая версия!</string>
 </resources>

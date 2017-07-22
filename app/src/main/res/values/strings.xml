@@ -32,8 +32,6 @@
     <string name="favorite_empty">Favorites is empty</string>
     <string name="enter_title">Enter text</string>
     <string name="enter_translation">Enter translation</string>
-    <string name="settings_help">Help</string>
-    <string name="settings_policy">Privacy policy</string>
     <string name="dlg_delete_favorite">Delete favorites?</string>
     <string name="dlg_delete_favorite_msg">Favorites must be deleted forever!</string>
     <string name="no_net_connection">No internet connection</string>
@@ -122,9 +120,6 @@
     <string name="pref_performance_clip">Translate from clipboard</string>
     <string name="pref_performance_clip_sum">Offer to paste text from clipboard when the application starts</string>
     <string name="pref_ctg_other">Other</string>
-    <string name="pref_other_guide">User Guide</string>
-    <string name="pref_other_guide_sum">Help and assistance</string>
-    <string name="pref_other_policy">Privacy policy</string>
     <string name="pref_dev">Dev settings</string>
     <string name="pref_dev_sum">DO NOT MODIFY!!!</string>
     <string name="share_url">Share link</string>
@@ -173,12 +168,29 @@
     <string name="donate">Donate</string>
     <string name="thanks">Thank you! :-)</string>
     <string name="donate_copied">Number copied to clipboard</string>
-    <string name="dlg_donate_explanation">Это приложение абсолютно бесплатно, и всегда будет таким. Его исходный код открыт, вы можете сами добавлять новые функции, либо помогать с переводом на другие языки. Если оно вам понравилось, вы можете пожертвовать любую сумму[1] для поддержки разработчика.   [1] Google берёт 30% от каждого пожертвования.</string>
     <string name="pref_ui_blackic_sum">Android 6+</string>
     <string name="translation_copied">Translation copied</string>
     <string name="copy_close">Copy &amp; close</string>
     <string name="view">View</string>
     <string name="pref_performance_suggest">Keyboard suggestions</string>
     <string name="need_app_restart_sum">You need to restart the application</string>
+
+    <!-- APP UPDATER -->
+    <string name="update_lib_network_not_available">Network is not available</string>
+    <string name="update_lib_default_toast">No updates available</string>
+
+    <!--DownLoadDialog-->
+    <string name="update_lib_download_cancel">Update cancelled</string>
+    <string name="update_lib_download_in_background">Background update started</string>
+    <string name="update_lib_download_finish">Download successful</string>
+    <string name="update_lib_download_failed">Download failed</string>
+    <string name="update_lib_file_download_format">Downloading…（%1$s/%2$s）</string>
+
+    <!--UpdateDialog-->
+    <string name="update_lib_update_content">New version of FF-Translator is now available</string>
+    <string name="update_lib_version_code">Version code: </string>
+    <string name="update_lib_update">Version name: </string>
+    <string name="update_lib_cancel">Cancel</string>
+    <string name="update_lib_dialog_title">Update available</string>
 
 </resources>

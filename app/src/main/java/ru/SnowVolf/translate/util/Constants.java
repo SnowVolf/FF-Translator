@@ -12,7 +12,7 @@ public class Constants {
 
     public static final class prefs {
         public static final String API_KEY = "api.key";
-        public static final String API_SYNC = "api.sync.translate";
+        //public static final String API_SYNC = "api.sync.translate";
         public static final String API_DETECT = "api.detect";
         public static final String SYS_LANG = "sys.lang";
         public static final String SYS_PERMISSIONS = "sys.permissions";
@@ -22,9 +22,7 @@ public class Constants {
         public static final String UI_LIGHT_STATUS_BAR ="ui.blackicons";
         public static final String UI_LIST_ANIM = "ui.list.anim";
         public static final String UI_ACCENT = "ui.accent";
-        public static final String OTHER_GUIDE = "other.guide";
         public static final String OTHER_VERSION = "other.version";
-        public static final String OTHER_POLICY = "other.policy";
         public static final String SPINNER_1 = "saved1";
         public static final String SPINNER_2 = "saved2";
         public static final String PERFORMANCE_DUP = "performance.duplicates";

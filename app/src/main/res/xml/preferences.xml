@@ -99,13 +99,6 @@
     <Preference
         android:key="other.version"/>
     <Preference
-        android:key="other.guide"
-        android:title="@string/pref_other_guide"
-        android:summary="@string/pref_other_guide_sum"/>
-    <Preference
-        android:key="other.policy"
-        android:title="@string/pref_other_policy"/>
-    <Preference
         android:key="dev.opt"
         android:title="@string/pref_dev"
         android:summary="@string/pref_dev_sum"/>
