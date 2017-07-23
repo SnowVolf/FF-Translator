@@ -1,7 +1,7 @@
 {
-  "versionCode":18,
-  "versionName":"1.1.9",
-  "content":"A new version of FF-Translator is now available",
+  "versionCode":19,
+  "versionName":"1.2.0",
+  "content":"Test app update# - first# - second# - third",
   "minSupport":1,
-  "url":"add link later"
+  "url":"https://github.com/SnowVolf/FF-Translator/blob/master/java-girl/apk/app-release-unsigned.apk?raw=true"
 }
