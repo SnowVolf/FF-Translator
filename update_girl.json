@@ -1,7 +1,7 @@
 {
-  "versionCode":19,
-  "versionName":"1.2.0",
-  "content":"Test app update# - first# - second# - third",
+  "versionCode":20,
+  "versionName":"1.2.1",
+  "content":"[*] change app update dialog ",
   "minSupport":1,
   "url":"https://github.com/SnowVolf/FF-Translator/blob/master/java-girl/apk/app-release-unsigned.apk?raw=true"
 }
