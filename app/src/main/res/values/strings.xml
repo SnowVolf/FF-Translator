@@ -135,6 +135,7 @@
     <string name="action_enter_url">Enter URL</string>
     <string name="action_find_on_page">Find on page</string>
     <string name="action_share">Share</string>
+    <string name="action_share_sys">Share (system)</string>
     <string name="action_copy_link">@string/copy_url</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="pref_performance_kbd">Show keyboard at start</string>
@@ -188,9 +189,18 @@
 
     <!--UpdateDialog-->
     <string name="update_lib_update_content">New version of FF-Translator is now available</string>
-    <string name="update_lib_version_code">Version code: </string>
-    <string name="update_lib_update">Version name: </string>
+    <string name="update_lib_version_code">Version code:  </string>
+    <string name="update_lib_update">Update</string>
     <string name="update_lib_cancel">Cancel</string>
     <string name="update_lib_dialog_title">Update available</string>
+
+    <!--DownLoadService-->
+    <string name="update_lib_file_download">Downloading file</string>
+    <string name="update_lib_file_downloading">Downloading…</string>
+
+    <!--fragment_download.xml-->
+    <string name="update_lib_file_download_text">Download</string>
+    <string name="update_lib_stop_download">Stop</string>
+    <string name="update_lib_background_download">Background</string>
 
 </resources>

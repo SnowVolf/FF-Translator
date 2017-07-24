@@ -6,8 +6,13 @@ package ru.SnowVolf.translate.util;
 
 public class Constants {
     public static final class common {
+        public static final String UPDATE_URL = "https://raw.githubusercontent.com/SnowVolf/FF-Translator/master/update_girl.json";
         public static final String TAG = "ff-girl";
         public static final String GIRL_ALIAS = "V_7 HELEN";
+    }
+
+    public static final class time {
+        public static final long SIX_HOUR = 21600/*000*/;
     }
 
     public static final class prefs {

@@ -38,6 +38,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kcode.lib.UpdateWrapper;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -86,6 +88,7 @@ public class TranslatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translator);
         ButterKnife.bind(this);
+        initUpdater();
         Translate.setKey(App.ctx().getPreferences().getString(Constants.prefs.API_KEY, ""));
         mBottomPanel.setOnMenuItemClickListener(m -> {
             int id = m.getItemId();
@@ -302,9 +305,22 @@ public class TranslatorActivity extends BaseActivity {
         });
     }
 
+    private void initUpdater(){
+        Logger.i(aClass, "initUpdater()");
+        if (Preferences.isUpdateAllowed()) {
+            UpdateWrapper updateWrapper = new UpdateWrapper.Builder(getApplicationContext())
+                    .setTime(Constants.time.SIX_HOUR)
+                    .setNotificationIcon(R.drawable.ic_notification_update)
+                    .setUrl(Constants.common.UPDATE_URL)
+                    .setIsShowToast(false)
+                    .setCallback(model -> Log.d(Constants.common.TAG, "new version :: " + model.getVersionName()))
+                    .build();
+            updateWrapper.start();
+        }
+    }
+
     //Управление и переключение языков во всплывающем списке
     private void spinnerHelper(){
-
         Logger.i(aClass, "spinnerHelper()");
         mSpinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View is, int pos, long id) {

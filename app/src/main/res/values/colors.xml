@@ -25,9 +25,11 @@
     <color name="black_windowBackground">#000000</color>
     <color name="black_cardView">#141414</color>
 
-    <!-- SWIPE REFRESH -->
-
-    <!-- Shortcut icon color -->
+    <!-- Update dialog -->
+    <color name="update_background">#8c9eff</color>
+    <color name="update_btn_background">#2979ff</color>
+    <color name="update_accent">#ffea00</color>
+    <color name="update_icon">#000000</color>
 
     <!--Accent Color Collection-->
     <color name="accent_red">#e62117</color>
