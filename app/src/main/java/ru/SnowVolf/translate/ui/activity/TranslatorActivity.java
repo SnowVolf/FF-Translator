@@ -306,22 +306,17 @@ public class TranslatorActivity extends BaseActivity {
     }
 
     private void initUpdater(){
-        UpdateWrapper updateWrapper = new UpdateWrapper.Builder(getApplicationContext())
-                //set interval Time
-                .setTime(Constants.time.SIX_HOUR)
-                //set notification icon
-                .setNotificationIcon(R.drawable.ic_notification_update)
-                //set update file url
-                .setUrl(Constants.common.UPDATE_URL)
-                //set customs activity
-                //.setCustomsActivity(cls)
-                //set showToast. default is true
-                .setIsShowToast(true)
-                //add callback ,return new version info
-                .setCallback(model -> Log.d(Constants.common.TAG, "new version :: " + model.getVersionName()))
-                .build();
-
-        updateWrapper.start();
+        Logger.i(aClass, "initUpdater()");
+        if (Preferences.isUpdateAllowed()) {
+            UpdateWrapper updateWrapper = new UpdateWrapper.Builder(getApplicationContext())
+                    .setTime(Constants.time.SIX_HOUR)
+                    .setNotificationIcon(R.drawable.ic_notification_update)
+                    .setUrl(Constants.common.UPDATE_URL)
+                    .setIsShowToast(false)
+                    .setCallback(model -> Log.d(Constants.common.TAG, "new version :: " + model.getVersionName()))
+                    .build();
+            updateWrapper.start();
+        }
     }
 
     //Управление и переключение языков во всплывающем списке

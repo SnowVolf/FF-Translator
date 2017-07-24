@@ -39,9 +39,7 @@ public class HistoryFragment extends NativeContainerFragment {
     public HistoryAdapter mAdapter;
 
     public HistoryFragment(){
-
     }
-
 
     private final RecyclerView.AdapterDataObserver mAdapterDataObserver = new RecyclerView.AdapterDataObserver() {
         @Override

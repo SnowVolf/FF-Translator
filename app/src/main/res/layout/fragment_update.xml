@@ -3,21 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/update_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/update_background">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/update_lib_dialog_title"
             style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:gravity="center"
+            android:id="@+id/textView2" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2">
             <TextView
                 android:id="@+id/tvContent"
                 android:layout_width="match_parent"
@@ -25,37 +34,50 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                android:minLines="10"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColor="@color/update_icon"/>
         </ScrollView>
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/update_btn_background"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:layout_below="@+id/update_layout">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:text="@string/update_lib_cancel"
+            style="@style/UpdateButton"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/btnUpdate"
+            android:layout_marginEnd="2dp"/>
 
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/update_lib_cancel"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:layout_alignParentTop="true"
-                android:layout_toStartOf="@+id/btnUpdate" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_lib_update"
+            style="@style/UpdateButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Powered by JavaGirl Platform"
+            android:textColor="@color/update_accent"
+            android:textSize="12sp"
+            android:maxLines="2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/btnCancel" />
+    </RelativeLayout>
 
-            <Button
-                android:id="@+id/btnUpdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/update_lib_update"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
-
-        </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

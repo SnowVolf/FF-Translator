@@ -13,15 +13,13 @@ import ru.SnowVolf.translate.R;
  */
 
 public class SimpleHolder extends RecyclerView.ViewHolder {
-    private final RelativeLayout mContainer;
     private final TextView mTitle;
     private final TextView mSubTitle;
 
     public SimpleHolder(View view) {
         super(view);
-        mContainer = (RelativeLayout) view.findViewById(R.id.row_simple_layout);
-        mTitle = (TextView) view.findViewById(R.id.row_simple_title);
-        mSubTitle = (TextView) view.findViewById(R.id.row_simple_subtitle);
+        mTitle = view.findViewById(R.id.row_simple_title);
+        mSubTitle = view.findViewById(R.id.row_simple_subtitle);
     }
 
     public void setData(SimpleItem item) {
@@ -32,7 +30,5 @@ public class SimpleHolder extends RecyclerView.ViewHolder {
         }
         mTitle.setText(title);
         mSubTitle.setText(subtitle);
-
-        mContainer.setOnLongClickListener(v -> false);
     }
 }

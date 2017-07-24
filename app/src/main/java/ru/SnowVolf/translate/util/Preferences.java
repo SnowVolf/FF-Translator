@@ -109,4 +109,8 @@ public class Preferences {
     public static boolean isListenerAllowed(){
         return App.ctx().getPreferences().getBoolean("dev.listener", true);
     }
+
+    public static boolean isUpdateAllowed(){
+        return App.ctx().getPreferences().getBoolean("dev.update", true);
+    }
 }

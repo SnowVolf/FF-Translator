@@ -34,5 +34,7 @@
 
 -keep class org.adw.library.widgets.discreteseekbar.* { *; }
 -keep class com.google.common.* { *; }
+-keep class com.kcode.lib.* { *; }
+-dontwarn com.kcode.lib.**
 -keep class com.google.common.collect.Count { int value; }
 

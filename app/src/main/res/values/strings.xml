@@ -135,6 +135,7 @@
     <string name="action_enter_url">Enter URL</string>
     <string name="action_find_on_page">Find on page</string>
     <string name="action_share">Share</string>
+    <string name="action_share_sys">Share (system)</string>
     <string name="action_copy_link">@string/copy_url</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="pref_performance_kbd">Show keyboard at start</string>

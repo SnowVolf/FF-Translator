@@ -94,7 +94,7 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
                     ctx.startActivity(fullIntent);
                     return true;
                 }
-                case R.id.action_share:{
+                case R.id.action_share_sys:{
                     share(ctx, historyItem);
                     return true;
                 }

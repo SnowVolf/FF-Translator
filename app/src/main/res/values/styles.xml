@@ -69,6 +69,11 @@
         <item name="cardBackgroundColor">@color/black_cardView</item>
     </style>
 
+    <style name="UpdateButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/btn_colored</item>
+        <item name="android:textColor">@color/update_icon</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlayLight" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.PopupOverlayLight" parent="ThemeOverlay.AppCompat.Light" />

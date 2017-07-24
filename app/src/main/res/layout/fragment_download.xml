@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/update_background"
+        android:id="@+id/update_layout">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="@string/update_lib_file_download_text"
+            style="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:progressDrawable="@drawable/progress_horizontal"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/update_btn_background"
+        android:layout_below="@+id/update_layout">
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="@string/update_lib_stop_download"
+                style="@style/UpdateButton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:id="@+id/btnBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/update_lib_background_download"
+                style="@style/UpdateButton"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/btnCancel" />
+
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

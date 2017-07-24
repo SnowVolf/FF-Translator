@@ -133,6 +133,7 @@
     <string name="action_enter_url">Ввести URL</string>
     <string name="action_find_on_page">Найти на странице</string>
     <string name="action_share">Поделиться</string>
+    <string name="action_share_sys">Поделиться (сист.)</string>
     <string name="action_copy_link">Копировать ссылку</string>
     <string name="action_open_in_browser">Открыть в браузере</string>
     <string name="pref_performance_kbd">Показывать клавиатуру при запуске</string>
@@ -197,11 +198,11 @@
     <string name="update_lib_dialog_title">Новая версия!</string>
 
     <!--DownLoadService-->
-    <string name="update_lib_file_download">Downloading file</string>
-    <string name="update_lib_file_downloading">Downloading…</string>
+    <string name="update_lib_file_download">Загрузка файла</string>
+    <string name="update_lib_file_downloading">Скачивание…</string>
 
     <!--fragment_download.xml-->
-    <string name="update_lib_file_download_text">Download</string>
-    <string name="update_lib_stop_download">Stop</string>
-    <string name="update_lib_background_download">Background</string>
+    <string name="update_lib_file_download_text">Скачивание</string>
+    <string name="update_lib_stop_download">Стоп</string>
+    <string name="update_lib_background_download">Фон</string>
 </resources>

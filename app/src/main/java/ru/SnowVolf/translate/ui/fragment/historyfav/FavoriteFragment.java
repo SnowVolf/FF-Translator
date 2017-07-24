@@ -63,8 +63,8 @@ public class FavoriteFragment extends NativeContainerFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
-        mList = (RecyclerView) rootView.findViewById(R.id.favorite_list);
+        mRefresh = rootView.findViewById(R.id.swipe_refresh);
+        mList = rootView.findViewById(R.id.favorite_list);
         mEmptyView = rootView.findViewById(R.id.favorite_empty_layout);
     }
 
