@@ -71,7 +71,7 @@
     <string name="lib6">Design Library</string>
     <string name="lib7">FastHub</string>
     <string name="lib8">ForPDA New</string>
-    <string name="ilb9">Gradle Retrolambda Plugin</string>
+    <string name="lib9">Gradle Retrolambda Plugin</string>
     <string name="lib10">Palette Library</string>
     <string name="lib11">RecyclerView Library</string>
     <string name="owner_lib1">Android Open Source Project (APACHE 2.0)</string>
@@ -202,5 +202,14 @@
     <string name="update_lib_file_download_text">Download</string>
     <string name="update_lib_stop_download">Stop</string>
     <string name="update_lib_background_download">Background</string>
-
+    <string name="pref_licences">Licences</string>
+    <string name="pref_gratitude">Gratitude</string>
+    <string name="pref_gr_1">GRR_OLEG</string>
+    <string name="pref_gr_1_sum">Icon designer</string>
+    <string name="lib13">ACRA</string>
+    <string name="owner_lib13">Application crash reports for Android</string>
+    <string name="lib14">OXSwipe</string>
+    <string name="owner_lib14">Swipe detection library for Android</string>
+    <string name="lib15">JSON.simple 2</string>
+    <string name="owner_lib15">JSON.simple library adopted for Java 7, 8 and android</string>
 </resources>

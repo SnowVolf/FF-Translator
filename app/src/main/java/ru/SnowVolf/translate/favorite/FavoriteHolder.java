@@ -37,10 +37,10 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
 
     public FavoriteHolder(View view) {
         super(view);
-        mCard = (RelativeLayout) view.findViewById(R.id.row_favorite_card);
-        mTitle = (TextView) view.findViewById(R.id.row_favorite_title);
-        mSubTitle = (TextView) view.findViewById(R.id.row_favorite_subtitle);
-        mMenu = (ImageView) view.findViewById(R.id.row_favorite_menu);
+        mCard = view.findViewById(R.id.row_favorite_card);
+        mTitle = view.findViewById(R.id.row_favorite_title);
+        mSubTitle = view.findViewById(R.id.row_favorite_subtitle);
+        mMenu = view.findViewById(R.id.row_favorite_menu);
     }
 
     public void setData(Context context, FavoriteItem item) {
@@ -53,13 +53,13 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
         mSubTitle.setText(summary);
 
         mCard.setOnClickListener(v -> {
-            Intent mIntent = new Intent(context, TranslatorActivity.class);
-            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            mIntent.putExtra(Constants.intents.INTENT_FROM, item.getFromPosition());
-            mIntent.putExtra(Constants.intents.INTENT_TO, item.getToPosition());
-            mIntent.putExtra(Constants.intents.INTENT_SOURCE, item.getSource());
-            mIntent.putExtra(Constants.intents.INTENT_TRANSLATED, item.getTitle());
+            Intent mIntent = new Intent(context, TranslatorActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .putExtra(Constants.intents.INTENT_FROM, item.getFromPosition())
+                    .putExtra(Constants.intents.INTENT_TO, item.getToPosition())
+                    .putExtra(Constants.intents.INTENT_SOURCE, item.getSource())
+                    .putExtra(Constants.intents.INTENT_TRANSLATED, item.getTitle());
             context.startActivity(mIntent);
         });
         mMenu.setOnClickListener(v -> showCxtMenu(context, item));
@@ -86,6 +86,9 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
                     ctx.startActivity(fullIntent);
                     return true;
                 }
+                case R.id.action_share:{
+
+                }
                 case R.id.action_share_sys:{
                     share(ctx, favoriteItem);
                     return true;
@@ -111,7 +114,8 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
 
     private void share(Context ctx, FavoriteItem favoriteItem){
         ctx.startActivity(Intent.createChooser(
-                new Intent(Intent.ACTION_SEND).setType("text/plain")
+                new Intent(Intent.ACTION_SEND)
+                        .setType("text/plain")
                         .putExtra(Intent.EXTRA_TEXT, favoriteItem.getTitle()),
                 ctx.getString(R.string.send)
         ));

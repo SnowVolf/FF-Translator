@@ -174,17 +174,17 @@
 </LinearLayout>
 
         <android.support.v7.widget.CardView
-            android:visibility="visible"
             android:id="@+id/profile_block_information"
+            style="?attr/cardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/card_container"
             android:layout_marginBottom="@dimen/card_spacing"
-            app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/card_elevation"
-            android:foreground="@drawable/ripple"
             android:clickable="true"
-            style="?attr/cardStyle">
+            android:foreground="@drawable/ripple"
+            android:visibility="visible"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
 
             <RelativeLayout
                 android:id="@+id/profile_list_information"
@@ -193,30 +193,20 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/license_caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/thirdpaty_libs"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <ImageButton
-                    android:id="@+id/open_close"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    app:srcCompat="@drawable/ic_about_drop_down" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:visibility="gone"
-                    android:id="@+id/list_libs"
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/license_caption"/>
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+
+                        <Button
+                            android:id="@+id/list_libs"
+                            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/thirdpaty_libs" />
+                    </TableRow>
+                </TableLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
     </RelativeLayout>

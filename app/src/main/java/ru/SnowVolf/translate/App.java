@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
-import android.util.Log;
-
-import com.kcode.lib.UpdateWrapper;
-import com.kcode.lib.bean.VersionModel;
-import com.kcode.lib.net.CheckUpdateTask;
 
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
@@ -20,7 +15,6 @@ import java.util.Locale;
 
 import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.clipboard.ClipboardService;
-import ru.SnowVolf.translate.util.Constants;
 import ru.SnowVolf.translate.util.Preferences;
 import ru.SnowVolf.translate.util.runtime.Logger;
 

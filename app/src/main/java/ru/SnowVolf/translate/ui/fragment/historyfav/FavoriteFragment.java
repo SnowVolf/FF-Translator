@@ -86,6 +86,7 @@ public class FavoriteFragment extends NativeContainerFragment {
         inflater.inflate(R.menu.menu_favorite, menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -98,6 +99,7 @@ public class FavoriteFragment extends NativeContainerFragment {
                         .setNegativeButton(android.R.string.cancel, (d, w) -> d.dismiss())
                         .show();
                 return true;
+            case R.id.action_share:
         }
         return super.onOptionsItemSelected(item);
     }
@@ -125,8 +127,8 @@ public class FavoriteFragment extends NativeContainerFragment {
     public static boolean editItem(Context context, FavoriteItem item) {
         @SuppressLint("InflateParams")
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_favorite_edit, null);
-        EditText titleEdit = (EditText) view.findViewById(R.id.favorite_edit_title);
-        EditText urlEdit = (EditText) view.findViewById(R.id.favorite_edit);
+        EditText titleEdit = view.findViewById(R.id.favorite_edit_title);
+        EditText urlEdit = view.findViewById(R.id.favorite_edit);
 
         titleEdit.setText(item.getTitle());
         urlEdit.setText(item.getSource());

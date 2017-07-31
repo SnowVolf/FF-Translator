@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,21 +16,15 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.SnowVolf.translate.BuildConfig;
 import ru.SnowVolf.translate.R;
-import ru.SnowVolf.translate.ui.adapter.SimpleRVAdapter;
 import ru.SnowVolf.translate.ui.fragment.NativeContainerFragment;
-import ru.SnowVolf.translate.ui.widget.recyclerview.RecyclerViewLinearManager;
-import ru.SnowVolf.translate.ui.widget.recyclerview.SimpleItem;
 import ru.SnowVolf.translate.util.FragmentUtil;
 import ru.SnowVolf.translate.util.Utils;
 
@@ -42,14 +35,12 @@ import ru.SnowVolf.translate.util.Utils;
 public class AboutFragment extends NativeContainerFragment {
     @BindView(R.id.about_version_item_sub) TextView version;
     @BindView(R.id.profile_block_information) CardView cardLicenses;
-    @BindView(R.id.open_close) ImageButton buttonOpenClose;
-    @BindView(R.id.list_libs) RecyclerView recyclerView;
+    @BindView(R.id.list_libs) Button buttonLib;
     @BindView(R.id.artem_header_img) ImageView widowMaker;
     @BindView(R.id.about_author_artem_mail_item) Button volfMailContact;
     @BindView(R.id.about_author_artem_pda_item) Button volfPdaContact;
     @BindView(R.id.about_author_artem_github_item) Button volfGitContact;
 
-    SimpleRVAdapter adapter;
     int widowChar = 0;
 
 
@@ -66,7 +57,6 @@ public class AboutFragment extends NativeContainerFragment {
         super.onActivityCreated(savedInstanceState);
         TITLE = R.string.about;
         initCards();
-        initList();
     }
 
     @Override
@@ -83,7 +73,7 @@ public class AboutFragment extends NativeContainerFragment {
         menu.add(R.string.changelog)
                 .setShowAsActionFlags(0)
                 .setOnMenuItemClickListener(menuItem -> {
-                    FragmentUtil.ctx().interateStack(getActivity(), R.id.settings_frame_container, new ChangelogFragment());
+                    FragmentUtil.ctx().iterateStack(getActivity(), R.id.settings_frame_container, new ChangelogFragment());
                     return true;
                 });
         menu.add(R.string.create_bug_report)
@@ -103,15 +93,6 @@ public class AboutFragment extends NativeContainerFragment {
 
     private void initCards(){
         version.setText("v. " + BuildConfig.VERSION_NAME + " r" + BuildConfig.VERSION_CODE + ", " + BuildConfig.BUILD_TIME);
-        buttonOpenClose.setOnClickListener(v -> {
-            if (recyclerView.getVisibility() == View.GONE){
-                buttonOpenClose.setImageResource(R.drawable.ic_about_drop_up);
-                recyclerView.setVisibility(View.VISIBLE);
-            } else {
-                buttonOpenClose.setImageResource(R.drawable.ic_about_drop_down);
-                recyclerView.setVisibility(View.GONE);
-            }
-        });
         widowMaker.setOnClickListener(v -> {
             ++widowChar;
             switch(widowChar){
@@ -134,38 +115,13 @@ public class AboutFragment extends NativeContainerFragment {
         volfMailContact.setOnClickListener(__ -> getActivity().startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND).setType("message/rfc822").putExtra(Intent.EXTRA_EMAIL, "svolf15@yandex.ru").putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name)), "EMAIL")));
         volfPdaContact.setOnClickListener(__ -> getActivity().startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://4pda.ru/index.php?showuser=4324432")), "ForPDA")));
         volfGitContact.setOnClickListener(__ -> getActivity().startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/SnowVolf/")), "GitHub")));
+        buttonLib.setOnClickListener(__ -> FragmentUtil.ctx().iterateStack(getActivity(), R.id.settings_frame_container, new LicencesFragment()));
     }
-
-    private void initList(){
-        final String[] libNames = {
-                getString(R.string.lib1), getString(R.string.lib2), getString(R.string.lib3),
-                getString(R.string.lib4), getString(R.string.lib5), getString(R.string.lib12), getString(R.string.lib6),
-                getString(R.string.lib7), getString(R.string.lib8), getString(R.string.ilb9),
-                getString(R.string.lib10), getString(R.string.lib11)};
-        final String[] libOwners = {
-                getString(R.string.owner_lib1), getString(R.string.owner_lib2), getString(R.string.owner_lib3),
-                getString(R.string.owner_lib4), getString(R.string.owner_lib5), getString(R.string.owner_lib12), getString(R.string.owner_lib6),
-                getString(R.string.owner_lib7), getString(R.string.owner_lib8), getString(R.string.owner_lib9),
-                getString(R.string.owner_lib10), getString(R.string.owner_lib11)
-        };
-        ArrayList<SimpleItem> list = new ArrayList<>();
-        for (int i = 0; i < libNames.length; i++) {
-            list.add(i, new SimpleItem(libNames.length, libNames[i], libOwners[i]));
-        }
-
-        adapter = new SimpleRVAdapter(getActivity(), list);
-        recyclerView.setLayoutManager(new RecyclerViewLinearManager(getActivity()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-
-    }
-
     private void showDonateDialog(){
         CharSequence[] items = new CharSequence[]{"Yandex.Money"};
 
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.donate)
-                //.setMessage(R.string.dlg_donate_explanation)
                 .setItems(items, (dialogInterface, i) -> {
                     switch (i){
                         case 0:{

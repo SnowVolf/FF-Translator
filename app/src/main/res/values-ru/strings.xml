@@ -65,7 +65,7 @@
     <!-- About -->
     <string name="about">О программе</string>
     <string name="changelog">История изменений</string>
-    <string name="thirdpaty_libs">Лицензии</string>
+    <string name="thirdpaty_libs">Лицензии и благодарности</string>
     <string name="lib1">Android</string>
     <string name="lib2">Android Robot</string>
     <string name="lib3">Android Support Library</string>
@@ -74,7 +74,7 @@
     <string name="lib6">Design Library</string>
     <string name="lib7">FastHub</string>
     <string name="lib8">ForPDA New</string>
-    <string name="ilb9">Gradle Retrolambda Plugin</string>
+    <string name="lib9">Gradle Retrolambda Plugin</string>
     <string name="lib10">Palette Library</string>
     <string name="lib11">RecyclerView Library</string>
     <string name="owner_lib1">Android Open Source Project (APACHE 2.0)</string>
@@ -205,4 +205,14 @@
     <string name="update_lib_file_download_text">Скачивание</string>
     <string name="update_lib_stop_download">Стоп</string>
     <string name="update_lib_background_download">Фон</string>
+    <string name="pref_licences">Лицензии</string>
+    <string name="pref_gratitude">Благодарности</string>
+    <string name="pref_gr_1">GRR_OLEG</string>
+    <string name="pref_gr_1_sum">Дизайн иконки</string>
+    <string name="lib13">ACRA</string>
+    <string name="owner_lib13">Application crash reports for Android</string>
+    <string name="lib14">OXSwipe</string>
+    <string name="owner_lib14">Swipe detection library for Android</string>
+    <string name="lib15">JSON.simple 2</string>
+    <string name="owner_lib15">JSON.simple library adopted for Java 7, 8 and android</string>
 </resources>

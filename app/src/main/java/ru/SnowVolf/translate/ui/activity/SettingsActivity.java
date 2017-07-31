@@ -2,6 +2,7 @@ package ru.SnowVolf.translate.ui.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -9,9 +10,10 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.SnowVolf.translate.R;
+import ru.SnowVolf.translate.ui.fragment.settings.LicencesFragment;
 import ru.SnowVolf.translate.ui.fragment.settings.MainSettingsFragment;
 
-public class SettingsActivity extends BaseActivity {
+public class SettingsActivity extends BaseActivity implements LicencesFragment.OnPreferenceSelectedListener {
     @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
@@ -50,4 +52,8 @@ public class SettingsActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public void onPreferenceWithUriSelected(Uri uri) {
+        // No other stuff
+    }
 }

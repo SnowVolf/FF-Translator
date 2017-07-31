@@ -22,7 +22,7 @@ public class FragmentUtil {
         activity.getFragmentManager().beginTransaction().replace(containerId, fragment).commit();
     }
 
-    public void interateStack(Activity activity, int containerId, Fragment fragment){
+    public void iterateStack(Activity activity, int containerId, Fragment fragment){
         activity.getFragmentManager().beginTransaction().replace(containerId, fragment).addToBackStack(null).commit();
     }
 }

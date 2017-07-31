@@ -1,11 +1,10 @@
 package ru.SnowVolf.translate.api.yandex;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.json.simple.JsonArray;
+import org.json.simple.JsonObject;
+import org.json.simple.Jsoner;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -26,7 +25,7 @@ public class YandexAPI {
     private static String combinedTranslations;
 
     protected static String apiKey;
-    private static String referrer;
+    //private static String referrer;
 
     protected static final String PARAM_API_KEY = "key=", PARAM_LANG_PAIR = "&lang=", PARAM_TEXT = "&text=";
 
@@ -34,16 +33,16 @@ public class YandexAPI {
         apiKey = girlKey;
     }
 
-    public static void setReferrer(final String girlReferrer){
-        referrer = girlReferrer;
-    }
+//    public static void setReferrer(final String girlReferrer){
+//        referrer = girlReferrer;
+//    }
 
     private static String retrieveResponse(final URL url) throws Exception{
         final HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-        if (referrer != null){
-            urlConnection.setRequestProperty("referrer", referrer);
-            Log.i("VfTr", "referrer set to : " + referrer);
-        }
+//        if (referrer != null){
+//            urlConnection.setRequestProperty("referrer", referrer);
+//            Log.i("VfTr", "referrer set to : " + referrer);
+//        }
         urlConnection.setRequestProperty("Content-Type", "text/plain; charset=" + ENCODING);
         urlConnection.setRequestProperty("Accept-Charset", ENCODING);
         urlConnection.setRequestMethod("GET");
@@ -81,19 +80,19 @@ public class YandexAPI {
     }
 
     private static String[] jsonObjValToStringArr(final String inputString, final String subObjPropertyName) throws Exception {
-        JSONObject jsonObject = (JSONObject) JSONValue.parse(inputString);
-        JSONArray jsonArray = (JSONArray) jsonObject.get(subObjPropertyName);
-        return jsonArrToStringArr(jsonArray.toJSONString(), null);
+        JsonObject jsonObject = (JsonObject) Jsoner.deserialize(inputString);
+        JsonArray jsonArray = (JsonArray) jsonObject.get(subObjPropertyName);
+        return jsonArrToStringArr(jsonArray.toJson(), null);
     }
 
     private static String[] jsonArrToStringArr(final String inputString, final String propertyName) throws Exception{
-        final JSONArray  jsonArray = (JSONArray) JSONValue.parse(inputString);
+        final JsonArray jsonArray = (JsonArray) Jsoner.deserialize(inputString);
         String[] values = new String[jsonArray.size()];
 
         int i = 0;
         for (Object o : jsonArray){
             if (propertyName != null && propertyName.length() != 0){
-                final JSONObject object = (JSONObject)o;
+                final JsonObject object = (JsonObject) o;
                 if (object.containsKey(propertyName)){
                     values[i] = object.get(propertyName).toString();
                 }

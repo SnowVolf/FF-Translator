@@ -19,8 +19,7 @@
 -dontwarn com.sun.source.**
 -dontwarn com.squareup.**
 -dontwarn com.google.auto.**
--dontwarn com.google.common.primitives.**
--dontwarn com.google.common.cache.**
+-dontwarn com.google.common.**
 -dontwarn butterknife.**
 -dontskipnonpubliclibraryclasses
 #retrolambda
