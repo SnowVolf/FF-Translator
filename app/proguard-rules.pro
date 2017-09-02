@@ -7,8 +7,6 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
-# Add any project specific keep options here:
-
 -keepattributes SourceFile,LineNumberTable
 -dontwarn java.util.**
 -dontwarn java.time.**
@@ -19,8 +17,9 @@
 -dontwarn com.sun.source.**
 -dontwarn com.squareup.**
 -dontwarn com.google.auto.**
--dontwarn com.google.common.primitives.**
--dontwarn com.google.common.cache.**
+-dontwarn com.google.common.**
+-dontwarn java.lang.ClassValue
+-dontwarn com.google.j2objc.**
 -dontwarn butterknife.**
 -dontskipnonpubliclibraryclasses
 #retrolambda
@@ -37,4 +36,10 @@
 -keep class com.kcode.lib.* { *; }
 -dontwarn com.kcode.lib.**
 -keep class com.google.common.collect.Count { int value; }
+-dontwarn com.thebluealliance.spectrum.**
+#joda-time
+-dontwarn org.joda.convert.**
+-dontwarn org.joda.time.**
+-keep class org.joda.time.** { *; }
+-keep interface org.joda.time.** { *; }
 

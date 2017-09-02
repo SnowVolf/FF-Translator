@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.ui.activity;
 
 import android.content.BroadcastReceiver;
@@ -10,8 +25,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import ru.SnowVolf.translate.ui.interfacer.Interfacer;
-import ru.SnowVolf.translate.util.Preferences;
+import ru.SnowVolf.translate.preferences.Preferences;
+import ru.SnowVolf.translate.ui.interfacer.ThemeWrapper;
+import ru.SnowVolf.translate.util.runtime.Logger;
 
 public class BaseActivity extends AppCompatActivity {
     //Theme
@@ -32,9 +48,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final int kk = Integer.compare(1, 2);
+        Logger.log(kk);
         LocalBroadcastManager.getInstance(this).registerReceiver(mThemeReceiver, new IntentFilter("org.openintents.action.REFRESH_THEME"));
-        Interfacer.applyTheme(this);
-        Interfacer.applyAccent(this);
+        ThemeWrapper.applyTheme(this);
+        ThemeWrapper.applyAccent(this);
+        if (Preferences.isToolbarOverrideAllowed()) {
+            ThemeWrapper.applyToolbarTheme(this);
+        }
         super.onCreate(savedInstanceState);
     }
 

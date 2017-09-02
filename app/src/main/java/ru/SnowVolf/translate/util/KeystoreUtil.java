@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.util;
 
 import android.util.Base64;
@@ -58,6 +73,7 @@ public class KeystoreUtil {
             final String aliasPass = map.get(ALIAS_PASSWORD);
             final File file = new File(dir, name);
             final File outDir = new File(dir, "keys");
+            //noinspection all
             outDir.mkdirs();
             final KeyStore keyStore = loadKeyStore(file, password);
             System.err.println("Output:");
@@ -77,9 +93,12 @@ public class KeystoreUtil {
             e.printStackTrace();
         }
         try {
+            //noinspection all
             System.in.read();
         }
-        catch (IOException ex) {}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private static String getName(final String string) {
@@ -149,7 +168,7 @@ public class KeystoreUtil {
         try {
             fos = new FileOutputStream(outFile);
             dos = new DataOutputStream(fos);
-            dos.writeInt(-1395514454);
+            dos.writeInt(MAGIC);
             byte[] data = ("-----BEGIN CERTIFICATE-----\n" + Base64.encodeToString(pubkey.getEncoded(), Base64.NO_WRAP) + "\n-----END CERTIFICATE-----").getBytes();
             crc32.update(data);
             data = encrypt(data, filePassWord);
@@ -170,13 +189,17 @@ public class KeystoreUtil {
                     dos.close();
                 }
             }
-            catch (IOException ex) {}
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
             try {
                 if (fos != null) {
                     fos.close();
                 }
             }
-            catch (IOException ex2) {}
+            catch (IOException ex2) {
+                ex2.printStackTrace();
+            }
         }
     }
 

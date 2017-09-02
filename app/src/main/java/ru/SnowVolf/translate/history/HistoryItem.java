@@ -1,4 +1,21 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.history;
+
+import org.joda.time.DateTime;
 
 /**
  * Created by Snow Volf on 30.05.2017, 11:27
@@ -6,55 +23,97 @@ package ru.SnowVolf.translate.history;
 
 public class HistoryItem {
 
-    private String title;
-    private String source;
-    private String translation;
-    private int toPosition;
-    private int fromPosition;
-    private long id = -1;
+    private String mTitle;
+    private String mSource;
+    private String mTranslation;
+    private int mToPosition;
+    private int mFromPosition;
+    private long mId = -1;
+    private int mInFavorite;
+    private String mFromCode, mToCode;
+    private DateTime mDate;
 
-    public HistoryItem(long id, int fromPosition, int toPosition, String title, String source, String translation){
-        this.id = id;
-        this.fromPosition = fromPosition;
-        this.toPosition = toPosition;
-        this.title = title;
-        this.source = source;
-        this.translation = translation;
+    public HistoryItem(long id){
+        mId = id;
+        mDate = new DateTime(getId());
     }
 
     public long getId(){
-        return id;
+        return mId;
     }
 
     public void setId(long id){
-        this.id = id;
+        mId = id;
     }
 
     public String getSource(){
-        return source;
+        return mSource;
     }
 
     public void setSource(String source){
-        this.source = source;
+        mSource = source;
     }
 
     public String getTitle(){
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String title){
-        this.title = title;
+        mTitle = title;
     }
 
     public String getTranslation(){
-        return translation;
+        return mTranslation;
     }
 
     public int getToPosition(){
-        return toPosition;
+        return mToPosition;
+    }
+
+    public void setToPosition(int position){
+        mToPosition = position;
     }
 
     public int getFromPosition(){
-        return fromPosition;
+        return mFromPosition;
+    }
+
+    public void setFromPosition(int position){
+        mFromPosition = position;
+    }
+
+    public int getInFavorites(){
+        return mInFavorite;
+    }
+
+    public void setInFavorites(int favorites){
+        mInFavorite = favorites;
+    }
+
+    boolean isInFavorites(){
+        return getInFavorites() == 1;
+    }
+
+    public String getFromCode(){
+        return mFromCode;
+    }
+
+    public String getToCode(){
+        return mToCode;
+    }
+
+    public void setToCode(String toCode){
+        mToCode = toCode;
+    }
+
+    public void setFromCode(String fromCode){
+        mFromCode = fromCode;
+    }
+
+    public void setTranslation(String translation){
+        mTranslation = translation;
+    }
+    DateTime getDate() {
+        return new DateTime(mDate.getMillis());
     }
 }
