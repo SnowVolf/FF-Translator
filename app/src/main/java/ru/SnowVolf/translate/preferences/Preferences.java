@@ -180,4 +180,8 @@ public class Preferences {
     public static void enableGirl(){
         App.ctx().getPreferences().edit().putBoolean("dev.enablegirl", true).apply();
     }
+
+    public static boolean isRefreshAuto(){
+        return App.ctx().getPreferences().getBoolean("lists.auto_refresh", false);
+    }
 }

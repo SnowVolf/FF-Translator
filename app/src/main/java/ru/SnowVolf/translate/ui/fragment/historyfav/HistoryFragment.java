@@ -39,6 +39,7 @@ import butterknife.ButterKnife;
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.history.HistoryItem;
 import ru.SnowVolf.translate.model.HistoryDbModel;
+import ru.SnowVolf.translate.preferences.Preferences;
 import ru.SnowVolf.translate.ui.adapter.HistoryAdapter;
 import ru.SnowVolf.translate.ui.fragment.NativeContainerFragment;
 import ru.SnowVolf.translate.ui.interfacer.ThemeWrapper;
@@ -125,7 +126,7 @@ public class HistoryFragment extends NativeContainerFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
+        if (isVisibleToUser && Preferences.isRefreshAuto()){
             try {
                 refresh();
             } catch (NullPointerException ignored){}

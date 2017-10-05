@@ -110,7 +110,7 @@ public class BrowserActivity extends BaseActivity {
 
         mContext = this;
 
-        mToolbar = (WebViewToolbar) findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_action_arrow_back);
         mToolbar.setNavigationOnClickListener(v -> finish());
@@ -118,9 +118,9 @@ public class BrowserActivity extends BaseActivity {
         Drawable overflow = AppCompatResources.getDrawable(this, R.drawable.ic_menu);
         mToolbar.setOverflowIcon(overflow);
 
-        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+        mCoordinatorLayout = findViewById(R.id.coordinatorLayout);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.light_colorAccent));
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mToolbar.setProgress(0);
@@ -128,9 +128,9 @@ public class BrowserActivity extends BaseActivity {
             mWebView.reload();
         });
 
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.view);
+        mAppBarLayout = findViewById(R.id.view);
 
-        mWebView = (WebView) findViewById(R.id.webView);
+        mWebView = findViewById(R.id.webView);
         WebSettings mWebSettings = mWebView.getSettings();
 
         mWebSettings.setJavaScriptEnabled(true);
@@ -505,8 +505,8 @@ public class BrowserActivity extends BaseActivity {
 
     private void openWebLink() {
         View v = getLayoutInflater().inflate(R.layout.dialog_input, null);
-        ExtendedEditText editText = (ExtendedEditText) v.findViewById(R.id.input);
-        TextView check = (TextView) v.findViewById(R.id.check);
+        ExtendedEditText editText = v.findViewById(R.id.input);
+        TextView check = v.findViewById(R.id.check);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

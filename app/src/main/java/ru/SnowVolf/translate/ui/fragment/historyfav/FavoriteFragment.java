@@ -221,7 +221,7 @@ public class FavoriteFragment extends NativeContainerFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser){
+        if (isVisibleToUser && Preferences.isRefreshAuto()){
             try {
                 refresh();
             } catch (NullPointerException ignored){}

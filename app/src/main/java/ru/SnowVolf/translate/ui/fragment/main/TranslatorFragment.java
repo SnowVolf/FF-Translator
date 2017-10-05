@@ -552,14 +552,14 @@ public class TranslatorFragment extends NativeContainerFragment {
                         mTranslated = Translate.executeAuto(exec, valTo);
                     }
                     try {
-                        HistoryItem item = new HistoryItem(System.currentTimeMillis());
-                        item.setToPosition(spinnerPosition1);
-                        item.setFromPosition(spinnerPosition2);
-                        item.setTitle(exec);
-                        item.setSource(exec);
-                        item.setTranslation(mTranslated);
-                        item.setFromCode(Preferences.getFromLang());
-                        item.setToCode(Preferences.getToLang());
+                        HistoryItem item = new HistoryItem(System.currentTimeMillis())
+                        .setToPosition(spinnerPosition1)
+                        .setFromPosition(spinnerPosition2)
+                        .setTitle(exec)
+                        .setSource(exec)
+                        .setTranslation(mTranslated)
+                        .setFromCode(Preferences.getFromLang())
+                        .setToCode(Preferences.getToLang());
                         mDbModel.add(item);
                     } catch (NullPointerException ignored) {}
                     // Конец пока

@@ -15,6 +15,7 @@
 
 package ru.SnowVolf.translate.clipboard;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -22,12 +23,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
 
 import ru.SnowVolf.translate.App;
 import ru.SnowVolf.translate.R;
+import ru.SnowVolf.translate.preferences.Constants;
 import ru.SnowVolf.translate.preferences.Preferences;
 import ru.SnowVolf.translate.ui.activity.HistoryFavActivity;
 import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
@@ -89,6 +92,15 @@ public class NotificationHelper {
         builder.setContentText(translated)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(clipText));
 
+        // Fix Oreo notifications showing
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final String CHANNEL_ID = Constants.notify.MAIN_CHANNEL;
+            CharSequence name = App.injectString(R.string.app_name);
+            final int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            builder.setChannelId(CHANNEL_ID);
+            getManager().createNotificationChannel(channel);
+        }
         // notification deleted (cleared, swiped, etc) action
         // does not get called on tap if autocancel is true
         pendingIntent = NotificationReceiver
@@ -147,6 +159,8 @@ public class NotificationHelper {
      * @param titleText display title
      * @return the Builder
      */
+
+
     private static NotificationCompat.Builder
     getBuilder(PendingIntent pInt, int largeIcon, String titleText) {
         final Context context = App.getContext();
@@ -179,8 +193,9 @@ public class NotificationHelper {
      */
     private static NotificationManager getManager() {
         final Context context = App.getContext();
-        return (NotificationManager)
+        NotificationManager mngr = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
+        return mngr;
     }
 
     ///////////////////////////////////////////////////////////////////////////

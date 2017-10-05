@@ -126,8 +126,7 @@ public class AboutFragment extends NativeContainerFragment {
         volfMailContact.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             // Только программы для отправки Email смогут это перехватить
-            intent.setData(Uri.parse("mailto:"));
-            intent.putExtra(Intent.EXTRA_EMAIL, "svolf15@yandex.ru");
+            intent.setData(Uri.parse("mailto:svolf15@yandex.ru"));
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
             // Базовая информация об устройстве и приложении
             intent.putExtra(Intent.EXTRA_TEXT,

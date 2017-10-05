@@ -42,24 +42,27 @@ public class HistoryItem {
         return mId;
     }
 
-    public void setId(long id){
+    public HistoryItem setId(long id){
         mId = id;
+        return this;
     }
 
     public String getSource(){
         return mSource;
     }
 
-    public void setSource(String source){
+    public HistoryItem setSource(String source){
         mSource = source;
+        return this;
     }
 
     public String getTitle(){
         return mTitle;
     }
 
-    public void setTitle(String title){
+    public HistoryItem setTitle(String title){
         mTitle = title;
+        return this;
     }
 
     public String getTranslation(){
@@ -70,24 +73,27 @@ public class HistoryItem {
         return mToPosition;
     }
 
-    public void setToPosition(int position){
+    public HistoryItem setToPosition(int position){
         mToPosition = position;
+        return this;
     }
 
     public int getFromPosition(){
         return mFromPosition;
     }
 
-    public void setFromPosition(int position){
+    public HistoryItem setFromPosition(int position){
         mFromPosition = position;
+        return this;
     }
 
     public int getInFavorites(){
         return mInFavorite;
     }
 
-    public void setInFavorites(int favorites){
+    public HistoryItem setInFavorites(int favorites){
         mInFavorite = favorites;
+        return this;
     }
 
     boolean isInFavorites(){
@@ -102,16 +108,19 @@ public class HistoryItem {
         return mToCode;
     }
 
-    public void setToCode(String toCode){
+    public HistoryItem setToCode(String toCode){
         mToCode = toCode;
+        return this;
     }
 
-    public void setFromCode(String fromCode){
+    public HistoryItem setFromCode(String fromCode){
         mFromCode = fromCode;
+        return this;
     }
 
-    public void setTranslation(String translation){
+    public HistoryItem setTranslation(String translation){
         mTranslation = translation;
+        return this;
     }
     DateTime getDate() {
         return new DateTime(mDate.getMillis());

@@ -33,6 +33,7 @@ import butterknife.Unbinder;
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.api.yandex.YandexAPI;
 import ru.SnowVolf.translate.preferences.Constants;
+import ru.SnowVolf.translate.preferences.Preferences;
 import ru.SnowVolf.translate.ui.fragment.NativeContainerFragment;
 import ru.SnowVolf.translate.util.FragmentUtil;
 import ru.SnowVolf.translate.util.runtime.Logger;
@@ -84,10 +85,14 @@ public class NoNetworkConnectionFragment extends NativeContainerFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (response != 0){
+        Preferences.setSpinnerPosition(Constants.prefs.SPINNER_1, tempInt1);
+        Preferences.setSpinnerPosition(Constants.prefs.SPINNER_2, tempInt2);
             mTitle.setText(R.string.no_connection_translate_title);
             mImage.setImageResource(R.drawable.ic_warning);
             switch (response){
+                case YandexAPI.RESPONSE_NULL:
+                    mExplanation.setText(R.string.no_connection_translate_sum);
+                    break;
                 case YandexAPI.RESPONSE_KEY_BLOCKED:
                     mExplanation.setText(R.string.err_resp_402);
                     break;
@@ -111,7 +116,6 @@ public class NoNetworkConnectionFragment extends NativeContainerFragment {
                     mExplanation.setText(getString(R.string.err_resp_unknown) + "\n" + getString(R.string.err_resp_code_explanation) + " " + YandexAPI.getResponseCode());
                     break;
             }
-        }
     }
 
     @Override

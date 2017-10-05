@@ -16,6 +16,10 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
+        android:key="lists.auto_refresh"
+        android:title="@string/pref_lists_renew"
+        android:defaultValue="false"/>
+    <CheckBoxPreference
         android:key="performance.duplicates"
         android:title="@string/pref_lists_duplicates"
         android:summary="@string/pref_lists_duplicates_sum"

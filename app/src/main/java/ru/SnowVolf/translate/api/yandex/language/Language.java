@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
  * В будущем планируется полностью отказаться от него, в пользу запроса списка языков с
  * сервера
  */
+@Deprecated
 public enum  Language {
     AFRICANS("af"),
     ALBANIAN("sq"),

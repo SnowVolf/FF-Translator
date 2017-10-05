@@ -99,4 +99,8 @@ public class Constants {
         public static final String KEY_FROM_INT = "from_pos";
         public static final String KEY_TO_INT = "to_pos";
     }
+
+    public static final class notify{
+        public static final String MAIN_CHANNEL = "ff-girl-main";
+    }
 }
