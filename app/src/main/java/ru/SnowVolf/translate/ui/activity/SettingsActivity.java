@@ -17,7 +17,9 @@ package ru.SnowVolf.translate.ui.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+
 import android.graphics.drawable.Drawable;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.content.res.AppCompatResources;
@@ -27,6 +29,7 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.SnowVolf.translate.R;
+
 import ru.SnowVolf.translate.ui.fragment.other.LicencesFragment;
 import ru.SnowVolf.translate.ui.fragment.settings.HeadersFragment;
 import ru.SnowVolf.translate.util.runtime.Logger;
@@ -72,7 +75,6 @@ public class SettingsActivity extends BaseActivity implements LicencesFragment.O
 
     @Override
     public void onPreferenceWithUriSelected(Uri uri) {
-        Logger.i(this.getClass(), "selected uri :: " + uri);
+        // No other stuff
     }
-
 }

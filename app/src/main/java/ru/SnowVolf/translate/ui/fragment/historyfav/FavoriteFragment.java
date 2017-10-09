@@ -133,6 +133,7 @@ public class FavoriteFragment extends NativeContainerFragment {
         inflater.inflate(R.menu.menu_favorite, menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -145,6 +146,7 @@ public class FavoriteFragment extends NativeContainerFragment {
                         .setNegativeButton(android.R.string.cancel, (d, w) -> d.dismiss())
                         .show();
                 return true;
+            case R.id.action_share:
         }
         return super.onOptionsItemSelected(item);
     }

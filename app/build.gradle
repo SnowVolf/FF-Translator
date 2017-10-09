@@ -30,8 +30,9 @@ android {
         applicationId "ru.SnowVolf.translate"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 27
-        versionName "1.2.7"
+        versionCode 21
+        versionName "1.2.2"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -74,6 +75,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.github.cliftonlabs:json-simple:2.1.2'
+    compile 'com.faendir:acra:4.10.0'
     compile "com.android.support:appcompat-v7:${supportLib}"
     compile "com.android.support:design:${supportLib}"
     compile "com.android.support:recyclerview-v7:${supportLib}"
@@ -90,5 +93,6 @@ dependencies {
     compile 'com.github.fccaikai:AppUpdate:2.1.3'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.MFlisar:DragSelectRecyclerView:0.3'
+    compile 'com.github.SandroMachado:openalpr-android:1.1.2'
     testCompile 'junit:junit:4.12'
 }

@@ -27,8 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ru.SnowVolf.translate.R;
-import ru.SnowVolf.translate.util.interfaces.Interate;
 import ru.SnowVolf.translate.util.interfaces.IntretactionCoordinator;
+import ru.SnowVolf.translate.util.interfaces.Iterate;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
 /**
@@ -130,7 +130,6 @@ public class NativeContainerFragment extends Fragment implements IntretactionCoo
      * @param savedInstanceState If the fragment is being re-created from
      *                           a previous saved state, this is the state.
      */
-    @Interate
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

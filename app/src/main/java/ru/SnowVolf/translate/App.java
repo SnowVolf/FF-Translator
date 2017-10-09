@@ -23,6 +23,7 @@ import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.support.annotation.StringRes;
 
+
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
@@ -30,6 +31,7 @@ import org.acra.annotation.ReportsCrashes;
 import java.util.Locale;
 
 import ru.SnowVolf.translate.api.yandex.language.Language;
+
 import ru.SnowVolf.translate.clipboard.AppUtils;
 import ru.SnowVolf.translate.clipboard.ClipboardWatcherService;
 import ru.SnowVolf.translate.preferences.Preferences;
