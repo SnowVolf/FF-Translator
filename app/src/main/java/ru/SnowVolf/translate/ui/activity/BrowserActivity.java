@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.ui.activity;
 
 import android.Manifest;
@@ -7,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +35,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.content.res.AppCompatResources;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -93,14 +110,17 @@ public class BrowserActivity extends BaseActivity {
 
         mContext = this;
 
-        mToolbar = (WebViewToolbar) findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_action_arrow_back);
         mToolbar.setNavigationOnClickListener(v -> finish());
+        // Задание overflow иконки
+        Drawable overflow = AppCompatResources.getDrawable(this, R.drawable.ic_menu);
+        mToolbar.setOverflowIcon(overflow);
 
-        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+        mCoordinatorLayout = findViewById(R.id.coordinatorLayout);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.light_colorAccent));
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mToolbar.setProgress(0);
@@ -108,9 +128,9 @@ public class BrowserActivity extends BaseActivity {
             mWebView.reload();
         });
 
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.view);
+        mAppBarLayout = findViewById(R.id.view);
 
-        mWebView = (WebView) findViewById(R.id.webView);
+        mWebView = findViewById(R.id.webView);
         WebSettings mWebSettings = mWebView.getSettings();
 
         mWebSettings.setJavaScriptEnabled(true);
@@ -485,8 +505,8 @@ public class BrowserActivity extends BaseActivity {
 
     private void openWebLink() {
         View v = getLayoutInflater().inflate(R.layout.dialog_input, null);
-        ExtendedEditText editText = (ExtendedEditText) v.findViewById(R.id.input);
-        TextView check = (TextView) v.findViewById(R.id.check);
+        ExtendedEditText editText = v.findViewById(R.id.input);
+        TextView check = v.findViewById(R.id.check);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

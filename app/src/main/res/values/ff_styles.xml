@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <!-- Цвета акцента -->
+    <style name="AccentWhite"><item name="colorAccent">@color/white</item></style>
+    <style name="AccentRed"><item name="colorAccent">@color/accent_red</item></style>
+    <style name="AccentPink"><item name="colorAccent">@color/accent_pink</item></style>
+    <style name="AccentPurple"><item name="colorAccent">@color/accent_purple</item></style>
+    <style name="AccentIndigo"><item name="colorAccent">@color/accent_indigo</item></style>
+    <style name="AccentBlue"><item name="colorAccent">@color/light_colorAccent</item></style>
+    <style name="AccentLBlue"><item name="colorAccent">@color/md_light_blue_500</item></style>
+    <style name="AccentCyan"><item name="colorAccent">@color/accent_cyan</item></style>
+    <style name="AccentTeal"><item name="colorAccent">@color/accent_teal</item></style>
+    <style name="AccentGreen"><item name="colorAccent">@color/accent_green</item></style>
+    <style name="AccentLGreen"><item name="colorAccent">@color/md_light_green_500</item></style>
+    <style name="AccentLime"><item name="colorAccent">@color/md_lime_500</item></style>
+    <style name="AccentYellow"><item name="colorAccent">@color/accent_yellow</item></style>
+    <style name="AccentAmber"><item name="colorAccent">@color/accent_amber</item></style>
+    <style name="AccentOrange"><item name="colorAccent">@color/accent_orange</item></style>
+    <style name="AccentDOrange"><item name="colorAccent">@color/md_deep_orange_500</item></style>
+    <style name="AccentBrown"><item name="colorAccent">@color/accent_brown</item></style>
+    <style name="AccentGrey"><item name="colorAccent">@color/accent_grey</item></style>
+    <style name="AccentBGrey"><item name="colorAccent">@color/md_blue_grey_500</item></style>
+
+    <!-- Ститли Toolbar -->
+    <style name="RedPrimary">
+        <item name="colorPrimary">@color/redPrimary</item>
+        <item name="colorPrimaryDark">@color/redPrimaryDark</item>
+    </style>
+    <style name="PinkPrimary">
+        <item name="colorPrimary">@color/pinkPrimary</item>
+        <item name="colorPrimaryDark">@color/pinkPrimaryDark</item>
+    </style>
+    <style name="PurplePrimary">
+        <item name="colorPrimary">@color/purplePrimary</item>
+        <item name="colorPrimaryDark">@color/purplePrimaryDark</item>
+    </style>
+    <style name="DeepPurplePrimary">
+        <item name="colorPrimary">@color/deepPurplePrimary</item>
+        <item name="colorPrimaryDark">@color/deepPurplePrimaryDark</item>
+    </style>
+    <style name="IndigoPrimary">
+        <item name="colorPrimary">@color/indigoPrimary</item>
+        <item name="colorPrimaryDark">@color/indigoPrimaryDark</item>
+    </style>
+    <style name="BluePrimary">
+        <item name="colorPrimary">@color/bluePrimary</item>
+        <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+    </style>
+    <style name="LightBluePrimary">
+        <item name="colorPrimary">@color/lightBluePrimary</item>
+        <item name="colorPrimaryDark">@color/lightBluePrimaryDark</item>
+    </style>
+    <style name="CyanPrimary">
+        <item name="colorPrimary">@color/cyanPrimary</item>
+        <item name="colorPrimaryDark">@color/cyanPrimaryDark</item>
+    </style>
+    <style name="TealPrimary">
+        <item name="colorPrimary">@color/tealPrimary</item>
+        <item name="colorPrimaryDark">@color/tealPrimaryDark</item>
+    </style>
+    <style name="GreenPrimary">
+        <item name="colorPrimary">@color/greenPrimary</item>
+        <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+    </style>
+    <style name="LightGreenPrimary">
+        <item name="colorPrimary">@color/lightGreenPrimary</item>
+        <item name="colorPrimaryDark">@color/lightGreenPrimaryDark</item>
+    </style>
+    <style name="LimePrimary">
+        <item name="colorPrimary">@color/limePrimary</item>
+        <item name="colorPrimaryDark">@color/limePrimaryDark</item>
+    </style>
+    <style name="YellowPrimary">
+        <item name="colorPrimary">@color/yellowPrimary</item>
+        <item name="colorPrimaryDark">@color/yellowPrimaryDark</item>
+    </style>
+    <style name="AmberPrimary">
+        <item name="colorPrimary">@color/amberPrimary</item>
+        <item name="colorPrimaryDark">@color/amberPrimaryDark</item>
+    </style>
+    <style name="OrangePrimary">
+        <item name="colorPrimary">@color/orangePrimary</item>
+        <item name="colorPrimaryDark">@color/orangePrimaryDark</item>
+    </style>
+    <style name="DeepOrangePrimary">
+        <item name="colorPrimary">@color/deepOrangePrimary</item>
+        <item name="colorPrimaryDark">@color/deepOrangePrimaryDark</item>
+    </style>
+    <style name="BrownPrimary">
+        <item name="colorPrimary">@color/brownPrimary</item>
+        <item name="colorPrimaryDark">@color/brownPrimaryDark</item>
+    </style>
+    <style name="GreyPrimary">
+        <item name="colorPrimary">@color/greyPrimary</item>
+        <item name="colorPrimaryDark">@color/greyPrimaryDark</item>
+    </style>
+    <style name="BlueGreyPrimary">
+        <item name="colorPrimary">@color/blueGreyPrimary</item>
+        <item name="colorPrimaryDark">@color/blueGreyPrimaryDark</item>
+    </style>
+
+    <color name="white">#fff</color>
+</resources>

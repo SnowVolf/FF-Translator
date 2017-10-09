@@ -1,9 +1,24 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 static def getDate() {
     def date = new Date()
-    def date1 = date.format("dd.MM.yyyy")
+    def date1 = date.format("dd.MM.yyyy, HH:mm:ss")
     return date1;
 }
 
@@ -13,7 +28,7 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "ru.SnowVolf.translate"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 21
         versionName "1.2.2"
@@ -24,34 +39,39 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BUILD_TIME", "\"" + getDate().toString() + "\""
+            buildConfigField "String", "BUILD_TIME", '""' + getDate().toString() + '"'
         }
         debug {
             debuggable true
             minifyEnabled false
-            buildConfigField "String", "BUILD_TIME", "\"" + getDate().toString() + "\""
+            buildConfigField "String", "BUILD_TIME", '"' + getDate().toString() + '"'
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-
     }
+
     lintOptions {
         disable 'RestrictedApi'
         abortOnError false
     }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
-ext{
-    supportLib = '26.0.0-alpha1'
+ext {
+    supportLib = '26.1.0'
     butterKnife = '8.7.0'
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -66,8 +86,13 @@ dependencies {
     compile "com.jakewharton:butterknife-compiler:${butterKnife}"
     compile "com.jakewharton:butterknife-annotations:${butterKnife}"
     compile "com.android.support:support-v4:${supportLib}"
+    compile project(':spectrum')
+    compile 'com.github.cliftonlabs:json-simple:2.1.2'
+    compile 'com.faendir:acra:4.10.0'
     compile 'com.github.10uroi:OXSwipe:1.0.1'
     compile 'com.github.fccaikai:AppUpdate:2.1.3'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.MFlisar:DragSelectRecyclerView:0.3'
     compile 'com.github.SandroMachado:openalpr-android:1.1.2'
     testCompile 'junit:junit:4.12'
 }

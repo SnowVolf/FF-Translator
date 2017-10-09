@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.ui.activity;
 
 import android.annotation.SuppressLint;
@@ -5,13 +20,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import ru.SnowVolf.translate.R;
-import ru.SnowVolf.translate.util.Constants;
+import ru.SnowVolf.translate.preferences.Constants;
+import ru.SnowVolf.translate.preferences.Preferences;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -54,7 +71,6 @@ public class FullscreenActivity extends BaseActivity {
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
-    private View mControlsView;
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -63,7 +79,6 @@ public class FullscreenActivity extends BaseActivity {
             if (actionBar != null) {
                 actionBar.show();
             }
-            mControlsView.setVisibility(View.VISIBLE);
         }
     };
     private boolean mVisible;
@@ -85,16 +100,17 @@ public class FullscreenActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+        getSupportActionBar();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = (TextView) findViewById(R.id.fullscreen_content);
-        Button back = (Button) findViewById(R.id.button_back);
-        back.setOnClickListener(v -> finish());
+        mContentView.setTextSize(Preferences.getFontSize());
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -106,8 +122,7 @@ public class FullscreenActivity extends BaseActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.button_back).setOnTouchListener(mDelayHideTouchListener);
-
+        toolbar.setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override
@@ -145,7 +160,7 @@ public class FullscreenActivity extends BaseActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        mControlsView.setVisibility(View.GONE);
+
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay

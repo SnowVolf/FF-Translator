@@ -1,3 +1,18 @@
+<!--
+  ~ Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
     <string name="app_name">FF-Translator</string>
     <string name="lang_en">English</string>
@@ -212,4 +227,42 @@
     <string name="owner_lib14">Swipe detection library for Android</string>
     <string name="lib15">JSON.simple 2</string>
     <string name="owner_lib15">JSON.simple library adopted for Java 7, 8 and android</string>
+
+    <string name="pref_ctg_notifications">Notifications</string>
+    <string name="pref_ui_anim">Transitions animations</string>
+    <string name="pref_ui_toolbar_theme">Toolbar color</string>
+    <string name="pref_ui_toolbar_override">Override Toolbar color</string>
+    <string name="pref_ctg_backup_restore">Create/restore backup</string>
+    <string name="pref_backup_db_export">Export db</string>
+    <string name="pref_backup_db_import">Import db</string>
+    <string name="pref_backup_pref_export">Export settings</string>
+    <string name="pref_backup_pref_import">Import settings</string>
+    <string name="please_restart">Please restart the application</string>
+    <string name="action_restart">Restart</string>
+    <string name="pref_backup_restart_app">Restart app</string>
+    <string name="pref_notifications_doze">Doze mode white list</string>
+    <string name="pref_notifications_ongoing">HeadsUp notifications</string>
+    <string name="pref_notifications_vibrate">Vibrate</string>
+    <string name="pref_notifications_lights">Lights</string>
+    <string name="pref_lists_rev_history">Older first</string>
+    <string name="pref_lists_rev_fav">Newest first</string>
+    <string name="pref_notifications_color_accent">Accent color</string>
+    <string name="pref_notifications_alert_once">Don\'t alarm again</string>
+    <string name="pref_notifications_on_boot">Start on boot</string>
+    <string name="pref_notifications_accent_color_sum">Also uses for the notification light</string>
+    <string name="now_fmt">Today, %s</string>
+    <string name="joda_time_fmt_pattern">h:mm a</string>
+    <string name="doze_already_granted">Don\'t needed. Permission already granted</string>
+    <string name="ipsum">Lorem ipsum dolor sit amet</string>
+    <string name="ipsum_translate">Translate</string>
+    <string name="no_connection_translate_title">Failed connect to the translation server</string>
+    <string name="no_connection_translate_sum">Отсутствует подключение к Интернету. Проверьте настройки брандмауэра, или VPN-клиента.</string>
+    <string name="no_connection_response">Wi-Fi settings</string>
+    <string name="button_retry_network">Retry</string>
+    <string name="version_sub">Version: %s</string>
+    <string name="id_sub">Build ID: %x</string>
+    <string name="date_sub">Build date: %s</string>
+    <string name="pref_notifications_clear">Transparent icon</string>
+    <string name="pref_lists_renew">Refresh lists when open</string>
+
 </resources>

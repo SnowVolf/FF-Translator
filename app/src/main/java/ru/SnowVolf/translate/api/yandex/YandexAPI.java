@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.api.yandex;
 
 import android.support.annotation.NonNull;
@@ -14,18 +29,27 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
- * Created by Snow Volf on 25.05.2017, 9:35
+ * Created by Snow Volf on 21.05.2017, 9:35
+ *
+ * Запросы к API. Ключевой класс модуля api
  */
 
 public class YandexAPI {
-
     protected static final String ENCODING = "UTF-8";
     public static final String WEB_URL = "https://translate.yandex.ru/m/translate?=";
     private static int responseCode;
     private static String combinedTranslations;
+    // Коды ответов от севера
+    public static final int RESPONSE_SUCCESS = 200;
+    public static final int RESPONSE_NULL = 0;
+    public static final int RESPONSE_KEY_BLOCKED = 402;
+    public static final int RESPONSE_WRONG_KEY = 401;
+    public static final int RESPONSE_LIMIT_EXPIRED = 404;
+    public static final int RESPONSE_BIG_TEXT_SIZE = 413;
+    public static final int RESPONSE_CANNOT_BE_TRANSLATED = 422;
+    public static final int RESPONSE_DIRECTION_ISNT_SUPPORTED = 501;
 
     protected static String apiKey;
-    //private static String referrer;
 
     protected static final String PARAM_API_KEY = "key=", PARAM_LANG_PAIR = "&lang=", PARAM_TEXT = "&text=";
 
@@ -33,16 +57,8 @@ public class YandexAPI {
         apiKey = girlKey;
     }
 
-//    public static void setReferrer(final String girlReferrer){
-//        referrer = girlReferrer;
-//    }
-
     private static String retrieveResponse(final URL url) throws Exception{
         final HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-//        if (referrer != null){
-//            urlConnection.setRequestProperty("referrer", referrer);
-//            Log.i("VfTr", "referrer set to : " + referrer);
-//        }
         urlConnection.setRequestProperty("Content-Type", "text/plain; charset=" + ENCODING);
         urlConnection.setRequestProperty("Accept-Charset", ENCODING);
         urlConnection.setRequestMethod("GET");
@@ -64,7 +80,7 @@ public class YandexAPI {
     }
 
     @NonNull
-    protected static String retriviePropArrString(final URL url, final String jsonValProperty) throws Exception{
+    protected static String retrievePropArrString(final URL url, final String jsonValProperty) throws Exception{
         try {
             final String response = retrieveResponse(url);
             String[] translationArr = jsonObjValToStringArr(response, jsonValProperty);
@@ -106,7 +122,6 @@ public class YandexAPI {
 
     private static String inputStreamToString(final InputStream inputStream) throws Exception{
         final StringBuilder outBuilder = new StringBuilder();
-
         try {
             String string;
             if (inputStream != null){

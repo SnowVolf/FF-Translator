@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate;
 
 import android.app.Application;
@@ -6,6 +21,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.annotation.StringRes;
+
 
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
@@ -14,8 +31,11 @@ import org.acra.annotation.ReportsCrashes;
 import java.util.Locale;
 
 import ru.SnowVolf.translate.api.yandex.language.Language;
-import ru.SnowVolf.translate.clipboard.ClipboardService;
-import ru.SnowVolf.translate.util.Preferences;
+
+import ru.SnowVolf.translate.clipboard.AppUtils;
+import ru.SnowVolf.translate.clipboard.ClipboardWatcherService;
+import ru.SnowVolf.translate.preferences.Preferences;
+import ru.SnowVolf.translate.util.compat.LocaleCompat;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
 import static org.acra.ReportField.ANDROID_VERSION;
@@ -27,6 +47,8 @@ import static org.acra.ReportField.STACK_TRACE;
 
 /**
  * Created by Snow Volf on 28.05.2017, 6:31
+ *
+ * Extend the App class so we can get a {@link Context} anywhere
  */
 @ReportsCrashes(
         mailTo = "svolf15@yandex.ru",
@@ -45,8 +67,6 @@ import static org.acra.ReportField.STACK_TRACE;
 public class App extends Application {
     private static App INSTANCE = new App();
     private SharedPreferences preferences;
-    Locale locale;
-    String lang;
 
     public App() {
         INSTANCE = this;
@@ -60,39 +80,30 @@ public class App extends Application {
         return ctx();
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleCompat.onAttach(base, "default"));
+    }
+
+    @Override
     public void onCreate(){
         super.onCreate();
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        // Задание настроек по умолчанию
         PreferenceManager.setDefaultValues(this, R.xml.preferences_dev, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences_ui, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences_api, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences_system, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences_interaction, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences_notifications, false);
         ACRA.init(this);
 
-        //Lang
-        Configuration config = getResources().getConfiguration();
-        lang = Preferences.getDefaultLanguage();
-        if (lang.equals("default"))
-            lang = config.locale.getLanguage();
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        getResources().updateConfiguration(config, null);
 
-        if (Preferences.isClipboardServiceAllowed()){
-            startService(new Intent(this, ClipboardService.class));
+        if (Preferences.isClipboardServiceAllowed() && !AppUtils.isMyServiceRunning(ClipboardWatcherService.class)){
+            startService(new Intent(this, ClipboardWatcherService.class));
         }
         final String SUKA = "Ты что тут забыл?! Пидор блядь!!! Пошёл нахуй!!! Добра тебе сука. :-D";
         Logger.log(SUKA);
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-            Configuration config = getResources().getConfiguration();
-            locale = new Locale(lang);
-            Locale.setDefault(locale);
-            config.locale = locale;
-            getResources().updateConfiguration(config, null);
-    }
-
 
     public SharedPreferences getPreferences() {
         if (preferences == null) {
@@ -102,7 +113,7 @@ public class App extends Application {
     }
 
     public static Language[] langs = {
-            Language.AZERBAIJANI,
+            Language.AZERBAIJANIAN,
             Language.ALBANIAN,
             Language.ENGLISH,
             Language.ARABIAN,
@@ -164,4 +175,8 @@ public class App extends Application {
             Language.JAVANESE,
             Language.JAPANESE
     };
+
+    public static String injectString(@StringRes int resId){
+        return getContext().getString(resId);
+    }
 }

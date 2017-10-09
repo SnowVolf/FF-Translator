@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.favorite;
 
 import android.content.Context;
@@ -9,19 +24,19 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.model.FavoriteDbModel;
+import ru.SnowVolf.translate.preferences.Constants;
 import ru.SnowVolf.translate.ui.activity.FullscreenActivity;
 import ru.SnowVolf.translate.ui.activity.HistoryFavActivity;
 import ru.SnowVolf.translate.ui.activity.TranslatorActivity;
 import ru.SnowVolf.translate.ui.adapter.FavoriteAdapter;
 import ru.SnowVolf.translate.ui.fragment.historyfav.FavoriteFragment;
-import ru.SnowVolf.translate.util.Constants;
 import ru.SnowVolf.translate.util.Utils;
 
 
@@ -30,7 +45,7 @@ import ru.SnowVolf.translate.util.Utils;
  */
 
 public class FavoriteHolder extends RecyclerView.ViewHolder {
-    private final RelativeLayout mCard;
+    private final LinearLayout mCard;
     private final TextView mTitle;
     private final TextView mSubTitle;
     private final ImageView mMenu;
@@ -44,11 +59,9 @@ public class FavoriteHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Context context, FavoriteItem item) {
-        String title = item.getTitle();
-        String summary = item.getSource();
-        if (title == null || title.isEmpty()) {
-            title = item.getSource().split("/")[2];
-        }
+        String title = item.getSource();
+        String summary = item.getTitle();
+
         mTitle.setText(title);
         mSubTitle.setText(summary);
 

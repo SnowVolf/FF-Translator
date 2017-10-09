@@ -1,11 +1,28 @@
+/*
+ * Copyright (c) 2017 Snow Volf (Artem Zhiganov).
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package ru.SnowVolf.translate.ui.fragment.historyfav;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,8 +39,11 @@ import butterknife.ButterKnife;
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.history.HistoryItem;
 import ru.SnowVolf.translate.model.HistoryDbModel;
+import ru.SnowVolf.translate.preferences.Preferences;
 import ru.SnowVolf.translate.ui.adapter.HistoryAdapter;
 import ru.SnowVolf.translate.ui.fragment.NativeContainerFragment;
+import ru.SnowVolf.translate.ui.interfacer.ThemeWrapper;
+import ru.SnowVolf.translate.ui.widget.recyclerview.FastScroller;
 import ru.SnowVolf.translate.ui.widget.recyclerview.RecyclerViewLinearManager;
 
 /**
@@ -34,6 +54,7 @@ public class HistoryFragment extends NativeContainerFragment {
     @BindView(R.id.swipe_refresh) SwipeRefreshLayout mRefresh;
     @BindView(R.id.history_empty_layout) View mEmptyView;
     @BindView(R.id.history_list) RecyclerView list;
+    @BindView(R.id.fast_scroller) FastScroller fastScroller;
 
     private HistoryDbModel mDbHandler;
     public HistoryAdapter mAdapter;
@@ -71,16 +92,45 @@ public class HistoryFragment extends NativeContainerFragment {
         mDbHandler = new HistoryDbModel(getActivity());
         mAdapter = new HistoryAdapter(getActivity(), new ArrayList<>());
         mAdapter.registerAdapterDataObserver(mAdapterDataObserver);
-        list.setLayoutManager(new RecyclerViewLinearManager(getActivity()));
+        list.setLayoutManager(new RecyclerViewLinearManager(getActivity(), LinearLayoutManager.VERTICAL, false){
+            @Override
+            public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+                super.onLayoutChildren(recycler, state);
+                final int firstVisiblePosition = findFirstVisibleItemPosition();
+                if (firstVisiblePosition != 0){
+                    if (firstVisiblePosition == -1){
+                        fastScroller.setVisibility(View.GONE);
+                        return;
+                    }
+                    final int lastVisiblePosition = findLastVisibleItemPosition();
+                    int itemsShown = lastVisiblePosition - firstVisiblePosition + 1;
+                    fastScroller.setVisibility(mAdapter.getItemCount() > itemsShown ? View.VISIBLE : View.GONE);
+                }
+            }
+        });
+        fastScroller.setRecyclerView(list);
+        fastScroller.setViewsToUse(R.layout.fast_scroller, R.id.fast_scroller_handle);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setAdapter(mAdapter);
+        mRefresh.setDistanceToTriggerSync(300);
+        mRefresh.setColorSchemeColors(
+                ContextCompat.getColor(getActivity(),R.color.accent_red),
+                ContextCompat.getColor(getActivity(), R.color.md_light_blue_500),
+                ContextCompat.getColor(getActivity(),R.color.accent_green));
+        mRefresh.setBackgroundResource(!ThemeWrapper.isLightTheme() ?
+                R.color.dark_colorPrimary : R.color.light_colorPrimary);
         mRefresh.setOnRefreshListener(this::refresh);
+        refresh();
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        refresh();
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && Preferences.isRefreshAuto()){
+            try {
+                refresh();
+            } catch (NullPointerException ignored){}
+        }
     }
 
     @Override
