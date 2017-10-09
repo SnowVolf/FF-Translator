@@ -146,7 +146,6 @@ public class FavoriteFragment extends NativeContainerFragment {
                         .setNegativeButton(android.R.string.cancel, (d, w) -> d.dismiss())
                         .show();
                 return true;
-            case R.id.action_share:
         }
         return super.onOptionsItemSelected(item);
     }

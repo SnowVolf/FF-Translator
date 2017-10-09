@@ -64,12 +64,9 @@ public class AboutFragment extends NativeContainerFragment {
     @BindView(R.id.artem_header_img) ImageView zoeMorrell;
     @BindView(R.id.profile_block_information) CardView cardLicenses;
     @BindView(R.id.list_libs) Button buttonLib;
-    @BindView(R.id.artem_header_img) ImageView widowMaker;
     @BindView(R.id.about_author_artem_mail_item) Button volfMailContact;
     @BindView(R.id.about_author_artem_pda_item) Button volfPdaContact;
     @BindView(R.id.about_author_artem_github_item) Button volfGitContact;
-
-    int widowChar = 0;
 
     @Nullable
     @Override
