@@ -33,6 +33,7 @@ import ru.SnowVolf.translate.api.yandex.language.Language;
 import ru.SnowVolf.translate.clipboard.AppUtils;
 import ru.SnowVolf.translate.clipboard.ClipboardWatcherService;
 import ru.SnowVolf.translate.preferences.Preferences;
+import ru.SnowVolf.translate.util.compat.LocaleCompat;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
 import static org.acra.ReportField.ANDROID_VERSION;
@@ -64,8 +65,6 @@ import static org.acra.ReportField.STACK_TRACE;
 public class App extends Application {
     private static App INSTANCE = new App();
     private SharedPreferences preferences;
-    Locale locale;
-    String lang;
 
     public App() {
         INSTANCE = this;
@@ -79,6 +78,12 @@ public class App extends Application {
         return ctx();
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleCompat.onAttach(base, "default"));
+    }
+
+    @Override
     public void onCreate(){
         super.onCreate();
         // Задание настроек по умолчанию
@@ -90,32 +95,12 @@ public class App extends Application {
         PreferenceManager.setDefaultValues(this, R.xml.preferences_notifications, false);
         ACRA.init(this);
 
-        // Изменение языка
-        // TODO: Переделать под новый, не deprecated api [02.08.2017]
-        Configuration config = getResources().getConfiguration();
-        lang = Preferences.getDefaultLanguage();
-        if (lang.equals("default"))
-            lang = config.locale.getLanguage();
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        getResources().updateConfiguration(config, null);
 
         if (Preferences.isClipboardServiceAllowed() && !AppUtils.isMyServiceRunning(ClipboardWatcherService.class)){
             startService(new Intent(this, ClipboardWatcherService.class));
         }
         final String SUKA = "Ты что тут забыл?! Пидор блядь!!! Пошёл нахуй!!! Добра тебе сука. :-D";
         Logger.log(SUKA);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-            Configuration config = getResources().getConfiguration();
-            locale = new Locale(lang);
-            Locale.setDefault(locale);
-            config.locale = locale;
-            getResources().updateConfiguration(config, null);
     }
 
     public SharedPreferences getPreferences() {
@@ -190,6 +175,6 @@ public class App extends Application {
     };
 
     public static String injectString(@StringRes int resId){
-        return ctx().getString(resId);
+        return getContext().getString(resId);
     }
 }

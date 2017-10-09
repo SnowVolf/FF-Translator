@@ -27,6 +27,7 @@ import android.view.View;
 
 import ru.SnowVolf.translate.preferences.Preferences;
 import ru.SnowVolf.translate.ui.interfacer.ThemeWrapper;
+import ru.SnowVolf.translate.util.compat.LocaleCompat;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
 public class BaseActivity extends AppCompatActivity {
@@ -43,6 +44,11 @@ public class BaseActivity extends AppCompatActivity {
     };
     public BaseActivity(){
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleCompat.onAttach(base));
     }
 
     @Override

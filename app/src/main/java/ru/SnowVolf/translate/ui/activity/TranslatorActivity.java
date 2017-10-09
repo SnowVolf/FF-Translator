@@ -31,6 +31,7 @@ import android.widget.Toast;
 import ru.SnowVolf.translate.R;
 import ru.SnowVolf.translate.preferences.Preferences;
 import ru.SnowVolf.translate.ui.fragment.main.TranslatorFragment;
+import ru.SnowVolf.translate.util.compat.LocaleCompat;
 import ru.SnowVolf.translate.util.runtime.Logger;
 
 public class TranslatorActivity extends BaseActivity {
@@ -59,10 +60,10 @@ public class TranslatorActivity extends BaseActivity {
 
         // Языковые настройки
         if (lang == null){
-            lang = Preferences.getDefaultLanguage();
+            lang = LocaleCompat.getLanguage(this);
         }
         // Проверка не изменися ли язык
-        if (!Preferences.getDefaultLanguage().equals(lang)){
+        if (!LocaleCompat.getLanguage(this).equals(lang)){
             new AlertDialog.Builder(this)
                     .setMessage(R.string.app_lang_changed)
                     .setPositiveButton(R.string.ok, (d, i) -> {
